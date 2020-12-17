@@ -1,12 +1,16 @@
 package com.KLK.photogallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -21,10 +25,28 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_profile);
         Log.d(TAG, "Start onCreate()!");
         configBottomNavigationView();
+        initToolBar();
     }
+
+    // little toolbar on the right
+    private void initToolBar(){
+        Toolbar toolbar = (Toolbar)findViewById(R.id.profileToolBar);
+        setSupportActionBar(toolbar);
+
+        ImageView profileMenu = (ImageView)findViewById(R.id.profileMenu);
+        profileMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: navigate to account setting!");
+                Intent intent = new Intent(context, AccountSettingActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     private void configBottomNavigationView(){
         Log.d(TAG, "Config Bottom Navigation View!");
@@ -35,4 +57,5 @@ public class ProfileActivity extends AppCompatActivity {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+
 }
