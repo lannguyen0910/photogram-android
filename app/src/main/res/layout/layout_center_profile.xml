@@ -14,8 +14,7 @@
             <include layout="@layout/layout_top_profilebar_snippet"></include>
         </RelativeLayout>
 
-        <!-- ********************Middle Section*************************** -->
-
+        <!--Body-->
         <RelativeLayout
             android:id="@+id/relLayout2"
             android:layout_width="match_parent"

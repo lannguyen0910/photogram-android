@@ -11,6 +11,7 @@
         <include layout="@layout/layout_center_profile"></include>
 
         <include layout="@layout/layout_bottom_navigation_view"></include>
+
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

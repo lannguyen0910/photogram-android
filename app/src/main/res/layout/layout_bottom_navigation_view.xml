@@ -14,11 +14,8 @@
             app:itemIconTint="@color/purple_200"
             app:menu="@menu/bottom_navigation_menu">
 
-
         </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
     </RelativeLayout>
-
-
 
 </merge>
