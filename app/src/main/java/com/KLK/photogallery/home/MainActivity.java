@@ -1,4 +1,6 @@
-package com.KLK.photogallery;
+package com.KLK.photogallery.home;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,17 +8,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-// Just contains navigation
-public class LoveActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     // For debugging
-    private static final String TAG = "LoveActivity";
-
-    private static final int ACTIVITY_NUM = 3;
-    private Context context = LoveActivity.this;
+    private static final String TAG = "MainActivity";
+    private static final int ACTIVITY_NUM = 0;
+    private Context context = MainActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

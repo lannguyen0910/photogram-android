@@ -1,4 +1,4 @@
-package com.KLK.photogallery;
+package com.KLK.photogallery.helper;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,12 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
+import com.KLK.photogallery.camera.CameraActivity;
+import com.KLK.photogallery.R;
+import com.KLK.photogallery.search.SearchActivity;
+import com.KLK.photogallery.home.MainActivity;
+import com.KLK.photogallery.love.LoveActivity;
+import com.KLK.photogallery.profile.ProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -28,23 +34,23 @@ public class BottomNavigationViewUtils {
             public boolean onNavigationItemSelected(@NonNull MenuItem item){
                 switch(item.getItemId()){
                     case R.id.ic_home:  // Activity 0
-                        Intent intent1 = new Intent(context,MainActivity.class);
+                        Intent intent1 = new Intent(context, MainActivity.class);
                         context.startActivity(intent1);
                         break;
                     case R.id.ic_search:    // Activity 1
-                        Intent intent2 = new Intent(context,SearchActivity.class);
+                        Intent intent2 = new Intent(context, SearchActivity.class);
                         context.startActivity(intent2);
                         break;
                     case R.id.ic_camera:    // Activity 2
-                        Intent intent3 = new Intent(context,CameraActivity.class);
+                        Intent intent3 = new Intent(context, CameraActivity.class);
                         context.startActivity(intent3);
                         break;
                     case R.id.ic_heart:     // Activity 3
-                        Intent intent4 = new Intent(context,LoveActivity.class);
+                        Intent intent4 = new Intent(context, LoveActivity.class);
                         context.startActivity(intent4);
                         break;
                     case R.id.ic_profile:   // Activity 4
-                        Intent intent5 = new Intent(context,ProfileActivity.class);
+                        Intent intent5 = new Intent(context, ProfileActivity.class);
                         context.startActivity(intent5);
                         break;
                 }

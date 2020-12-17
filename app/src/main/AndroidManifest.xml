@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.KLK.photogallery">
 
     <application
@@ -9,18 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoGallery">
-        <activity android:name=".MainActivity">
+        <activity android:name=".home.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".LoveActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".SearchActivity"></activity>
-        <activity android:name=".AccountSettingActivity"></activity>
+        <activity android:name=".love.LoveActivity"></activity>
+        <activity android:name=".profile.ProfileActivity"></activity>
+        <activity android:name=".profile.AccountSettingActivity"></activity>
+        <activity android:name=".search.SearchActivity"></activity>
+        <activity android:name=".camera.CameraActivity"></activity>
+
     </application>
 
 </manifest>

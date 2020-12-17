@@ -1,4 +1,4 @@
-package com.KLK.photogallery;
+package com.KLK.photogallery.search;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,15 +8,17 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-// Screenshot or Upload Image
-public class CameraActivity extends AppCompatActivity {
+// a search bar to search for friends
+public class SearchActivity extends AppCompatActivity {
     // For debugging
-    private static final String TAG = "CameraActivity";
+    private static final String TAG = "SearchActivity";
 
-    private static final int ACTIVITY_NUM = 2;
-    private Context context = CameraActivity.this;
+    private static final int ACTIVITY_NUM = 1;
+    private Context context = SearchActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class CameraActivity extends AppCompatActivity {
         Log.d(TAG, "Config Bottom Navigation View!");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewUtils.navigating(context,bottomNavigationViewEx);
+        BottomNavigationViewUtils.navigating(context, bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);

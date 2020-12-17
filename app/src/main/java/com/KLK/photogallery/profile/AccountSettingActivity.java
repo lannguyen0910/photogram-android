@@ -1,4 +1,4 @@
-package com.KLK.photogallery;
+package com.KLK.photogallery.profile;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.KLK.photogallery.R;
 
 import java.util.ArrayList;
 
