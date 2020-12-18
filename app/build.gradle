@@ -43,4 +43,5 @@ dependencies {
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.eschao:android-ElasticListView:v1.0'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

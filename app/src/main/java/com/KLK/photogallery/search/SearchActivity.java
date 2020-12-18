@@ -12,7 +12,7 @@ import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-// a search bar to search for friends
+/** a search bar to search for friends **/
 public class SearchActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "SearchActivity";

@@ -16,7 +16,7 @@ import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-// Profile Information
+/** Profile Information **/
 public class ProfileActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "ProfileActivity";

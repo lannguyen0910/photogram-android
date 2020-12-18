@@ -12,7 +12,7 @@ import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-// Just contains navigation
+/** Just contains navigation **/
 public class LoveActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "LoveActivity";
