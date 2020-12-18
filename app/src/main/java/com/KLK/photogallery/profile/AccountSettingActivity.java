@@ -3,6 +3,8 @@ package com.KLK.photogallery.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.KLK.photogallery.helper.SectionsStatePagerAdapter;
+import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
 
@@ -26,6 +30,7 @@ public class AccountSettingActivity extends AppCompatActivity {
     private SectionsStatePagerAdapter statePagerAdapter;
     private ViewPager viewPager;
     private RelativeLayout relativeLayout;
+    private static final int ACTIVITY_NUM = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,7 @@ public class AccountSettingActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout)findViewById(R.id.relLayout1);
 
         createSettingList();
+        configBottomNavigationView();
         initFragments();
 
         //navigate back to profile activity
@@ -86,5 +92,15 @@ public class AccountSettingActivity extends AppCompatActivity {
                 setViewPager(position);
             }
         });
+    }
+
+    private void configBottomNavigationView(){
+        Log.d(TAG, "Config Bottom Navigation View!");
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewUtils.navigating(context,bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 }

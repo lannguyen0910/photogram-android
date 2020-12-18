@@ -12,6 +12,12 @@
 
         <include layout="@layout/layout_bottom_navigation_view"></include>
 
+        <ProgressBar
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/profileProgressBar"
+            android:layout_centerInParent="true"/>
+
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

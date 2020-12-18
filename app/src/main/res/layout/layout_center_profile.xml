@@ -14,6 +14,7 @@
             android:layout_height="50dp">
 
             <include layout="@layout/layout_top_profilebar_snippet"></include>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -30,7 +31,6 @@
                 android:orientation="horizontal"
                 android:weightSum="100">
 
-
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -42,11 +42,8 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/avatar"
                         app:civ_border_color="@color/black"
                         app:civ_border_width="1dp"/>
-
-
 
                 </RelativeLayout>
 
@@ -62,7 +59,6 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/linLayout2"
@@ -98,9 +94,7 @@
                     android:layout_marginTop="5dp"
                     android:text="https://www.facebook.com/nguyen.hoang.lan.2000"
                     android:textColor="@color/link_blue"
-                    android:textSize="16sp"
-                    />
-
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -109,8 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linLayout2"
-                android:layout_marginBottom="50dp"
-                >
+                android:layout_marginBottom="50dp">
 
                 <GridView
                     android:id="@+id/gridView"
@@ -122,14 +115,11 @@
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="1dp">
 
-
                 </GridView>
 
             </RelativeLayout>
 
-
         </RelativeLayout>
-
 
     </RelativeLayout>
 
