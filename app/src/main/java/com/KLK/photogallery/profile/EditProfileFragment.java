@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,14 +23,18 @@ public class EditProfileFragment extends Fragment {
     private static final String TAG = "EditProfileFragment";
 
     private ImageView profileImage;
+    private ProgressBar mProgressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         profileImage = (ImageView)view.findViewById(R.id.profile_photo);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
+
 
         initImageLoader();
+        setActivityWidgets();
         setProfileImage();
 
         // navigate back to ProfileActivity
@@ -51,10 +56,14 @@ public class EditProfileFragment extends Fragment {
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
     }
 
+    private void setActivityWidgets(){
+        mProgressBar.setVisibility(View.GONE);
+    }
+
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: change profile image!");
-        String imgURL = "upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/1200px-Android_robot.svg.png";
-        UniversalImageLoader.setImage(imgURL, profileImage, null , "https://");
+        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
+        UniversalImageLoader.setImage(imgURL, profileImage, mProgressBar , "https://");
     }
 
 }

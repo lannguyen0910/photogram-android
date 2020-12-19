@@ -61,7 +61,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            app:startIconDrawable="@drawable/ic_description"
+            app:startIconDrawable="@drawable/ic_lock"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             android:layout_width="match_parent"

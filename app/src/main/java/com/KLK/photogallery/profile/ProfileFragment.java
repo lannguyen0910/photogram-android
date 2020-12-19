@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: set profile avatar!");
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
-        String imgURL = "upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/1200px-Android_robot.svg.png";
+        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
         UniversalImageLoader.setImage(imgURL, mProfilePhoto, mProgressBar , "https://");
     }
 
