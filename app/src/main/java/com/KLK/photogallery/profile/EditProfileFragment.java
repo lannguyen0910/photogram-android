@@ -1,5 +1,6 @@
 package com.KLK.photogallery.profile;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,4 +56,5 @@ public class EditProfileFragment extends Fragment {
         String imgURL = "upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/1200px-Android_robot.svg.png";
         UniversalImageLoader.setImage(imgURL, profileImage, null , "https://");
     }
+
 }
