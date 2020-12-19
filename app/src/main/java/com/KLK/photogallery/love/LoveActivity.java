@@ -12,7 +12,7 @@ import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-/** Just contains navigation **/
+/** Contains favorite images **/
 public class LoveActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "LoveActivity";
@@ -23,7 +23,7 @@ public class LoveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_love);
         Log.d(TAG, "Start onCreate()!");
         configBottomNavigationView();
     }

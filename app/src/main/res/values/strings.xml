@@ -12,6 +12,7 @@
     <string name="string_next">Next</string>
     <string name="gallery">GALLERY</string>
     <string name="photo">PHOTO</string>
+    <string name="error">Error</string>
 
     <!-- activity names-->
     <string name="profile_activity">Profile Activity</string>

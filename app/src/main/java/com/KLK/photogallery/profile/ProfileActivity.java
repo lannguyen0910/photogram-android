@@ -27,11 +27,8 @@ public class ProfileActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "ProfileActivity";
 
-    private static final int ACTIVITY_NUM = 4;
+    // private static final int ACTIVITY_NUM = 4;
     private Context context = ProfileActivity.this;
-
-    private ProgressBar progressBar;
-    private ImageView profilePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +51,5 @@ public class ProfileActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(getString(R.string.profile_fragment));
         fragmentTransaction.commit();
     }
-
 
 }
