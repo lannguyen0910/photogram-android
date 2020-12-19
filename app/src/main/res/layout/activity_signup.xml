@@ -19,8 +19,14 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="20dp"/>
 
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="68dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_account" />
 
         <com.google.android.material.textfield.TextInputLayout
             app:startIconDrawable="@drawable/ic_email"
@@ -28,9 +34,8 @@
             app:errorEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -40,15 +45,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             app:startIconDrawable="@drawable/ic_username"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:layout_width="match_parent"
@@ -59,15 +62,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <com.google.android.material.textfield.TextInputLayout
             app:startIconDrawable="@drawable/ic_lock"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <EditText
                 android:layout_width="match_parent"
@@ -78,7 +79,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +88,6 @@
             android:id="@+id/btn_register"
             android:padding="12dp"
             android:background="@drawable/white_rounded_button"/>
-
 
     </LinearLayout>
 

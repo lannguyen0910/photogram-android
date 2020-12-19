@@ -1,5 +1,6 @@
 package com.KLK.photogallery.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -35,34 +36,49 @@ public class BottomNavigationViewUtils {
             public boolean onNavigationItemSelected(@NonNull MenuItem item){
                 switch(item.getItemId()){
                     case R.id.ic_home:  // Activity 0
-                        Intent intent1 = new Intent(context, MainActivity.class);
+                        Activity activity1 = (Activity) context;
+                        Intent intent1 = new Intent(activity1, MainActivity.class);
                         intent1.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        context.startActivity(intent1);
+                        activity1.startActivity(intent1);
+                        activity1.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
+
                     case R.id.ic_search:    // Activity 1
-                        Intent intent2 = new Intent(context, SearchActivity.class);
+                        Activity activity2 = (Activity) context;
+                        Intent intent2 = new Intent(activity2, SearchActivity.class);
                         intent2.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        context.startActivity(intent2);
+                        activity2.startActivity(intent2);
+                        activity2.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
+
                     case R.id.ic_camera:    // Activity 2
-                        Intent intent3 = new Intent(context, CameraActivity.class);
+                        Activity activity3 = (Activity) context;
+                        Intent intent3 = new Intent(activity3, CameraActivity.class);
                         intent3.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        context.startActivity(intent3);
+                        activity3.startActivity(intent3);
+                        activity3.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
+
                     case R.id.ic_heart:     // Activity 3
-                        Intent intent4 = new Intent(context, LoveActivity.class);
+                        Activity activity4 = (Activity) context;
+                        Intent intent4 = new Intent(activity4, LoveActivity.class);
                         intent4.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        context.startActivity(intent4);
+                        activity4.startActivity(intent4);
+                        activity4.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
+
                     case R.id.ic_profile:   // Activity 4
-                        Intent intent5 = new Intent(context, ProfileActivity.class);
+                        Activity activity5 = (Activity) context;
+                        Intent intent5 = new Intent(activity5, ProfileActivity.class);
                         intent5.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        context.startActivity(intent5);
+                        activity5.startActivity(intent5);
+                        activity5.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
+
                 }
+
                 return false;
             }
-
         });
     }
 }

@@ -8,90 +8,88 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="55dp"
         android:paddingLeft="25dp"
+        android:paddingTop="55dp"
         android:paddingRight="25dp">
 
         <ImageView
-            android:id="@+id/imageIcon"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
-            android:src="@drawable/gallery"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/gallery" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please wait..."
-            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="cursive"
+            android:text="PHOTOGRAM"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:layout_alignBottom="@+id/imageIcon"
-            android:layout_alignRight="@+id/imageIcon"
-            android:layout_alignLeft="@+id/imageIcon"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/imageName"/>
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            app:startIconDrawable="@drawable/ic_email"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_email">
 
             <EditText
+                android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="Email"
-                android:id="@+id/input_email"/>
+                android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            app:startIconDrawable="@drawable/ic_lock"
-            app:endIconMode="clear_text"
-            app:errorEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_lock">
+
             <EditText
+                android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:hint="Password"
-                android:id="@+id/input_password"/>
+                android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"
-            android:text="Login"
-            android:id="@+id/btn_login"
+            android:background="@drawable/white_rounded_button"
             android:padding="12dp"
-            android:background="@drawable/white_rounded_button"/>
+            android:text="Login" />
 
         <TextView
+            android:id="@+id/link_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="No account yet? Create one"
             android:gravity="center"
-            android:textSize="16dp"
-            android:id="@+id/link_signup"
-            android:textColor="@color/link_blue"/>
+            android:text="No account yet? Create one"
+            android:textColor="@color/link_blue"
+            android:textSize="16dp" />
 
     </LinearLayout>
 

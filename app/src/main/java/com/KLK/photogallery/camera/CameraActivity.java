@@ -73,10 +73,10 @@ public class CameraActivity extends AppCompatActivity {
 
     }
 
-    public int getTask(){
-        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
-        return getIntent().getFlags();
-    }
+//    public int getTask(){
+//        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
+//        return getIntent().getFlags();
+//    }
 
     /**
      * verifiy all the permissions passed to the array
@@ -128,13 +128,14 @@ public class CameraActivity extends AppCompatActivity {
     }
 
 
-    private void configBottomNavigationView(){
-        Log.d(TAG, "Config Bottom Navigation View!");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewUtils.navigating(context,bottomNavigationViewEx);
-        Menu menu = bottomNavigationViewEx.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
-    }
+//    private void configBottomNavigationView(){
+//        Log.d(TAG, "Config Bottom Navigation View!");
+//        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
+//        BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewUtils.navigating(context,bottomNavigationViewEx);
+//        Menu menu = bottomNavigationViewEx.getMenu();
+//        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+//        menuItem.setChecked(true);
+//    }
+
 }

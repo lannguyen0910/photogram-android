@@ -83,6 +83,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -123,4 +124,6 @@ public class ProfileFragment extends Fragment {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
+
+
 }
