@@ -18,6 +18,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 
+/** adapter for making a GridView for each gallery **/
 public class GridImageAdapter extends ArrayAdapter<String> {
 
     private Context mContext;

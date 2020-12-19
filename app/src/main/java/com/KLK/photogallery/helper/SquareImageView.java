@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+/** make image items in GridView more organized **/
 public class SquareImageView extends AppCompatImageView {
 
     public SquareImageView(Context context) {
