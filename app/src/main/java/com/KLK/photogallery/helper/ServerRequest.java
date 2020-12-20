@@ -23,6 +23,8 @@ import java.util.Map;
 public class ServerRequest {
     private static final String TAG = "Server Request";
     Activity activity;
+    int response;
+    String message;
     private ArrayList<String> images_from_server = null;
     private String avatar_from_server = null;
 
@@ -45,11 +47,12 @@ public class ServerRequest {
                 url,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response_) {
                         try {
-                            JSONObject obj = new JSONObject(response);
-                            String message = obj.getString("message");
-                            //displayText(message);
+                            JSONObject obj = new JSONObject(response_);
+                            message = obj.getString("message");
+                            response = obj.getInt("response");
+                            displayText(message);
                             if (obj.has("images")) {
                                 JSONArray images = obj.getJSONArray("images");
                                 getImageGrid(images);
@@ -101,6 +104,13 @@ public class ServerRequest {
     }
     public String getAvatarBase64String(){ return avatar_from_server; }
 
+    public int getResponse(){
+        return response;
+    }
+
+    public String getMessage(){
+        return message;
+    }
 
     private void displayText(String response){
         activity.runOnUiThread(new Runnable() {

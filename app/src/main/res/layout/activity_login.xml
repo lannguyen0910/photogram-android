@@ -42,11 +42,10 @@
             app:startIconDrawable="@drawable/ic_email">
 
             <EditText
-                android:id="@+id/input_email"
+                android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:hint="Username"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
