@@ -37,6 +37,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,8 +91,22 @@ public class GalleryFragment extends Fragment {
             }
         });
 
-        init();
 
+        fetchImagefromLocal();
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchImagefromLocal();
+    }
+
+
+    private void fetchImagefromLocal(){
+        init();
         try {
             Thread.sleep(100);
             setupGridView();
@@ -101,10 +116,7 @@ public class GalleryFragment extends Fragment {
             Toast.makeText(getActivity(),"Not able to find directory", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
-        return view;
     }
-
 
     private void init() {
         cc = getActivity().getContentResolver().query(
@@ -141,8 +153,10 @@ public class GalleryFragment extends Fragment {
 
     private ArrayList<String> getUrlList(){
         ArrayList<String> imgURLs = new ArrayList<>();
-        for (int i =0;i<strUrls.length;i++){
-            imgURLs.add(strUrls[i]);
+        for (int i =strUrls.length-1;i>=0;i--){
+            File file = new File(strUrls[i]);
+            if(file.exists()) {imgURLs.add(strUrls[i]);}
+            else { Log.e(TAG, "filename" + strUrls[i] + " not exists");}
         }
         return imgURLs;
     }
@@ -161,7 +175,7 @@ public class GalleryFragment extends Fragment {
 
 //        //set the first image to be displayed when the activity fragment view is inflated
         try{
-            setImage(strUrls[0], galleryImage, mAppend);
+            setImage(imgURLs.get(0), galleryImage, mAppend);
         }catch (ArrayIndexOutOfBoundsException e){
             Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " +e.getMessage() );
         }
