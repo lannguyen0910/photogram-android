@@ -20,13 +20,10 @@ import com.KLK.photogallery.helper.GridImageAdapter;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-<<<<<<< Updated upstream
-// Profile Information
-=======
 import java.util.ArrayList;
 
 /** Profile Information **/
->>>>>>> Stashed changes
+
 public class ProfileActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "ProfileActivity";
