@@ -86,12 +86,7 @@
                     android:text="https://www.facebook.com/nguyen.hoang.lan.2000"
                     android:textColor="@color/link_blue"
                     android:textSize="16sp" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/test_btn"
-                    android:text="TEST">
-                </Button>
+  
             </LinearLayout>
 
             <RelativeLayout
