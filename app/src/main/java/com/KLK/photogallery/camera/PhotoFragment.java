@@ -56,7 +56,7 @@ public class PhotoFragment extends Fragment {
                         Log.d(TAG, "onClick: starting camera");
 //                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE); // Start camera
-                        dispatchTakePictureIntent();
+                        takePictureIntent();
                     }
                     else {
                         Intent intent = new Intent(getActivity(), CameraActivity.class);
@@ -75,7 +75,7 @@ public class PhotoFragment extends Fragment {
 
 
     /** Capture image **/
-    private void dispatchTakePictureIntent() {
+    private void takePictureIntent() {
             ContentValues values = new ContentValues();
             values.put(MediaStore.Images.Media.TITLE, "New Picture");
             values.put(MediaStore.Images.Media.DESCRIPTION, "From your Camera");

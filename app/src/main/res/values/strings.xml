@@ -20,5 +20,6 @@
     <!-- intent extras -->
     <string name="calling_activity">calling_activity</string>
     <string name="gallery_url">http://192.168.1.2:8000/gallery/</string>
-
+    <string name="login_url">http://192.168.1.2:8000/login/</string>
+    <string name="signup_url">http://192.168.1.2:8000/signup/</string>
 </resources>

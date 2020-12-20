@@ -2,7 +2,9 @@ package com.KLK.photogallery.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.KLK.photogallery.helper.GridImageAdapter;
+import com.KLK.photogallery.helper.ImageDecoder;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -78,7 +82,6 @@ public class ProfileFragment extends Fragment {
 
         sendGalleryRequest();
         setActivityWidgets();
-        setProfileImage();
 
         TextView editProfile = (TextView) view.findViewById(R.id.textEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
@@ -92,15 +95,14 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        Button test_btn = (Button) view.findViewById(R.id.test_btn);
-        test_btn.setOnClickListener(new View.OnClickListener() {
+        mProgressBar.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                setupGridView();
+            public void run() {
+                fetchImagefromServer();
+                mProgressBar.setVisibility(View.GONE);
             }
-        });
-
-
+        }, 2000);
 
         return view;
     }
@@ -119,6 +121,16 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    private void fetchImagefromServer(){
+        try {
+            setupGridView();
+            setProfileImage();
+        }
+        catch (NullPointerException e){
+            Toast.makeText(getActivity(),"Not able to find directory", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
 
     private void sendGalleryRequest(){
         String url = getResources().getString(R.string.gallery_url);
@@ -152,9 +164,12 @@ public class ProfileFragment extends Fragment {
      **/
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: set profile avatar!");
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
-        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
-        UniversalImageLoader.setImage(imgURL, mProfilePhoto, mProgressBar , "https://");
+        String avatar  = server.getAvatarBase64String();
+        Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(avatar);
+        mProfilePhoto.setImageBitmap(avatar_bm);
+//        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
+//        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
+//        UniversalImageLoader.setImage(imgURL, mProfilePhoto, mProgressBar , "https://");
     }
 
     private void setActivityWidgets(){

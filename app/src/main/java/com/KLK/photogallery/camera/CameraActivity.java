@@ -31,7 +31,6 @@ public class CameraActivity extends AppCompatActivity {
     private static final String TAG = "CameraActivity";
 
     private static final int ACTIVITY_NUM = 2;
-    private Context context = CameraActivity.this;
     private static final int VERIFY_PERMISSIONS_REQUEST = 1;
     private ViewPager viewPager;
 

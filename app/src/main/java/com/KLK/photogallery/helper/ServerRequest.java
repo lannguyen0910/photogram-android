@@ -2,7 +2,6 @@ package com.KLK.photogallery.helper;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,7 +24,7 @@ public class ServerRequest {
     private static final String TAG = "Server Request";
     Activity activity;
     private ArrayList<String> images_from_server = null;
-    private Button test_btn = null;
+    private String avatar_from_server = null;
 
     public ServerRequest(Activity activity){
         this.activity = activity;
@@ -55,6 +54,11 @@ public class ServerRequest {
                                 JSONArray images = obj.getJSONArray("images");
                                 getImageGrid(images);
                             }
+                            if (obj.has("avatar")) {
+                                String avatar = obj.getString("avatar");
+                                setAvatar(avatar);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -77,6 +81,10 @@ public class ServerRequest {
         queue.add(stringRequest);
     }
 
+    public void setAvatar(String avatar64Base) {
+        avatar_from_server = avatar64Base;
+        Log.e(TAG, "avatar received");
+    }
 
     public void getImageGrid(JSONArray images) throws JSONException {
         images_from_server = new ArrayList<>();
@@ -91,7 +99,7 @@ public class ServerRequest {
     public ArrayList<String> getImageBase64Strings(){
         return images_from_server;
     }
-
+    public String getAvatarBase64String(){ return avatar_from_server; }
 
 
     private void displayText(String response){
