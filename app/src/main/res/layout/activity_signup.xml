@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="55dp"
+        android:paddingTop="25dp"
         android:paddingLeft="25dp"
         android:paddingRight="25dp">
 
@@ -19,13 +19,13 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <ImageView
             android:layout_width="128dp"
             android:layout_height="68dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/ic_account" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,8 +57,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Full Name"
+                android:hint="Display Name"
                 android:id="@+id/input_username"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            app:startIconDrawable="@drawable/ic_phonenumber"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="Phone Number"
+                android:id="@+id/inputPhoneNumber"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

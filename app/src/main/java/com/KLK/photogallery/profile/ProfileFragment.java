@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,7 +22,9 @@ import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
+import com.KLK.photogallery.helper.ImageAdapter;
 import com.KLK.photogallery.helper.UniversalImageLoader;
+import com.KLK.photogallery.helper.ViewPostFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -82,7 +85,6 @@ public class ProfileFragment extends Fragment {
                 getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-
 
         return view;
     }

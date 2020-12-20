@@ -127,7 +127,7 @@ public class GalleryFragment extends Fragment {
         int imageWidth = gridWidth/NUM_GRID_COLUMNS;
         gridView.setColumnWidth(imageWidth);
 
-        //use the grid adapter to adapter the images to gridView
+        //use the grid adapter to adapt the images to gridView
         GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
         gridView.setAdapter(adapter);
 
