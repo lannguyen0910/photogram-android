@@ -1,38 +1,48 @@
 package com.KLK.photogallery.camera;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.FilePaths;
+import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.FileSearch;
 import com.KLK.photogallery.helper.GridImageAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GalleryFragment extends Fragment {
     // For debugging
     private static final String TAG = "GalleryFragment";
-
     //constants
     private static final int NUM_GRID_COLUMNS = 3;
 
@@ -40,21 +50,24 @@ public class GalleryFragment extends Fragment {
     private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar progressBar;
-    private Spinner directorySpinner;
 
-    private ArrayList<String> directories;
     private final String mAppend = "file:/";
-    private String mSelectedImage;
+
+    private static Uri[] mUrls = null;
+    private static String[] strUrls = null;
+    private String[] mNames = null;
+    private ProgressDialog myProgressDialog = null;
+    private Cursor cc = null;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery,container,false);
-
+        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
         galleryImage = (ImageView) view.findViewById(R.id.galleryImageView);
         gridView = (GridView) view.findViewById(R.id.gridView);
-        directorySpinner = (Spinner) view.findViewById(R.id.spinnerDirectory);
-        directories = new ArrayList<>();
+
         progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
         Log.d(TAG, "onCreateView: start!");
@@ -77,64 +90,78 @@ public class GalleryFragment extends Fragment {
             }
         });
 
+        init();
+
+        try {
+            Thread.sleep(100);
+            setupGridView();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e){
+            Toast.makeText(getActivity(),"Not able to find directory", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+
         return view;
     }
 
-    private void init(){
-        FilePaths filePaths = new FilePaths();
 
-        //check for other folders inside "/storage/emulated/0/pictures"
-        if (FileSearch.getDirectoryPaths(filePaths.PICTURES) != null) {
-            directories = FileSearch.getDirectoryPaths(filePaths.PICTURES);
+    private void init() {
+        cc = getActivity().getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null,
+                null);
+        if (cc != null) {
+            myProgressDialog = new ProgressDialog(getActivity());
+            myProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            myProgressDialog.setMessage("Wait");
+            myProgressDialog.show();
+
+            new Thread() {
+                public void run() {
+                    try {
+                        cc.moveToFirst();
+                        mUrls = new Uri[cc.getCount()];
+                        strUrls = new String[cc.getCount()];
+                        mNames = new String[cc.getCount()];
+                        for (int i = 0; i < cc.getCount(); i++) {
+                            cc.moveToPosition(i);
+                            mUrls[i] = Uri.parse(cc.getString(1));
+                            strUrls[i] = cc.getString(1);
+                            mNames[i] = cc.getString(3);
+                            //Log.e("mNames[i]",mNames[i]+":"+cc.getColumnCount()+ " : " +cc.getString(3));
+                        }
+
+                    } catch (Exception e) {
+                    }
+                    myProgressDialog.dismiss();
+                }
+            }.start();
         }
-        directories.add(filePaths.CAMERA);
-
-        ArrayList<String> directoryNames = new ArrayList<>();
-        for (int i = 0; i < directories.size(); i++) {
-            Log.d(TAG, "init: directory: " + directories.get(i));
-            int index = directories.get(i).lastIndexOf("/");
-            String string = directories.get(i).substring(index);
-            directoryNames.add(string);
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_spinner_item, directoryNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        directorySpinner.setAdapter(adapter);
-
-        directorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: selected: " + directories.get(position));
-
-                //setup our image grid for the directory chosen
-                setupGridView(directories.get(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
-    private void setupGridView(String selectedDirectory){
-        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
-        final ArrayList<String> imgURLs = FileSearch.getFilePaths(selectedDirectory);
+    private ArrayList<String> getUrlList(){
+        ArrayList<String> imgURLs = new ArrayList<>();
+        for (int i =0;i<strUrls.length;i++){
+            imgURLs.add(strUrls[i]);
+        }
+        return imgURLs;
+    }
 
-        //set the grid column width
+    private void setupGridView(){
+        Log.e(TAG,"Start gridview");
+        ArrayList<String> imgURLs = getUrlList();
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
         int imageWidth = gridWidth/NUM_GRID_COLUMNS;
         gridView.setColumnWidth(imageWidth);
 
         //use the grid adapter to adapter the images to gridView
+
         GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
         gridView.setAdapter(adapter);
 
-        //set the first image to be displayed when the activity fragment view is inflated
+//        //set the first image to be displayed when the activity fragment view is inflated
         try{
-            setImage(imgURLs.get(0), galleryImage, mAppend);
-            mSelectedImage = imgURLs.get(0);
+            setImage(strUrls[0], galleryImage, mAppend);
         }catch (ArrayIndexOutOfBoundsException e){
             Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " +e.getMessage() );
         }
@@ -145,7 +172,6 @@ public class GalleryFragment extends Fragment {
                 Log.d(TAG, "onItemClick: selected an image: " + imgURLs.get(position));
 
                 setImage(imgURLs.get(position), galleryImage, mAppend);
-                mSelectedImage = imgURLs.get(position);
             }
         });
     }
@@ -177,4 +203,6 @@ public class GalleryFragment extends Fragment {
             }
         });
     }
+
+
 }

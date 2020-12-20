@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -21,10 +22,14 @@ import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
+import com.KLK.photogallery.helper.GridImageAdapter;
+import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -32,8 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
     // For debugging
     private static final String TAG = "ProfileFragment";
-
     private static final int ACTIVITY_NUM = 4;
+    private final int NUM_GRID_COLUMNS = 3;
 
     //widgets
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
@@ -44,6 +49,7 @@ public class ProfileFragment extends Fragment {
     private ImageView profileMenu;
     private BottomNavigationViewEx bottomNavigationView;
     private Context mContext;
+    private ServerRequest server;
 
     @Nullable
     @Override
@@ -65,9 +71,12 @@ public class ProfileFragment extends Fragment {
         profileMenu = (ImageView) view.findViewById(R.id.profileMenu);
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
+        server = new ServerRequest((ProfileActivity)getActivity());
 
         configBottomNavigationView();
         initToolBar();
+
+        sendGalleryRequest();
         setActivityWidgets();
         setProfileImage();
 
@@ -82,6 +91,15 @@ public class ProfileFragment extends Fragment {
                 getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+
+        Button test_btn = (Button) view.findViewById(R.id.test_btn);
+        test_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setupGridView();
+            }
+        });
+
 
 
         return view;
@@ -101,6 +119,34 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+
+    private void sendGalleryRequest(){
+        String url = getResources().getString(R.string.gallery_url);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {server.sendRequestToServer(url); }});
+        try {
+            thread.start();
+            thread.join();
+            Log.e(TAG,"Thread joined");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupGridView() {
+        final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
+        Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
+
+        //set the grid column width
+        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+        int imageWidth = gridWidth / NUM_GRID_COLUMNS;
+        gridView.setColumnWidth(imageWidth);
+
+        //use the grid adapter to adapter the images to gridView
+        GridImageAdapter adapter = new GridImageAdapter(getContext(), R.layout.layout_grid_imageview, imgBase64Strings);
+        gridView.setAdapter(adapter);
+    }
     /** Modifies or delete this part when add database
      * ---------------------------------------------------------------------
      **/
