@@ -86,7 +86,7 @@
                     android:text="https://www.facebook.com/nguyen.hoang.lan.2000"
                     android:textColor="@color/link_blue"
                     android:textSize="16sp" />
-  
+
             </LinearLayout>
 
             <RelativeLayout

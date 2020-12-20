@@ -38,6 +38,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.File;
+import java.nio.channels.ScatteringByteChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,6 +116,8 @@ public class GalleryFragment extends Fragment {
         } catch (NullPointerException e){
             Toast.makeText(getActivity(),"Not able to find directory", Toast.LENGTH_LONG).show();
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e){
+            Log.e(TAG, "Empty Pictures directory");
         }
     }
 
@@ -174,11 +177,9 @@ public class GalleryFragment extends Fragment {
         gridView.setAdapter(adapter);
 
 //        //set the first image to be displayed when the activity fragment view is inflated
-        try{
-            setImage(imgURLs.get(0), galleryImage, mAppend);
-        }catch (ArrayIndexOutOfBoundsException e){
-            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " +e.getMessage() );
-        }
+
+        setImage(imgURLs.get(0), galleryImage, mAppend);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
