@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 //        tabLayout.getTabAt(2).setIcon(R.drawable.ic_arrow);
 //    }
 
-    private void configBottomNavigationView(){
+    private void configBottomNavigationView() {
         Log.d(TAG, "Config Bottom Navigation View!");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationViewEx);
