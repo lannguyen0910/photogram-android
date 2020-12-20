@@ -1,20 +1,15 @@
 <resources>
     <string name="app_name">Photo Gallery</string>
+<<<<<<< Updated upstream
     <string name="edit_profile">Edit Profile</string>
     <string name="sign_out">Sign Out</string>
-
+=======
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
     <string name="string_open_camera">Open Camera</string>
     <string name="string_next">Next</string>
     <string name="gallery">GALLERY</string>
     <string name="photo">PHOTO</string>
-    <string name="error">Error</string>
-    <!-- activity names-->
-    <string name="profile_activity">Profile Activity</string>
-
-    <!-- intent extras -->
-    <string name="calling_activity">calling_activity</string>
-
     <string name="gallery_url">http://192.168.1.2:8000/gallery/</string>
+>>>>>>> Stashed changes
 </resources>

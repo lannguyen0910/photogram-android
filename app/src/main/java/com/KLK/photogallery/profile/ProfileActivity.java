@@ -20,20 +20,22 @@ import com.KLK.photogallery.helper.GridImageAdapter;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-
+<<<<<<< Updated upstream
+// Profile Information
+=======
 import java.util.ArrayList;
 
 /** Profile Information **/
-
+>>>>>>> Stashed changes
 public class ProfileActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "ProfileActivity";
     private static final int ACTIVITY_NUM = 4;
     private Context context = ProfileActivity.this;
-//
-//    private ServerRequest server;
-//    private static final int NUM_GRID_COLUMNS = 3;
-//    private GridView gridView;
+
+    private ServerRequest server;
+    private static final int NUM_GRID_COLUMNS = 3;
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +43,22 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         Log.d(TAG, "Start onCreate()!");
         configBottomNavigationView();
-
-        //initToolBar();
+        initToolBar();
 
         // Send request to server when user click on profile tab
-//        server = new ServerRequest(this);
-//        //sendGalleryRequest();
-//
-//        //gridView = (GridView) findViewById(R.id.gridView);
-//        Button test_btn = (Button) findViewById(R.id.test_btn);
-//        test_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                //setupGridView();
-//            }
-//        });
+        server = new ServerRequest(this);
+        sendGalleryRequest();
+
+        gridView = (GridView) findViewById(R.id.gridView);
+        Button test_btn = (Button) findViewById(R.id.test_btn);
+        test_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setupGridView();
+            }
+        });
     }
-/*
+
     // little toolbar on the right
     private void initToolBar(){
         Toolbar toolbar = (Toolbar)findViewById(R.id.profileToolBar);
@@ -78,7 +78,6 @@ public class ProfileActivity extends AppCompatActivity {
     /*
     Send image request to server, run this on another thread
      */
-    /*
     private void sendGalleryRequest(){
         String url = getResources().getString(R.string.gallery_url);
         Thread thread = new Thread(new Runnable() {
@@ -92,11 +91,10 @@ public class ProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-**/
+
     /*
     Setup images received from database
      */
-    /*
     private void setupGridView() {
         final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
         Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
@@ -110,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity {
         GridImageAdapter adapter = new GridImageAdapter(this, R.layout.layout_grid_imageview, imgBase64Strings);
         gridView.setAdapter(adapter);
     }
-    */
+
     private void configBottomNavigationView(){
         Log.d(TAG, "Config Bottom Navigation View!");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
