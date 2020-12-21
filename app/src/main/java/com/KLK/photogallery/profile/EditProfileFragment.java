@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfileFragment extends Fragment {
     // For debugging
     private static final String TAG = "EditProfileFragment";
@@ -35,6 +38,12 @@ public class EditProfileFragment extends Fragment {
     private ImageView profileImage;
     private ProgressBar mProgressBar;
     private TextView tvChangePhoto;
+
+    // EditProfile Fragment widgets
+    private EditText mFullName, mEmail, mPhoneNumber, mPassword;
+    private TextView mChangeProfilePhoto;
+    private CircleImageView mProfilePhoto;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +51,14 @@ public class EditProfileFragment extends Fragment {
         profileImage = (ImageView)view.findViewById(R.id.profile_photo);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
         tvChangePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
+
+        // widgets
+        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
+        mFullName = (EditText) view.findViewById(R.id.full_name);
+        mPassword = (EditText) view.findViewById(R.id.changePassword);
+        mEmail = (EditText) view.findViewById(R.id.email);
+        mPhoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
+        mChangeProfilePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
 
         initImageLoader();
         setActivityWidgets();
@@ -57,13 +74,22 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-
         tvChangePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chooseProfileImage();
             }
         });
+
+        ImageView checkMark = (ImageView) view.findViewById(R.id.saveChanges);
+        checkMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: attempting to save changes.");
+                saveProfileSettings();
+            }
+        });
+
         return view;
     }
 
@@ -89,6 +115,32 @@ public class EditProfileFragment extends Fragment {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, REQUEST_CHANGE_AVATAR);
     }
+
+    /** --------------------------------------------------------------------------------
+     * Retrieves the data contained in the widgets and submits it to the database
+     * Make sure the username chosen is unique before submitting:
+     * Step 1: If (make change to Email or Password or both):
+     *              // Pop up a dialog, confirm the password or email (Use below script)
+     *             ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
+     *             dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
+     *             dialog.setTargetFragment(EditProfileFragment.this, 1);
+     *
+     * Step 2: Check email or password that was already used (database)
+     *
+     * Step 3: Change the email or password
+     *
+     * Step 4: change the rest of the settings that do not require uniqueness (phone, avatar, full name?,...)
+     *
+     * !!!!! Remember to display the result of EditProfile after SignUp or Edit !!!!!
+
+
+     **/
+
+    private void saveProfileSettings() {
+
+    }
+
+    /** -------------------------------------------------------------------------------- **/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
