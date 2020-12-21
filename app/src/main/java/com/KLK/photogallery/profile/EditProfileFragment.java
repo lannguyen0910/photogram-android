@@ -131,7 +131,7 @@ public class EditProfileFragment extends Fragment {
      *
      * Step 4: change the rest of the settings that do not require uniqueness (phone, avatar, full name?,...)
      *
-     * !!!!! Remember to display the result of EditProfile after SignUp or Edit !!!!!
+     * !!!!! Remember to display the result of EditProfile and ProfileActivity after SignUp or Edit !!!!!
 
 
      **/
