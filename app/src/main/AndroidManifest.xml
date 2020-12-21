@@ -33,7 +33,8 @@
         <activity android:name=".search.SearchActivity"></activity>
         <activity android:name=".camera.CameraActivity"></activity>
         <activity android:name=".home.MainActivity"></activity>
-        
+        <activity android:name=".login.SignUpActivity"></activity>
+
     </application>
 
 </manifest>

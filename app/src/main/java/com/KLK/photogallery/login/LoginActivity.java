@@ -31,11 +31,29 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private EditText mUsername, mPassword;
     private TextView mPleaseWait;
-    ServerRequest server = new ServerRequest(this);
+    private TextView bSignup;
+    Button bLogin;
+    ServerRequest server ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        server = new ServerRequest(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendLoginRequest("", "");
+            }
+        }).start();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (verifyLogin()){ goToMainActivity();}
+            }
+        }, 500);
+
         setContentView(R.layout.activity_login);
         Log.d(TAG, "onCreate: Start!");
 
@@ -43,12 +61,20 @@ public class LoginActivity extends AppCompatActivity {
         mPleaseWait = (TextView) findViewById(R.id.pleaseWait);
         mUsername = (EditText) findViewById(R.id.input_username);
         mPassword = (EditText) findViewById(R.id.input_password);
+        bLogin = (Button) findViewById(R.id.btn_login);
+        bSignup = (TextView) findViewById(R.id.link_signup);
         mContext = LoginActivity.this;
 
 
+        bSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSignUp();
+            }
+        });
 
-        Button btn_login = (Button) findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+        bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = mUsername.getText().toString();
@@ -107,6 +133,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToMainActivity(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
+    private void goToSignUp(){
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 

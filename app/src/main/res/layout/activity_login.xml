@@ -86,6 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:gravity="center"
+            android:clickable="true"
+            android:textColorLink="@color/link_blue"
             android:text="No account yet? Create one"
             android:textColor="@color/link_blue"
             android:textSize="16dp" />

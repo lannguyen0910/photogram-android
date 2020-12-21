@@ -44,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private static final int ACTIVITY_NUM = 4;
     private final int NUM_GRID_COLUMNS = 3;
 
+    private final int NUM_REQUEST_RETRIES = 5;
     //widgets
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
     private ProgressBar mProgressBar;
@@ -75,7 +76,7 @@ public class ProfileFragment extends Fragment {
         profileMenu = (ImageView) view.findViewById(R.id.profileMenu);
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
-        server = new ServerRequest((ProfileActivity)getActivity());
+        server = new ServerRequest((ProfileActivity)mContext);
 
         configBottomNavigationView();
         initToolBar();
@@ -95,14 +96,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        mProgressBar.setVisibility(View.VISIBLE);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                fetchImagefromServer();
-                mProgressBar.setVisibility(View.GONE);
-            }
-        }, 2000);
+        fetchImagefromServer(0);
 
         return view;
     }
@@ -121,16 +115,28 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void fetchImagefromServer(){
-        try {
-            setupGridView();
-            setProfileImage();
+    private void fetchImagefromServer(int times){
+        mProgressBar.setVisibility(View.VISIBLE);
+        if (times == NUM_REQUEST_RETRIES){
+            return;
         }
-        catch (NullPointerException e){
-            Toast.makeText(getActivity(),"Not able to find directory", Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    setProfileImage();
+                    setupGridView();
+                }
+                catch (NullPointerException e){
+                    //Toast.makeText(getActivity(),"Not able to connect server. Reloading...", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    fetchImagefromServer(times + 1);
+                }
+                mProgressBar.setVisibility(View.GONE);
+            }
+        }, 2000);
     }
+
 
     private void sendGalleryRequest(){
         String url = getResources().getString(R.string.gallery_url);
