@@ -2,6 +2,7 @@ package com.KLK.photogallery.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,12 +23,18 @@ import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
+import com.KLK.photogallery.helper.GridImageAdapter;
 import com.KLK.photogallery.helper.ImageAdapter;
 import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.KLK.photogallery.helper.ViewPostFragment;
+import com.KLK.photogallery.model.Post;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,6 +44,7 @@ public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
 
     private static final int ACTIVITY_NUM = 4;
+    private static final int NUM_GRID_COLUMNS = 3;
 
     //widgets
     private TextView mPosts, mFollowers, mFollowing, mDisplayName, mUsername, mWebsite, mDescription;
@@ -103,6 +111,31 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+
+
+
+    /** -----------------------------------------------------------------------------------
+     * Each time it is called, it will take the parameter in the function and pass it on where to implement this interface.
+     * activityNumber is used for calling this interface in different activity
+     **/
+    public interface OnGridImageSelectedListener{
+        void onGridImageSelected(Post post, int activityNumber);
+    }
+    OnGridImageSelectedListener mOnGridImageSelectedListener;
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        try{
+            mOnGridImageSelectedListener = (OnGridImageSelectedListener)getActivity();
+        }catch(ClassCastException e){
+            Log.e(TAG, "onAttach: ClassCastException!");
+        }
+        super.onAttach(context);
+    }
+    /** ----------------------------------------------------------------------------------- **/
+
+
     /** Modifies or delete this part when add database
      * ---------------------------------------------------------------------
      **/
@@ -118,14 +151,65 @@ public class ProfileFragment extends Fragment {
     }
     /** -------------------------------------------------------- **/
 
+
+    /** fix this method **/
+    private void setupGridView(String selectedDirectory){
+        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
+        final ArrayList<Post> posts = new ArrayList<>();
+
+        /** --------------------------------------------------------
+         * ------ see Post.java in model --------
+         * for every photo in directory (different from GalleryFragment, not a specific directory but every images):
+         *      create new Post object (Post post = new Post() )
+         *      add information in Post
+         *      post.add(post)
+         *
+
+
+
+
+
+
+
+
+
+
+         --------------------------------------------------------**/
+
+        //set the grid column width
+        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
+        gridView.setColumnWidth(imageWidth);
+
+        ArrayList<String> imgUrls = new ArrayList<String>();
+        for(int i = 0; i < posts.size(); i++){
+            imgUrls.add(posts.get(i).getImage_path());
+        }
+
+        //use the grid adapter to adapt the images to gridView
+        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview,
+                "", imgURLs);
+        gridView.setAdapter(adapter);
+
+        // attach onClickListener to GridViewItem
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // use interface above to navigate to new fragment (ViewPostFragment)
+                mOnGridImageSelectedListener.onGridImageSelected(posts.get(position), ACTIVITY_NUM);
+            }
+        });
+    }
+
+
+
     private void configBottomNavigationView(){
         Log.d(TAG, "Config Bottom Navigation View!");
         BottomNavigationViewUtils.configBottomNavigationView(bottomNavigationView);
-        BottomNavigationViewUtils.navigating(mContext,bottomNavigationView);
+        BottomNavigationViewUtils.navigating(mContext, getActivity(), bottomNavigationView);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
     }
-
 
 }

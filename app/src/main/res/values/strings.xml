@@ -6,6 +6,7 @@
     <string name="edit_profile_fragment">Edit Profile</string>
     <string name="sign_out_fragment">Sign Out</string>
     <string name="profile_fragment">Profile</string>
+    <string name="view_post_fragment">View Post</string>
 
     <!-- string-->
     <string name="string_open_camera">Open Camera</string>
@@ -20,4 +21,6 @@
     <!-- intent extras -->
     <string name="calling_activity">calling_activity</string>
 
+
+    <string name="activity_number">activity_number</string>
 </resources>
