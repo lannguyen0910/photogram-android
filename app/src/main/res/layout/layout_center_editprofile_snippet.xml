@@ -26,6 +26,8 @@
                 android:layout_height="wrap_content"
                 android:text="Change Photo"
                 android:id="@+id/changeProfilePhoto"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_below="@+id/profile_photo"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/link_blue"

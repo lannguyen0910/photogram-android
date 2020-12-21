@@ -86,7 +86,7 @@ public class SignoutFragment extends Fragment {
             }
 
         });
-
+//
 
         return view;
     }
