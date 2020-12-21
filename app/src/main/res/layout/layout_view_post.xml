@@ -103,6 +103,17 @@
                     android:layout_centerVertical="true"/>
 
                 <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignEnd="@id/speech_bubble"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/ic_delete" />
+
+                <ImageView
                     android:id="@+id/download"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -111,8 +122,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/ic_download"
-                    android:visibility="visible" />
+                    android:src="@drawable/ic_download2" />
 
             </RelativeLayout>
 

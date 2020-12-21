@@ -115,6 +115,7 @@ public class ProfileFragment extends Fragment {
 
 
     /** -----------------------------------------------------------------------------------
+     * Interface of ProfileFragment and ProfileActivity
      * Each time it is called, it will take the parameter in the function and pass it on where to implement this interface.
      * activityNumber is used for calling this interface in different activity
      **/
@@ -137,7 +138,7 @@ public class ProfileFragment extends Fragment {
 
 
     /** Modifies or delete this part when add database
-     * ---------------------------------------------------------------------
+     * -----------------------------------------------------------------------------------
      **/
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: set profile avatar!");
@@ -149,7 +150,7 @@ public class ProfileFragment extends Fragment {
     private void setActivityWidgets(){
         mProgressBar.setVisibility(View.GONE);
     }
-    /** -------------------------------------------------------- **/
+    /** ----------------------------------------------------------------------------------- **/
 
 
     /** fix this method **/
@@ -200,7 +201,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
-
+    /** ----------------------------------------------------------------------------------- **/
 
 
     private void configBottomNavigationView(){

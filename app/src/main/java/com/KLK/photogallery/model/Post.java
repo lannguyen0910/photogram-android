@@ -14,16 +14,17 @@ public class Post implements Parcelable {
     private String photo_id;
     private String user_id;
     private boolean likes;
+    private boolean download;
 
     public Post() {
     }
 
-    public Post(String image_path, String photo_id, boolean likes, String user_id) {
+    public Post(String image_path, String photo_id, boolean likes, String user_id, boolean download) {
         this.image_path = image_path;
         this.photo_id = photo_id;
         this.likes = likes;
         this.user_id = user_id;
-
+        this.download = download;
     }
 
     protected Post(Parcel in) {
@@ -92,6 +93,14 @@ public class Post implements Parcelable {
         this.likes = likes;
     }
 
+    public boolean getDownload() {
+        return false;
+    }
+
+    public void setDownload(boolean download) {
+        this.download = download;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -99,6 +108,7 @@ public class Post implements Parcelable {
                 ", photo_id='" + photo_id + '\'' +
                 ", user_id='" + user_id + '\'' +
                 ", likes=" + likes +
+                ", download=" + download +
                 '}';
     }
 }
