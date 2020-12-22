@@ -61,20 +61,20 @@
                 android:background="@drawable/white_grey_border_bottom">
 
                 <TextView
-                    android:id="@+id/display_name"
+                    android:id="@+id/full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lan Nguyen"
+                    android:text="Lan Nguyen (Full Name)"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/description"
+                    android:id="@+id/phoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Im from Vietnam"
+                    android:text="1234567889 (Phone Number)"
                     android:textColor="@color/black"
                     android:textSize="16sp"/>
 
@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="https://www.facebook.com/nguyen.hoang.lan.2000"
+                    android:text="nguyen.hoang.lan@gmail.com (Email)"
                     android:textColor="@color/link_blue"
                     android:textSize="16sp" />
 
