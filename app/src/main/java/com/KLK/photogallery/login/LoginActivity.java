@@ -17,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.ServerRequest;
+import com.KLK.photogallery.helper.SharedPref;
 import com.KLK.photogallery.home.MainActivity;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,10 +37,12 @@ public class LoginActivity extends AppCompatActivity {
     private TextView bSignup;
     Button bLogin;
     ServerRequest server ;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = new SharedPref(this.getApplicationContext());
         server = new ServerRequest(this);
 
         new Thread(new Runnable() {
@@ -50,7 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (verifyLogin()){ goToMainActivity();}
+                if (verifyLogin()){
+                    fetchUserInfoToSP();
+                    goToMainActivity();
+                }
             }
         }, 500);
 
@@ -91,7 +99,10 @@ public class LoginActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (verifyLogin()){ goToMainActivity();}
+                        if (verifyLogin()) {
+                            fetchUserInfoToSP();
+                            goToMainActivity();
+                        }
                         mPleaseWait.setVisibility(View.GONE);
                         mProgressBar.setVisibility(View.GONE);
                     }
@@ -129,6 +140,11 @@ public class LoginActivity extends AppCompatActivity {
         params.put("user", username);
         params.put("pwd", password);
         server.sendRequestToServer(url, params);
+    }
+
+    private void fetchUserInfoToSP(){
+        JSONObject userInfo = server.getUserInfo();
+        sharedPref.storeJSONObject(userInfo);
     }
 
     private void goToMainActivity(){

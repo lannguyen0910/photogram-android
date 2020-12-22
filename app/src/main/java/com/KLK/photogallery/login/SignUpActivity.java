@@ -17,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.ServerRequest;
+import com.KLK.photogallery.helper.SharedPref;
 import com.KLK.photogallery.home.MainActivity;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button btnRegister;
     private ProgressBar mProgressBar;
     ServerRequest server;
+    SharedPref sharedPref;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
         loadingPleaseWait = (TextView) findViewById(R.id.pleaseWait);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         server = new ServerRequest(this);
+        sharedPref = new SharedPref(this.getApplicationContext());
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +84,10 @@ public class SignUpActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (verifyLogin()){ goToMainActivity();}
+                        if (verifyLogin()){
+                            fetchUserInfoToSP();
+                            goToMainActivity();
+                        }
                         loadingPleaseWait.setVisibility(View.GONE);
                         mProgressBar.setVisibility(View.GONE);
                     }
@@ -97,7 +105,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
+    private void fetchUserInfoToSP(){
+        JSONObject userInfo = server.getUserInfo();
+        sharedPref.storeJSONObject(userInfo);
+    }
 
     private boolean verifyLogin(){
         int response = server.getResponse();

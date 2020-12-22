@@ -28,6 +28,7 @@ import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.KLK.photogallery.helper.GridImageAdapter;
 import com.KLK.photogallery.helper.ImageDecoder;
 import com.KLK.photogallery.helper.ServerRequest;
+import com.KLK.photogallery.helper.SharedPref;
 import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -46,7 +47,7 @@ public class ProfileFragment extends Fragment {
 
     private final int NUM_REQUEST_RETRIES = 5;
     //widgets
-    private TextView mPosts, mFullName, mUsername;
+    private TextView mPosts, mFullName, mUsername, mPhoneNumber, mEmail;
     private ProgressBar mProgressBar;
     private CircleImageView mProfilePhoto;
     private GridView gridView;
@@ -55,7 +56,7 @@ public class ProfileFragment extends Fragment {
     private BottomNavigationViewEx bottomNavigationView;
     private Context mContext;
     private ServerRequest server;
-
+    private SharedPref sharedPref;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +65,8 @@ public class ProfileFragment extends Fragment {
 
         mFullName = (TextView) view.findViewById(R.id.full_name);
         mUsername = (TextView) view.findViewById(R.id.username);
+        mPhoneNumber = (TextView) view.findViewById(R.id.phoneNumber);
+        mEmail = (TextView) view.findViewById(R.id.website);
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
         mPosts = (TextView) view.findViewById(R.id.tvPosts);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
@@ -73,6 +76,7 @@ public class ProfileFragment extends Fragment {
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
         server = new ServerRequest((ProfileActivity)mContext);
+        sharedPref = new SharedPref(getActivity().getApplicationContext());
 
         configBottomNavigationView();
         initToolBar();
@@ -92,6 +96,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        setUserInfo();
         fetchImagefromServer(0);
 
         return view;
@@ -169,6 +174,19 @@ public class ProfileFragment extends Fragment {
         String avatar  = server.getAvatarBase64String();
         Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(avatar);
         mProfilePhoto.setImageBitmap(avatar_bm);
+    }
+
+    private void setUserInfo(){
+        Log.d(TAG, "setUserInfo: set user info!");
+        String username = sharedPref.getString("username");
+        String phone_number = sharedPref.getString("phone_number");
+        String email = sharedPref.getString("email");
+        String fullname = sharedPref.getString("fullname");
+
+        mUsername.setText(username);
+        mPhoneNumber.setText(phone_number);
+        mEmail.setText(email);
+        mFullName.setText(fullname);
     }
 
     private void setActivityWidgets(){

@@ -27,7 +27,7 @@ public class ServerRequest {
     String message;
     private ArrayList<String> images_from_server = null;
     private String avatar_from_server = null;
-
+    JSONObject user_info = null;
     public ServerRequest(Activity activity){
         this.activity = activity;
         if (activity == null){
@@ -61,6 +61,10 @@ public class ServerRequest {
                                 String avatar = obj.getString("avatar");
                                 setAvatar(avatar);
                             }
+                            if (obj.has("user_info")){
+                                JSONObject info = obj.getJSONObject("user_info");
+                                setUserInfo(info);
+                            }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -82,6 +86,17 @@ public class ServerRequest {
             }
         };
         queue.add(stringRequest);
+    }
+
+    public void setUserInfo(JSONObject info){
+        this.user_info = info;
+        if (this.user_info != null) {
+            Log.e(TAG, "User info received");
+        }
+    }
+
+    public JSONObject getUserInfo(){
+        return this.user_info;
     }
 
     public void setAvatar(String avatar64Base) {
