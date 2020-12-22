@@ -31,7 +31,6 @@ public class GridImageAdapter extends ArrayAdapter<String> {
     private int type;
     private final int IMG_STRING = 1;
     private final int IMG_URL = 2;
-    
     public GridImageAdapter(Context context, int layoutResource, String append, ArrayList<String> imgURLs) {
         super(context, layoutResource, imgURLs);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

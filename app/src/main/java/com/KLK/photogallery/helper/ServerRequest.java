@@ -2,7 +2,6 @@ package com.KLK.photogallery.helper;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,9 +23,11 @@ import java.util.Map;
 public class ServerRequest {
     private static final String TAG = "Server Request";
     Activity activity;
+    int response;
+    String message;
     private ArrayList<String> images_from_server = null;
-    private Button test_btn = null;
-
+    private String avatar_from_server = null;
+    JSONObject user_info = null;
     public ServerRequest(Activity activity){
         this.activity = activity;
         if (activity == null){
@@ -46,15 +47,25 @@ public class ServerRequest {
                 url,
                 new Response.Listener<String>() {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse(String response_) {
                         try {
-                            JSONObject obj = new JSONObject(response);
-                            String message = obj.getString("message");
-                            //displayText(message);
+                            JSONObject obj = new JSONObject(response_);
+                            message = obj.getString("message");
+                            response = obj.getInt("response");
+                            displayText(message);
                             if (obj.has("images")) {
                                 JSONArray images = obj.getJSONArray("images");
                                 getImageGrid(images);
                             }
+                            if (obj.has("avatar")) {
+                                String avatar = obj.getString("avatar");
+                                setAvatar(avatar);
+                            }
+                            if (obj.has("user_info")){
+                                JSONObject info = obj.getJSONObject("user_info");
+                                setUserInfo(info);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -77,6 +88,21 @@ public class ServerRequest {
         queue.add(stringRequest);
     }
 
+    public void setUserInfo(JSONObject info){
+        this.user_info = info;
+        if (this.user_info != null) {
+            Log.e(TAG, "User info received");
+        }
+    }
+
+    public JSONObject getUserInfo(){
+        return this.user_info;
+    }
+
+    public void setAvatar(String avatar64Base) {
+        avatar_from_server = avatar64Base;
+        Log.e(TAG, "avatar received");
+    }
 
     public void getImageGrid(JSONArray images) throws JSONException {
         images_from_server = new ArrayList<>();
@@ -91,8 +117,15 @@ public class ServerRequest {
     public ArrayList<String> getImageBase64Strings(){
         return images_from_server;
     }
+    public String getAvatarBase64String(){ return avatar_from_server; }
 
+    public int getResponse(){
+        return response;
+    }
 
+    public String getMessage(){
+        return message;
+    }
 
     private void displayText(String response){
         activity.runOnUiThread(new Runnable() {

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="25dp"
-        android:paddingTop="55dp"
+        android:paddingTop="40dp"
         android:paddingRight="25dp">
 
         <ImageView
@@ -27,7 +27,7 @@
             android:text="PHOTOGRAM"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="35sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:layout_marginBottom="40dp"/>
 
@@ -35,28 +35,25 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_username">
+            app:startIconDrawable="@drawable/ic_email">
 
             <EditText
-                android:id="@+id/input_email"
+                android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:errorEnabled="true"
             app:startIconDrawable="@drawable/ic_lock">
 
@@ -86,6 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:gravity="center"
+            android:clickable="true"
+            android:textColorLink="@color/link_blue"
             android:text="No account yet? Create one"
             android:textColor="@color/link_blue"
             android:textSize="16dp" />

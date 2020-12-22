@@ -20,7 +20,16 @@
 
     <!-- intent extras -->
     <string name="calling_activity">calling_activity</string>
+    <string name="gallery_url">http://192.168.1.2:8000/gallery/</string>
+    <string name="login_url">http://192.168.1.2:8000/login/</string>
+    <string name="logout_url">http://192.168.1.2:8000/logout/</string>
+    <string name="signup_url">http://192.168.1.2:8000/signup/</string>
 
 
     <string name="activity_number">activity_number</string>
+    <!-- shared ref for user info -->
+    <string name="preference_file_key">USER_INFO</string>
+
+    <!-- dialog names -->
+    <string name="confirm_password_dialog">ConfirmPassword Dialog</string>
 </resources>
