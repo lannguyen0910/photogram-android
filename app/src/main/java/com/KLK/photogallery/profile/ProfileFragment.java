@@ -42,10 +42,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
     // For debugging
     private static final String TAG = "ProfileFragment";
+
     private static final int ACTIVITY_NUM = 4;
     private final int NUM_GRID_COLUMNS = 3;
-
     private final int NUM_REQUEST_RETRIES = 5;
+
     //widgets
     private TextView mPosts, mFullName, mUsername, mPhoneNumber, mEmail;
     private ProgressBar mProgressBar;
@@ -57,6 +58,7 @@ public class ProfileFragment extends Fragment {
     private Context mContext;
     private ServerRequest server;
     private SharedPref sharedPref;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

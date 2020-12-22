@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_username">
 
             <EditText
                 android:id="@+id/reg_username"
@@ -45,9 +45,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:errorEnabled="true"
-
             app:startIconDrawable="@drawable/ic_lock">
 
             <EditText
@@ -63,9 +62,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
+            app:endIconMode="password_toggle"
             app:errorEnabled="true"
-
             app:startIconDrawable="@drawable/ic_lock">
 
             <EditText
@@ -102,7 +100,7 @@
             app:endIconMode="clear_text"
             app:errorEnabled="true"
 
-            app:startIconDrawable="@drawable/ic_username">
+            app:startIconDrawable="@drawable/ic_email">
 
             <EditText
                 android:id="@+id/reg_email"
@@ -119,7 +117,6 @@
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:errorEnabled="true"
-
             app:startIconDrawable="@drawable/ic_username">
 
             <EditText
@@ -165,6 +162,7 @@
         android:id="@+id/pleaseWait"/>
 
 </RelativeLayout>
+
 </ScrollView>
 
 

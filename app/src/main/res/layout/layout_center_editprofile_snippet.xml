@@ -159,7 +159,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="40dp"
                     android:background="@null"
-                    android:inputType="textNoSuggestions"
+                    android:inputType="textPassword"
                     android:hint="Password"/>
 
             </RelativeLayout>
