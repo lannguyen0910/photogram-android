@@ -169,9 +169,6 @@ public class ProfileFragment extends Fragment {
         String avatar  = server.getAvatarBase64String();
         Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(avatar);
         mProfilePhoto.setImageBitmap(avatar_bm);
-//        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getActivity()));
-//        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
-//        UniversalImageLoader.setImage(imgURL, mProfilePhoto, mProgressBar , "https://");
     }
 
     private void setActivityWidgets(){

@@ -1,6 +1,7 @@
 package com.KLK.photogallery.profile;
 
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -28,6 +29,7 @@ import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.io.InputStream;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,7 +39,6 @@ public class EditProfileFragment extends Fragment {
     private final int REQUEST_CHANGE_AVATAR = 1;
     private ImageView profileImage;
     private ProgressBar mProgressBar;
-    private TextView tvChangePhoto;
 
     // EditProfile Fragment widgets
     private EditText mFullName, mEmail, mPhoneNumber, mPassword;
@@ -50,7 +51,6 @@ public class EditProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
         profileImage = (ImageView)view.findViewById(R.id.profile_photo);
         mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-        tvChangePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
 
         // widgets
         mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
@@ -74,7 +74,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        tvChangePhoto.setOnClickListener(new View.OnClickListener() {
+        mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chooseProfileImage();
@@ -147,19 +147,28 @@ public class EditProfileFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHANGE_AVATAR){
             Uri selectedImage = data.getData();
+
+
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
-            cursor.moveToFirst();
 
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
+            String picturePath;
+            if (cursor == null){
+                picturePath = selectedImage.getPath();
+            }
+            else{
+                cursor.moveToFirst();
 
-            Log.e(TAG, "Change profile avatar");
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                picturePath = cursor.getString(columnIndex);
+                cursor.close();
+            }
+
+            Log.e(TAG, "" + picturePath);
             Uri path = Uri.parse(new File("" + picturePath).toString());
-            UniversalImageLoader.setImage(path.toString(), profileImage, mProgressBar , "file://");
+            UniversalImageLoader.setImage(path.toString(), profileImage, mProgressBar , "");
 
         }
     }
