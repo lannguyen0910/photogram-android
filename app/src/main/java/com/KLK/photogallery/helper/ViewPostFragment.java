@@ -1,5 +1,6 @@
 package com.KLK.photogallery.helper;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,9 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.model.Post;
+import com.KLK.photogallery.profile.ProfileActivity;
+import com.KLK.photogallery.profile.ProfileFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class ViewPostFragment extends Fragment {
@@ -40,6 +44,7 @@ public class ViewPostFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.e(TAG, "onCreteView: set grid image ");
         View view = inflater.inflate(R.layout.fragment_view_post, container, false);
         mPostImage = (SquareImageView) view.findViewById(R.id.post_image);
         bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
@@ -52,9 +57,22 @@ public class ViewPostFragment extends Fragment {
         mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);
         mDownload = (ImageView) view.findViewById(R.id.download);
 
+        mBackArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigate back to Profile Activity!");
+                ((ProfileActivity) getActivity()).initProfileFragment();
+            }
+        });
+
+
         try{
+            Log.e(TAG, "onCreteView: set grid image ");
             mPhoto = getPhotoFromBundle();
-            UniversalImageLoader.setImage(mPhoto.getImage_path(), mPostImage, null, "");
+            String photoBbase64 = mPhoto.getImageBase64();
+            Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(photoBbase64);
+            mPostImage.setImageBitmap(avatar_bm);
+            //UniversalImageLoader.setImage(mPhoto.getImage_path(), mPostImage, null, "");
             mActivityNumber = getActivityNumFromBundle();
 
         } catch(NullPointerException e){
@@ -64,6 +82,23 @@ public class ViewPostFragment extends Fragment {
         configBottomNavigationView();
         return view;
     }
+
+    public void replaceFragments(Class fragmentClass) {
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        ProfileFragment profileFragment = new ProfileFragment();
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        // swap profile_container with profileFragment
+        fragmentTransaction.replace(R.id.profile_container, profileFragment);
+        fragmentTransaction.addToBackStack(getString(R.string.profile_fragment));
+        fragmentTransaction.commit();
+    }
+
 
     /** retrieve the post from the incoming bundle from ProfileActivity interface **/
     private Post getPhotoFromBundle(){
@@ -97,4 +132,6 @@ public class ViewPostFragment extends Fragment {
         MenuItem menuItem = menu.getItem(mActivityNumber);
         menuItem.setChecked(true);
     }
+
+
 }

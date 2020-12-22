@@ -27,7 +27,6 @@ import androidx.fragment.app.Fragment;
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.KLK.photogallery.helper.GridImageAdapter;
-import com.KLK.photogallery.helper.ImageAdapter;
 import com.KLK.photogallery.helper.ImageDecoder;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.SharedPref;
@@ -193,6 +192,12 @@ public class ProfileFragment extends Fragment {
         final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
         Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
 
+        final ArrayList<Post> posts = new ArrayList<>();
+        for (int i =0;i<imgBase64Strings.size();i++) {
+            Post post = new Post(imgBase64Strings.get(i), true,true);
+            posts.add(post);
+        }
+
         //set the grid column width
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
         int imageWidth = gridWidth / NUM_GRID_COLUMNS;
@@ -201,6 +206,15 @@ public class ProfileFragment extends Fragment {
         //use the grid adapter to adapter the images to gridView
         GridImageAdapter adapter = new GridImageAdapter(getContext(), R.layout.layout_grid_imageview, imgBase64Strings);
         gridView.setAdapter(adapter);
+
+        // attach onClickListener to GridViewItem
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // use interface above to navigate to new fragment (ViewPostFragment)
+                mOnGridImageSelectedListener.onGridImageSelected(posts.get(position), ACTIVITY_NUM);
+            }
+        });
     }
     /** Modifies or delete this part when add database
      * -----------------------------------------------------------------------------------
@@ -232,53 +246,49 @@ public class ProfileFragment extends Fragment {
 
 
     /** fix this method **/
-    private void setupGridView(String selectedDirectory){
-        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
-        final ArrayList<Post> posts = new ArrayList<>();
-
-        /** --------------------------------------------------------
-         * ------ see Post.java in model --------
-         * for every photo in directory (different from GalleryFragment, not a specific directory but every images):
-         *      create new Post object (Post post = new Post() )
-         *      add information in Post
-         *      post.add(post)
-         *
-
-
-
-
-
-
-
-
-
-
-         --------------------------------------------------------**/
-
-        //set the grid column width
-        int gridWidth = getResources().getDisplayMetrics().widthPixels;
-        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-        gridView.setColumnWidth(imageWidth);
-
-        ArrayList<String> imgUrls = new ArrayList<String>();
-        for(int i = 0; i < posts.size(); i++){
-            imgUrls.add(posts.get(i).getImage_path());
-        }
-
-        //use the grid adapter to adapt the images to gridView
-        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview,
-                "", imgURLs);
-        gridView.setAdapter(adapter);
-
-        // attach onClickListener to GridViewItem
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // use interface above to navigate to new fragment (ViewPostFragment)
-                mOnGridImageSelectedListener.onGridImageSelected(posts.get(position), ACTIVITY_NUM);
-            }
-        });
-    }
+//    private void setupGridView2(String selectedDirectory){
+//        final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
+//        Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
+//        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
+//        final ArrayList<Post> posts = new ArrayList<>();
+//
+//
+//        /** --------------------------------------------------------
+//         * ------ see Post.java in model --------
+//         * for every photo in directory (different from GalleryFragment, not a specific directory but every images):
+//         *      create new Post object (Post post = new Post() )
+//         *      add information in Post
+//         *      post.add(post)
+//         *
+//
+//
+//
+//         --------------------------------------------------------**/
+//
+//        //set the grid column width
+//        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+//        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
+//        gridView.setColumnWidth(imageWidth);
+//
+//        ArrayList<String> imgUrls = new ArrayList<String>();
+//        for(int i = 0; i < posts.size(); i++){
+//            imgUrls.add(posts.get(i).getImage_path());
+//        }
+//
+//        //use the grid adapter to adapt the images to gridView
+//        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview,
+//                "", imgUrls);
+//        gridView.setAdapter(adapter);
+//
+//        // attach onClickListener to GridViewItem
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                // use interface above to navigate to new fragment (ViewPostFragment)
+//                mOnGridImageSelectedListener.onGridImageSelected(posts.get(position), ACTIVITY_NUM);
+//            }
+//        });
+//    }
     /** ----------------------------------------------------------------------------------- **/
 
 

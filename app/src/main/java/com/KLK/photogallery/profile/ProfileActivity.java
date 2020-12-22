@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
     }
 
     // navigate to profileFragment
-    private void initProfileFragment(){
+    public void initProfileFragment(){
         Log.d(TAG, "inflating " + getString(R.string.profile_fragment));
 
         ProfileFragment profileFragment = new ProfileFragment();
@@ -66,17 +66,16 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
         args.putInt(getString(R.string.activity_number), activityNumber);
 
         fragment.setArguments(args);
-
         // head to new fragment
-        FragmentTransaction transaction  = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        FragmentTransaction transaction  = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.profile_container, fragment);
         transaction.addToBackStack(getString(R.string.view_post_fragment));
         transaction.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        finish();
+//    }
 }
