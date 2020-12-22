@@ -7,19 +7,11 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <RelativeLayout
-            android:id="@+id/relLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-            <include layout="@layout/layout_top_profilebar_snippet"></include>
-        </RelativeLayout>
 
-        <!--Body-->
         <RelativeLayout
             android:id="@+id/relLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/relLayout1"
             android:background="@color/white">
 
             <LinearLayout
@@ -28,7 +20,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="100">
-
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -41,11 +32,9 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/avatar"
+                        android:scaleType="centerCrop"
                         app:civ_border_color="@color/black"
                         app:civ_border_width="1dp"/>
-
-
 
                 </RelativeLayout>
 
@@ -61,7 +50,6 @@
                 </RelativeLayout>
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/linLayout2"
@@ -97,14 +85,8 @@
                     android:layout_marginTop="5dp"
                     android:text="https://www.facebook.com/nguyen.hoang.lan.2000"
                     android:textColor="@color/link_blue"
-                    android:textSize="16sp"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/test_btn"
-                    android:text="TEST">
-                </Button>
+                    android:textSize="16sp" />
+
             </LinearLayout>
 
             <RelativeLayout
@@ -112,8 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linLayout2"
-                android:layout_marginBottom="50dp"
-                >
+                android:layout_marginBottom="50dp">
 
                 <GridView
                     android:id="@+id/gridView"
@@ -125,14 +106,11 @@
                     android:stretchMode="columnWidth"
                     android:verticalSpacing="1dp">
 
-
                 </GridView>
 
             </RelativeLayout>
 
-
         </RelativeLayout>
-
 
     </RelativeLayout>
 
