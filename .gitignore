@@ -14,3 +14,4 @@
 .cxx
 /Photogram/local.properties
 *.jpg
+/djangorest/db.sqlite3
