@@ -1,0 +1,10 @@
+settings:
+  image_size:             256
+  alpha:                  1
+  option_unpool:          cat5
+  transfer_at_encoder:    False
+  transfer_at_decoder:    True
+  transfer_at_skip:       True
+  transfer_all:           False
+  cpu:                    False
+  verbose:                False
