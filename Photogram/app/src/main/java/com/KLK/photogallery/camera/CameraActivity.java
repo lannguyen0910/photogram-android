@@ -49,6 +49,11 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    public int getTask(){
+        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
+        return getIntent().getFlags();
+    }
+
     /**
      * return the current tab number
      * 0 = GalleryFragment

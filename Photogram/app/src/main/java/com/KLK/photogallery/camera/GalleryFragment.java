@@ -52,6 +52,7 @@ public class GalleryFragment extends Fragment {
     private GridView gridView;
     private ImageView galleryImage;
     private ProgressBar progressBar;
+    private String mSelectedImage;
 
     private final String mAppend = "file:/";
 
@@ -89,14 +90,27 @@ public class GalleryFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen!");
 
+                if(isRootTask()) {
+                    Intent intent = new Intent(getActivity(), NextActivity.class);
+                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                    startActivity(intent);
+                }
+
             }
         });
 
-
         fetchImagefromLocal();
 
-
         return view;
+    }
+
+    private boolean isRootTask(){
+        if(((CameraActivity)getActivity()).getTask() == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     @Override
@@ -178,6 +192,7 @@ public class GalleryFragment extends Fragment {
 //        //set the first image to be displayed when the activity fragment view is inflated
 
         setImage(imgURLs.get(0), galleryImage, mAppend);
+        mSelectedImage = imgURLs.get(0);
 
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -186,6 +201,7 @@ public class GalleryFragment extends Fragment {
                 Log.d(TAG, "onItemClick: selected an image: " + imgURLs.get(position));
 
                 setImage(imgURLs.get(position), galleryImage, mAppend);
+                mSelectedImage = imgURLs.get(position);
             }
         });
     }

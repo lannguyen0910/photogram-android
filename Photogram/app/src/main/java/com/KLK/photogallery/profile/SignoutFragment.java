@@ -62,11 +62,6 @@ public class SignoutFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 tvSigningOut.setVisibility(View.VISIBLE);
 
-                /**
-                 * Remember to add this!!!
-                 * Call database sign out method: signOut()
-                 * Ex: sqlite.signOut()?
-                 **/
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
