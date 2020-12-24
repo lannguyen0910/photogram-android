@@ -15,3 +15,5 @@
 /Photogram/local.properties
 *.jpg
 /djangorest/db.sqlite3
+djangorest/db.sqlite3
+djangorest/db.sqlite3
