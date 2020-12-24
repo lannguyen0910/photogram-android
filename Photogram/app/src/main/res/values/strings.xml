@@ -20,9 +20,12 @@
 
     <!-- intent extras -->
     <string name="calling_activity">calling_activity</string>
+    <string name="selected_image">selected_image</string>
 
 
     <string name="activity_number">activity_number</string>
+    <string name="action_search_images">Search images</string>
+    <string name="search_options">Search Options</string>
 
     <!-- intent extras -->
     <string name="gallery_url">http://192.168.1.2:8000/gallery/</string>
