@@ -60,6 +60,51 @@ class MyMobileView():
         info_dict['phone_number'] = user_info.phone_number
         return info_dict
 
+    def deleteImageByID(self, idx):
+        user_imgdir = self.getCurrentUserImageDir()
+        result_code = 0
+        img_path = os.path.join(user_imgdir, f"{idx}.jpg")
+        if os.path.isfile(img_path):
+            os.remove(img_path)
+            print(f"Remove {img_path} from {self.current_user_id} database")
+            result_code = 1
+        return result_code
+    
+    
+    def handleDeleteFile(self, request):
+        flag = 0
+        try:
+            img_id = request.POST['image']
+            user_imgdir = self.getCurrentUserImageDir()
+            img_path = os.path.join(user_imgdir, f'{img_id}.jpg')
+            if os.path.isfile(img_path):
+                os.remove(img_path)
+                print(f"Remove image {img_path}")
+                flag = 1
+            return flag
+        except Exception as e:
+            print(e)
+            return flag
+    
+    @csrf_exempt
+    def deleteImage(self, request):
+        response_data = {}
+        response_data['images'] = []
+        response_data['message'] = "Failed to delete image"
+        response_data['response'] = 0
+        if request.method == 'POST':
+            result = self.handleDeleteFile(request)
+            if result:
+                response_data['message'] = "Deleted image"
+                response_data['response'] = 1
+            else:
+                response_data['message'] = "Image not found"
+                response_data['response'] = 0
+        else:
+            response_data['message'] = "Method not support"
+            response_data['response'] = 0
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
     def handleUploadFile(self, request):
         try:
             img_string = request.POST['image']
@@ -112,10 +157,16 @@ class MyMobileView():
         copy_avatar = os.path.join(new_user_imgdir, USER_DEFAULT_AVATAR)
         copyfile(default_avatar, copy_avatar)
 
+    def getImageIDByName(self, image_name):
+        name = os.path.basename(image_name)
+        name,_ = name.split('.')
+        return name
+
     @csrf_exempt
     def sendAllImagesToUser(self, request):
         response_data = {}
         response_data['images'] = []
+        response_data['image_names'] = []
         response_data['message'] = "Sent images"
         response_data['response'] = 1
         if request.method == 'POST':
@@ -123,7 +174,9 @@ class MyMobileView():
             print(user_image_paths)
             for path in user_image_paths['images']:
                 img_string = self.convertImagetoString(path)
+                img_name = self.getImageIDByName(path)
                 response_data['images'].append(img_string)
+                response_data['image_names'].append(img_name)
             img_string = self.convertImagetoString(user_image_paths['avatar'])
             response_data['avatar'] = img_string
         return HttpResponse(json.dumps(response_data), content_type="application/json")

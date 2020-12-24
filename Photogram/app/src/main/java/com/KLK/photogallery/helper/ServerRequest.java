@@ -26,6 +26,7 @@ public class ServerRequest {
     int response;
     String message;
     private ArrayList<String> images_from_server = null;
+    private ArrayList<String> image_names_from_server = null;
     private String avatar_from_server = null;
     JSONObject user_info = null;
     public ServerRequest(Activity activity){
@@ -56,6 +57,10 @@ public class ServerRequest {
                             if (obj.has("images")) {
                                 JSONArray images = obj.getJSONArray("images");
                                 getImageGrid(images);
+                            }
+                            if (obj.has("image_names")) {
+                                JSONArray images = obj.getJSONArray("image_names");
+                                getImageGridName(images);
                             }
                             if (obj.has("avatar")) {
                                 String avatar = obj.getString("avatar");
@@ -111,12 +116,18 @@ public class ServerRequest {
             Log.e(TAG, "image received");
             images_from_server.add(response_image_string);
         }
-        //gridview.setAdapter(new ImageAdapter(ImageGrid.this));
     }
 
-    public ArrayList<String> getImageBase64Strings(){
-        return images_from_server;
+    public void getImageGridName(JSONArray images) throws JSONException {
+        image_names_from_server = new ArrayList<>();
+        for (int i =0;i<images.length();i++){
+            String response_image_string = images.getString(i);
+            image_names_from_server.add(response_image_string);
+        }
     }
+
+    public ArrayList<String> getImageBase64Strings(){ return images_from_server; }
+    public ArrayList<String> getImageNameStrings(){ return image_names_from_server; }
     public String getAvatarBase64String(){ return avatar_from_server; }
 
     public int getResponse(){

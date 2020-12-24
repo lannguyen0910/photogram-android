@@ -2,7 +2,6 @@ package com.KLK.photogallery.helper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.KLK.photogallery.R;
-import com.KLK.photogallery.helper.ImageDecoder;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -114,7 +111,7 @@ public class GridImageAdapter extends ArrayAdapter<String> {
 
             case IMG_STRING:
                 String imgString = getItem(position);
-                Bitmap bm = ImageDecoder.decodeBase64ToBitmap(imgString);
+                Bitmap bm = ImageEncoderDecoder.decodeBase64ToBitmap(imgString);
                 holder.image.setImageBitmap(bm);
                 holder.mProgressBar.setVisibility(View.GONE);
                 break;

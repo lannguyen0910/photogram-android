@@ -40,4 +40,5 @@ urlpatterns = [
     url('signup/', mobile_view.signUpUser, name='signup'),
     url('logout/', mobile_view.logOutUser, name='logout'),
     url('gallery/', mobile_view.sendAllImagesToUser, name='gallery'),
+    url('delete/', mobile_view.deleteImage, name='delete'),
 ]

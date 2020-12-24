@@ -12,12 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,19 +25,11 @@ import androidx.fragment.app.Fragment;
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
 import com.KLK.photogallery.helper.GridImageAdapter;
-import com.KLK.photogallery.helper.ImageDecoder;
+import com.KLK.photogallery.helper.ImageEncoderDecoder;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.SharedPref;
-import com.KLK.photogallery.helper.UniversalImageLoader;
-import com.KLK.photogallery.helper.ViewPostFragment;
 import com.KLK.photogallery.model.Post;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-
-import java.util.ArrayList;
 
 import java.util.ArrayList;
 
@@ -190,11 +180,12 @@ public class ProfileFragment extends Fragment {
 
     private void setupGridView() {
         final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
+        final ArrayList<String> imgBaseNameStrings = server.getImageNameStrings();
         Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
 
         final ArrayList<Post> posts = new ArrayList<>();
         for (int i =0;i<imgBase64Strings.size();i++) {
-            Post post = new Post(imgBase64Strings.get(i), true,true);
+            Post post = new Post(imgBase64Strings.get(i),imgBaseNameStrings.get(i), true,true);
             posts.add(post);
         }
 
@@ -222,7 +213,7 @@ public class ProfileFragment extends Fragment {
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: set profile avatar!");
         String avatar  = server.getAvatarBase64String();
-        Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(avatar);
+        Bitmap avatar_bm = ImageEncoderDecoder.decodeBase64ToBitmap(avatar);
         mProfilePhoto.setImageBitmap(avatar_bm);
     }
 

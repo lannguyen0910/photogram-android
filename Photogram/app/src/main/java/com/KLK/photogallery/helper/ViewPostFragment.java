@@ -1,26 +1,31 @@
 package com.KLK.photogallery.helper;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.model.Post;
 import com.KLK.photogallery.profile.ProfileActivity;
-import com.KLK.photogallery.profile.ProfileFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewPostFragment extends Fragment {
     // For debugging
@@ -34,8 +39,11 @@ public class ViewPostFragment extends Fragment {
     private SquareImageView mPostImage;
     private BottomNavigationViewEx bottomNavigationView;
     private TextView mBackLabel, mUsername;
-    private ImageView mBackArrow, mEllipses, mHeartRed, mHeartWhite, mProfileImage, mDownload;
+    private ImageView mBackArrow, mEllipses, mProfileImage;
+    private ImageButton mHeartRed, mHeartWhite, mDownload, mDelete;
 
+    private ServerRequest server;
+    private SharedPref sharedPref;
     public ViewPostFragment(){
         super();
         setArguments(new Bundle());
@@ -52,10 +60,13 @@ public class ViewPostFragment extends Fragment {
         mBackLabel = (TextView) view.findViewById(R.id.tvBackLabel);
         mUsername = (TextView) view.findViewById(R.id.username);
         mEllipses = (ImageView) view.findViewById(R.id.ivEllipses);
-        mHeartRed = (ImageView) view.findViewById(R.id.image_heart_red);
-        mHeartWhite = (ImageView) view.findViewById(R.id.image_heart);
+        mHeartRed = (ImageButton) view.findViewById(R.id.image_heart_red);
+        mHeartWhite = (ImageButton) view.findViewById(R.id.image_heart);
         mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);
-        mDownload = (ImageView) view.findViewById(R.id.download);
+        mDownload = (ImageButton) view.findViewById(R.id.download);
+        mDelete = (ImageButton) view.findViewById(R.id.delete);
+        sharedPref = new SharedPref(getActivity().getApplicationContext());
+        server = new ServerRequest((ProfileActivity)getActivity());
 
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +76,33 @@ public class ViewPostFragment extends Fragment {
             }
         });
 
+        mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: delete image!");
+                String curImageID = getCurrentImageID();
+                deleteImageByID(curImageID);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() { 
+                        if (verifyDelete()) {mBackArrow.performClick(); }}
+                }, 1500);
+
+            }
+        });
+
+        setUsername();
         try{
             Log.e(TAG, "onCreteView: set grid image ");
             mPhoto = getPhotoFromBundle();
-            String photoBbase64 = mPhoto.getImageBase64();
-            Bitmap avatar_bm = ImageDecoder.decodeBase64ToBitmap(photoBbase64);
+            assert mPhoto != null;
+            String photoBase64 = mPhoto.getImageBase64();
+            String photoID = mPhoto.getPhoto_id();
+            Log.e(TAG,"Photo ID: "+ photoID);
+            Bitmap avatar_bm = ImageEncoderDecoder.decodeBase64ToBitmap(photoBase64);
             mPostImage.setImageBitmap(avatar_bm);
+            mPostImage.setTag(photoID);
             //UniversalImageLoader.setImage(mPhoto.getImage_path(), mPostImage, null, "");
             mActivityNumber = getActivityNumFromBundle();
 
@@ -83,22 +114,24 @@ public class ViewPostFragment extends Fragment {
         return view;
     }
 
-    public void replaceFragments(Class fragmentClass) {
-        Fragment fragment = null;
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
+    private boolean verifyDelete(){
+        int response = server.getResponse();
+        String message = server.getMessage();
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT);
+        if (response == 1) {
+            return true;
         }
-        // Insert the fragment by replacing any existing fragment
-        ProfileFragment profileFragment = new ProfileFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        // swap profile_container with profileFragment
-        fragmentTransaction.replace(R.id.profile_container, profileFragment);
-        fragmentTransaction.addToBackStack(getString(R.string.profile_fragment));
-        fragmentTransaction.commit();
+        else {
+            return false;
+        }
     }
 
+
+    private void setUsername(){
+        Log.d(TAG, "setUserName: set user name!");
+        String username = sharedPref.getString("username");
+        mUsername.setText(username);
+    }
 
     /** retrieve the post from the incoming bundle from ProfileActivity interface **/
     private Post getPhotoFromBundle(){
@@ -121,6 +154,28 @@ public class ViewPostFragment extends Fragment {
             return bundle.getInt(getString(R.string.activity_number));
         }else{
             return 0;
+        }
+    }
+
+    private String getCurrentImageID(){
+        String imageID = (String) mPostImage.getTag();
+        return imageID;
+    }
+
+    private void deleteImageByID(String imageID){
+        String url = getResources().getString(R.string.delete_url);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("image", imageID);
+                server.sendRequestToServer(url, params); }});
+        try {
+            thread.start();
+            thread.join();
+            Log.e(TAG,"Thread joined");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
