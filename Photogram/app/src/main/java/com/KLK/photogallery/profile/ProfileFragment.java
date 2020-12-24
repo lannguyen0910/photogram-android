@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment {
     public interface OnGridImageSelectedListener{
         void onGridImageSelected(Post post, int activityNumber);
     }
-    OnGridImageSelectedListener mOnGridImageSelectedListener;
+    OnGridImageSelectedListener mOnGridImageSelectedListener = null;
 
 
     @Override
@@ -233,55 +233,6 @@ public class ProfileFragment extends Fragment {
     private void setActivityWidgets(){
         mProgressBar.setVisibility(View.GONE);
     }
-    /** ----------------------------------------------------------------------------------- **/
-
-
-    /** fix this method **/
-//    private void setupGridView2(String selectedDirectory){
-//        final ArrayList<String> imgBase64Strings = server.getImageBase64Strings();
-//        Log.e(TAG, "number of images " + String.valueOf(imgBase64Strings.size()));
-//        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
-//        final ArrayList<Post> posts = new ArrayList<>();
-//
-//
-//        /** --------------------------------------------------------
-//         * ------ see Post.java in model --------
-//         * for every photo in directory (different from GalleryFragment, not a specific directory but every images):
-//         *      create new Post object (Post post = new Post() )
-//         *      add information in Post
-//         *      post.add(post)
-//         *
-//
-//
-//
-//         --------------------------------------------------------**/
-//
-//        //set the grid column width
-//        int gridWidth = getResources().getDisplayMetrics().widthPixels;
-//        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
-//        gridView.setColumnWidth(imageWidth);
-//
-//        ArrayList<String> imgUrls = new ArrayList<String>();
-//        for(int i = 0; i < posts.size(); i++){
-//            imgUrls.add(posts.get(i).getImage_path());
-//        }
-//
-//        //use the grid adapter to adapt the images to gridView
-//        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview,
-//                "", imgUrls);
-//        gridView.setAdapter(adapter);
-//
-//        // attach onClickListener to GridViewItem
-//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                // use interface above to navigate to new fragment (ViewPostFragment)
-//                mOnGridImageSelectedListener.onGridImageSelected(posts.get(position), ACTIVITY_NUM);
-//            }
-//        });
-//    }
-    /** ----------------------------------------------------------------------------------- **/
-
 
     private void configBottomNavigationView(){
         Log.d(TAG, "Config Bottom Navigation View!");

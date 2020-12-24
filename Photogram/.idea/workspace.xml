@@ -7,7 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_editprofile_toolbar_snippet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_editprofile_toolbar_snippet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../djangorest/rest/views_.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/views_.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +53,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="multi-representation-previewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_selected" value="Custom views" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GITHUB\18TN Projects\Mobile Dev\Final\Mobile-Final\Photogram\app\libs" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -125,6 +139,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="351" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1608806271415">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="351" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608806271415" />
     <state x="215" y="298" key="AndroidCreateResourceDirectoryDialog" timestamp="1608496330952">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -137,26 +155,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
-    <state width="913" height="442" key="GridCell.Tab.0.bottom" timestamp="1608777004385">
+    <state width="1022" height="190" key="GridCell.Tab.0.bottom" timestamp="1608810728234">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1876" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226913" />
-    <state width="913" height="442" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
-    <state width="913" height="442" key="GridCell.Tab.0.center" timestamp="1608777004385">
+    <state width="1022" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
+    <state width="1022" height="190" key="GridCell.Tab.0.center" timestamp="1608810728234">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1876" height="295" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226912" />
-    <state width="913" height="442" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
-    <state width="913" height="442" key="GridCell.Tab.0.left" timestamp="1608777004385">
+    <state width="1022" height="190" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
+    <state width="1022" height="190" key="GridCell.Tab.0.left" timestamp="1608810728234">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1876" height="295" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226912" />
-    <state width="913" height="442" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
-    <state width="913" height="442" key="GridCell.Tab.0.right" timestamp="1608777004385">
+    <state width="1022" height="190" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
+    <state width="1022" height="190" key="GridCell.Tab.0.right" timestamp="1608810728234">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1876" height="295" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226913" />
-    <state width="913" height="442" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
+    <state width="1022" height="190" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
     <state x="81" y="184" key="SettingsEditor" timestamp="1608718632613">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -169,5 +187,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="236" y="240" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608643632645" />
+    <state x="202" y="454" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1608803248282">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="202" y="454" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608803248282" />
   </component>
 </project>

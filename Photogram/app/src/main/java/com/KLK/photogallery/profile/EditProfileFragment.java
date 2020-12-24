@@ -25,11 +25,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.ServerRequest;
+import com.KLK.photogallery.helper.SharedPref;
 import com.KLK.photogallery.helper.UniversalImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,7 +44,7 @@ public class EditProfileFragment extends Fragment {
     // For debugging
     private static final String TAG = "EditProfileFragment";
     private final int REQUEST_CHANGE_AVATAR = 1;
-    private ImageView profileImage;
+    private ImageView profileImage, checkMark;
     private ProgressBar mProgressBar;
 
     // EditProfile Fragment widgets
@@ -45,6 +52,8 @@ public class EditProfileFragment extends Fragment {
     private TextView mChangeProfilePhoto;
     private CircleImageView mProfilePhoto;
 
+    private SharedPref sharedPref;
+    ServerRequest server;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,10 +68,15 @@ public class EditProfileFragment extends Fragment {
         mEmail = (EditText) view.findViewById(R.id.email);
         mPhoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
         mChangeProfilePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
+        sharedPref = new SharedPref(getActivity().getApplicationContext());
+        checkMark = (ImageView) view.findViewById(R.id.saveChanges);
+        server = new ServerRequest(getActivity());
 
         initImageLoader();
         setActivityWidgets();
         setProfileImage();
+
+
 
         // navigate back to ProfileActivity
         ImageView backArrow = (ImageView)view.findViewById(R.id.backArrow);
@@ -81,16 +95,33 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
-        ImageView checkMark = (ImageView) view.findViewById(R.id.saveChanges);
         checkMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to save changes.");
                 saveProfileSettings();
+                sendChangeRequestToServer();
             }
         });
 
         return view;
+    }
+
+    private void sendChangeRequestToServer() {
+        String url = getResources().getString(R.string.update_url);
+        String fullname = mFullName.getText().toString();
+        String password = mPassword.getText().toString();
+        String email = mEmail.getText().toString();
+        String phone_number = mPhoneNumber.getText().toString();
+        String username = sharedPref.getString("username");
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("username", username);
+        params.put("name", fullname);
+        params.put("password1", password);
+        params.put("password2", password);
+        params.put("email", email);
+        params.put("phone_number", phone_number);
+        server.sendRequestToServer(url,params);
     }
 
     private void initImageLoader(){
@@ -137,7 +168,14 @@ public class EditProfileFragment extends Fragment {
      **/
 
     private void saveProfileSettings() {
-
+        String fullname = mFullName.getText().toString();
+        String password = mPassword.getText().toString();
+        String email = mEmail.getText().toString();
+        String phone_number = mPhoneNumber.getText().toString();
+        sharedPref.setString("fullname",fullname);
+        sharedPref.setString("password",password);
+        sharedPref.setString("email",email);
+        sharedPref.setString("phone_number",phone_number);
     }
 
     /** -------------------------------------------------------------------------------- **/
@@ -149,27 +187,14 @@ public class EditProfileFragment extends Fragment {
             Uri selectedImage = data.getData();
 
 
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
-            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-
-            String picturePath;
-            if (cursor == null){
-                picturePath = selectedImage.getPath();
+            InputStream inputStream = null;
+            try {
+                inputStream = getActivity().getContentResolver().openInputStream(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            else{
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                picturePath = cursor.getString(columnIndex);
-                cursor.close();
-            }
-
-            Log.e(TAG, "" + picturePath);
-            Uri path = Uri.parse(new File("" + picturePath).toString());
-            UniversalImageLoader.setImage(path.toString(), profileImage, mProgressBar , "");
-
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            profileImage.setImageBitmap(bitmap);
         }
     }
 

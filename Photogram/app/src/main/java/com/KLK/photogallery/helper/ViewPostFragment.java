@@ -72,7 +72,9 @@ public class ViewPostFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigate back to Profile Activity!");
-                ((ProfileActivity) getActivity()).initProfileFragment();
+                //((ProfileActivity) getActivity()).initProfileFragment();
+                Fragment viewPostFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.profile_container);
+                ((ProfileActivity) getActivity()).destroyViewPostFragment(viewPostFragment);
             }
         });
 
@@ -187,6 +189,5 @@ public class ViewPostFragment extends Fragment {
         MenuItem menuItem = menu.getItem(mActivityNumber);
         menuItem.setChecked(true);
     }
-
 
 }

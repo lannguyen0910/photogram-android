@@ -11,7 +11,7 @@ import os
 import base64
 from shutil import copyfile
 
-from .forms import logInForm, signUpForm
+from .forms import logInForm, signUpForm, updateProfileForm
 from .editor import *
 
 STORAGE_PATH = 'rest/files/'
@@ -86,6 +86,27 @@ class MyMobileView():
             print(e)
             return flag
     
+    @csrf_exempt
+    def updateProfile(self, request):
+        response_data = {}
+        response_data['message'] = "Failed to update"
+        response_data['response'] = 0
+        if request.method == 'POST':
+            user = MyUser.objects.filter(pk=self.current_user_id).first()
+            form = signUpForm(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                response_data['message'] = "Success to update"
+                response_data['response'] = 1
+                print("Update form valid")
+            else:
+                print("Update form invalid")
+        else:
+            response_data['message'] = "Method not support"
+            response_data['response'] = 0
+            print("Update form invalid")
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
     @csrf_exempt
     def deleteImage(self, request):
         response_data = {}

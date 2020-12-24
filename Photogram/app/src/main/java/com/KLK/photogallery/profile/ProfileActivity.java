@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.ImageViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.KLK.photogallery.R;
@@ -59,6 +61,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
     public void onGridImageSelected(Post post, int activityNumber) {
         Log.d(TAG, "onGridImageSelected: selected an image GridView: " + post.toString());
 
+        Fragment profileFragment = this.getSupportFragmentManager().findFragmentById(R.id.profile_container);
+
+
         ViewPostFragment fragment = new ViewPostFragment();
         Bundle args = new Bundle(); // wrap data and easy to transfer
         // attach in Bundle
@@ -68,8 +73,17 @@ public class ProfileActivity extends AppCompatActivity implements ProfileFragmen
         fragment.setArguments(args);
         // head to new fragment
         FragmentTransaction transaction  = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.profile_container, fragment);
+        //transaction.replace(R.id.profile_container, fragment);
+        transaction.hide(profileFragment);
+        transaction.add(R.id.profile_container,fragment);
         transaction.addToBackStack(getString(R.string.view_post_fragment));
+        transaction.commit();
+    }
+
+    public void destroyViewPostFragment(Fragment viewPostFragment){
+        FragmentTransaction transaction  = ProfileActivity.this.getSupportFragmentManager().beginTransaction();
+        transaction.remove(viewPostFragment);
+        this.getSupportFragmentManager().popBackStack();
         transaction.commit();
     }
 

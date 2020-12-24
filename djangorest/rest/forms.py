@@ -59,23 +59,25 @@ class signUpForm(UserCreationForm):
         login(request, user)
 
 
-# class updateProfileForm(UserCreationForm):
-#     # name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-#     # password1 = forms.CharField(
-#     #     label="Password",
-#     #     strip=False,
-#     #     widget=forms.PasswordInput(),
-#     # )
-#     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
-#     phone_number = forms.CharField(max_length=30, required=False, help_text='Optional.')
+class updateProfileForm(forms.Form):
+    name = forms.CharField(max_length=30, required=False, help_text='Optional.')
+    password1 = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(),
+    )
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    phone_number = forms.CharField(max_length=30, required=False, help_text='Optional.')
     
-#     class Meta:
-#         model = User
-#         fields = ('username', 'password1', 'name' ,'email', 'phone_number')
+    class Meta:
+        model = MyUser
+        fields = ('password1', 'name' ,'email', 'phone_number')
 
 
-#     def login(self, request):
-#         username = self.cleaned_data.get('username')
-#         raw_password = self.cleaned_data.get('password1')
-#         user = authenticate(username=username, password=raw_password)
-#         login(request, user)
+    def clean(self):
+        cleaned_data = super(updateProfileForm, self).clean()
+        name         = cleaned_data.get("name")
+        password1    = cleaned_data.get("password1")
+        email         = cleaned_data.get("email")
+        phone_number    = cleaned_data.get("phone_number")
+        return self.cleaned_data
