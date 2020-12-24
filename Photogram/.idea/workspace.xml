@@ -8,8 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../djangorest/rest/views_.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/views_.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
