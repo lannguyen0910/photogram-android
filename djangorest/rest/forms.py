@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from .models import MyUser
 
@@ -58,12 +58,18 @@ class signUpForm(UserCreationForm):
         user = authenticate(username=username, password=raw_password)
         login(request, user)
 
-
-class updateProfileForm(forms.Form):
+class updateProfileForm(UserChangeForm):
     name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     password1 = forms.CharField(
         label="Password",
         strip=False,
+        required=False,
+        widget=forms.PasswordInput(),
+    )
+    password2 = forms.CharField(
+        label="Password2",
+        strip=False,
+        required=False,
         widget=forms.PasswordInput(),
     )
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
@@ -71,13 +77,14 @@ class updateProfileForm(forms.Form):
     
     class Meta:
         model = MyUser
-        fields = ('password1', 'name' ,'email', 'phone_number')
+        fields = ('username', 'password1', 'name' ,'email', 'phone_number')
 
-
-    def clean(self):
-        cleaned_data = super(updateProfileForm, self).clean()
-        name         = cleaned_data.get("name")
-        password1    = cleaned_data.get("password1")
-        email         = cleaned_data.get("email")
-        phone_number    = cleaned_data.get("phone_number")
-        return self.cleaned_data
+    # def save(self, commit=True):
+    #     user = super(updateProfileForm, self).save(commit=False)
+    #     password = self.cleaned_data["password1"]
+    #     print(password)
+    #     if password != "None":
+    #         user.set_password(password)
+    #     if commit:
+    #         user.save()
+    #     return user

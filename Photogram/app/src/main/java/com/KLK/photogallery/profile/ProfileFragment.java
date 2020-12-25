@@ -212,7 +212,7 @@ public class ProfileFragment extends Fragment {
      **/
     private void setProfileImage(){
         Log.d(TAG, "setProfileImage: set profile avatar!");
-        String avatar  = server.getAvatarBase64String();
+        String avatar  = sharedPref.getString("avatar");
         Bitmap avatar_bm = ImageEncoderDecoder.decodeBase64ToBitmap(avatar);
         mProfilePhoto.setImageBitmap(avatar_bm);
     }

@@ -3,7 +3,9 @@ package com.KLK.photogallery.helper;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +26,13 @@ import com.KLK.photogallery.model.Post;
 import com.KLK.photogallery.profile.ProfileActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +49,7 @@ public class ViewPostFragment extends Fragment {
     private BottomNavigationViewEx bottomNavigationView;
     private TextView mBackLabel, mUsername;
     private ImageView mBackArrow, mEllipses, mProfileImage;
-    private ImageButton mHeartRed, mHeartWhite, mDownload, mDelete;
+    private ImageView mHeartRed, mHeartWhite, mDownload, mDelete;
 
     private ServerRequest server;
     private SharedPref sharedPref;
@@ -60,11 +69,11 @@ public class ViewPostFragment extends Fragment {
         mBackLabel = (TextView) view.findViewById(R.id.tvBackLabel);
         mUsername = (TextView) view.findViewById(R.id.username);
         mEllipses = (ImageView) view.findViewById(R.id.ivEllipses);
-        mHeartRed = (ImageButton) view.findViewById(R.id.image_heart_red);
-        mHeartWhite = (ImageButton) view.findViewById(R.id.image_heart);
+        mHeartRed = (ImageView) view.findViewById(R.id.image_heart_red);
+        mHeartWhite = (ImageView) view.findViewById(R.id.image_heart);
         mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);
-        mDownload = (ImageButton) view.findViewById(R.id.download);
-        mDelete = (ImageButton) view.findViewById(R.id.delete);
+        mDownload = (ImageView) view.findViewById(R.id.download);
+        mDelete = (ImageView) view.findViewById(R.id.delete);
         sharedPref = new SharedPref(getActivity().getApplicationContext());
         server = new ServerRequest((ProfileActivity)getActivity());
 
@@ -91,6 +100,17 @@ public class ViewPostFragment extends Fragment {
                         if (verifyDelete()) {mBackArrow.performClick(); }}
                 }, 1500);
 
+            }
+        });
+
+        mDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    downloadImageToLocal();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -145,6 +165,27 @@ public class ViewPostFragment extends Fragment {
         }else{
             return null;
         }
+    }
+
+    private String getDateString(){
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        String timestamp = simpleDateFormat.format(now);
+        return timestamp;
+    }
+
+    private void downloadImageToLocal() throws IOException {
+        mPhoto = getPhotoFromBundle();
+        assert mPhoto != null;
+        String photoBase64 = mPhoto.getImageBase64();
+        String photoID = mPhoto.getPhoto_id();
+
+        Bitmap photo_bm = ImageEncoderDecoder.decodeBase64ToBitmap(photoBase64);
+        MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), photo_bm, "upload image" , "no description");
+
+        Log.e(TAG,"Downloaded image, ID: " + photoID);
     }
 
     /** retrieve the activity number from the incoming bundle from ProfileActivity interface **/

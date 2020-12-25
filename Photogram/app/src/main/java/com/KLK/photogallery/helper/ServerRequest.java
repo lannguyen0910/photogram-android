@@ -27,7 +27,7 @@ public class ServerRequest {
     String message;
     private ArrayList<String> images_from_server = null;
     private ArrayList<String> image_names_from_server = null;
-    private String avatar_from_server = null;
+
     JSONObject user_info = null;
     public ServerRequest(Activity activity){
         this.activity = activity;
@@ -62,10 +62,7 @@ public class ServerRequest {
                                 JSONArray images = obj.getJSONArray("image_names");
                                 getImageGridName(images);
                             }
-                            if (obj.has("avatar")) {
-                                String avatar = obj.getString("avatar");
-                                setAvatar(avatar);
-                            }
+
                             if (obj.has("user_info")){
                                 JSONObject info = obj.getJSONObject("user_info");
                                 setUserInfo(info);
@@ -104,10 +101,6 @@ public class ServerRequest {
         return this.user_info;
     }
 
-    public void setAvatar(String avatar64Base) {
-        avatar_from_server = avatar64Base;
-        Log.e(TAG, "avatar received");
-    }
 
     public void getImageGrid(JSONArray images) throws JSONException {
         images_from_server = new ArrayList<>();
@@ -128,7 +121,6 @@ public class ServerRequest {
 
     public ArrayList<String> getImageBase64Strings(){ return images_from_server; }
     public ArrayList<String> getImageNameStrings(){ return image_names_from_server; }
-    public String getAvatarBase64String(){ return avatar_from_server; }
 
     public int getResponse(){
         return response;

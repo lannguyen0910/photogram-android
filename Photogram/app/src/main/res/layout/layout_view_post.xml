@@ -72,7 +72,7 @@
                     android:id="@+id/heartLayout"
                     android:background="@color/white">
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/image_heart_red"
@@ -81,7 +81,7 @@
                         android:src="@drawable/ic_heart_red"
                         android:visibility="invisible"/>
 
-                    <ImageButton
+                    <ImageView
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:id="@+id/image_heart"
@@ -92,7 +92,7 @@
 
                 </RelativeLayout>
 
-                <ImageButton
+                <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:id="@+id/speech_bubble"
@@ -102,7 +102,7 @@
                     android:visibility="visible"
                     android:layout_centerVertical="true"/>
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/delete"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
@@ -113,7 +113,7 @@
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/ic_delete" />
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/download"
                     android:layout_width="35dp"
                     android:layout_height="35dp"

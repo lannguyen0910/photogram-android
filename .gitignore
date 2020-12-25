@@ -17,3 +17,6 @@
 /djangorest/db.sqlite3
 djangorest/db.sqlite3
 djangorest/db.sqlite3
+*.pyc
+*.pyc
+*.pyc

@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.ImageEncoderDecoder;
 import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.SharedPref;
 import com.KLK.photogallery.helper.UniversalImageLoader;
@@ -74,7 +76,8 @@ public class EditProfileFragment extends Fragment {
 
         initImageLoader();
         setActivityWidgets();
-        setProfileImage();
+
+        setDefaultInfo();
 
 
 
@@ -99,12 +102,48 @@ public class EditProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: attempting to save changes.");
-                saveProfileSettings();
+                mProgressBar.setVisibility(View.VISIBLE);
                 sendChangeRequestToServer();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (verifyUpdate()) {
+                            saveProfileSettings();
+                        }
+                        mProgressBar.setVisibility(View.GONE);
+                        getActivity().finish();
+                    }
+                }, 1000);
+
             }
         });
 
         return view;
+    }
+
+    private void setDefaultInfo() {
+        String fullname = sharedPref.getString("fullname");
+        String phone_number = sharedPref.getString("phone_number");
+        String email = sharedPref.getString("email");
+        String avatarBase64 = sharedPref.getString("avatar");
+        Bitmap avatar_bm = ImageEncoderDecoder.decodeBase64ToBitmap(avatarBase64);
+        profileImage.setImageBitmap(avatar_bm);
+        mFullName.setText(fullname);
+        mPassword.setText("None");
+        mEmail.setText(email);
+        mPhoneNumber.setText(phone_number);
+    }
+
+    private boolean verifyUpdate() {
+        int response = server.getResponse();
+        String message = server.getMessage();
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT);
+        if (response == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     private void sendChangeRequestToServer() {
@@ -132,12 +171,6 @@ public class EditProfileFragment extends Fragment {
 
     private void setActivityWidgets(){
         mProgressBar.setVisibility(View.GONE);
-    }
-
-    private void setProfileImage(){
-        Log.d(TAG, "setProfileImage: change profile image!");
-        String imgURL = "upload.wikimedia.org/wikipedia/commons/5/56/Donald_Trump_official_portrait.jpg";
-        UniversalImageLoader.setImage(imgURL, profileImage, mProgressBar , "https://");
     }
 
     private void chooseProfileImage(){

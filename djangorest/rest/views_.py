@@ -11,7 +11,7 @@ import os
 import base64
 from shutil import copyfile
 
-from .forms import logInForm, signUpForm, updateProfileForm
+from .forms import logInForm, signUpForm
 from .editor import *
 
 STORAGE_PATH = 'rest/files/'
@@ -58,6 +58,7 @@ class MyMobileView():
         info_dict['password'] = user_info.password
         info_dict['fullname'] = user_info.name
         info_dict['phone_number'] = user_info.phone_number
+        info_dict['avatar'] = self.convertImagetoString(self.getUserAvatar())
         return info_dict
 
     def deleteImageByID(self, idx):
@@ -198,8 +199,6 @@ class MyMobileView():
                 img_name = self.getImageIDByName(path)
                 response_data['images'].append(img_string)
                 response_data['image_names'].append(img_name)
-            img_string = self.convertImagetoString(user_image_paths['avatar'])
-            response_data['avatar'] = img_string
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
     @csrf_exempt
