@@ -167,15 +167,6 @@ public class ViewPostFragment extends Fragment {
         }
     }
 
-    private String getDateString(){
-        SimpleDateFormat simpleDateFormat =
-                new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
-        Calendar calendar = Calendar.getInstance();
-        Date now = calendar.getTime();
-        String timestamp = simpleDateFormat.format(now);
-        return timestamp;
-    }
-
     private void downloadImageToLocal() throws IOException {
         mPhoto = getPhotoFromBundle();
         assert mPhoto != null;

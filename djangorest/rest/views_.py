@@ -87,6 +87,13 @@ class MyMobileView():
             print(e)
             return flag
     
+
+    def changeUserAvatar(self, image_string):
+        user_imgdir = self.getUserAvatar()
+        image = self.convertStringToImage(image_string)
+        with open(user_imgdir, "wb") as f:
+            f.write(image)
+
     @csrf_exempt
     def updateProfile(self, request):
         response_data = {}
@@ -97,6 +104,9 @@ class MyMobileView():
             form = signUpForm(request.POST, instance=user)
             if form.is_valid():
                 form.save()
+                if "avatar" in request.POST.keys():
+                    print("yes")
+                    self.changeUserAvatar(request.POST['avatar'])
                 response_data['message'] = "Success to update"
                 response_data['response'] = 1
                 print("Update form valid")
@@ -156,6 +166,10 @@ class MyMobileView():
         with open(filename, 'rb') as image_file:
             encoded_string = base64.b64encode(image_file.read()).decode()
         return encoded_string
+    
+    def convertStringToImage(self, image_string):
+        decoded_image = base64.b64decode(str(image_string))
+        return decoded_image
 
     def sendImageToClient(self, filename):
         response_data = {}

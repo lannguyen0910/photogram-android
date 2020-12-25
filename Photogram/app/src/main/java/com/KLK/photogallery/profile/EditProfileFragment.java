@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -153,6 +155,9 @@ public class EditProfileFragment extends Fragment {
         String email = mEmail.getText().toString();
         String phone_number = mPhoneNumber.getText().toString();
         String username = sharedPref.getString("username");
+        BitmapDrawable drawable = (BitmapDrawable) mProfilePhoto.getDrawable();
+        Bitmap avatar_bm = drawable.getBitmap();
+        String avatarBase64 = ImageEncoderDecoder.encodeBitmapToBase64(avatar_bm);
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("name", fullname);
@@ -160,6 +165,7 @@ public class EditProfileFragment extends Fragment {
         params.put("password2", password);
         params.put("email", email);
         params.put("phone_number", phone_number);
+        params.put("avatar", avatarBase64);
         server.sendRequestToServer(url,params);
     }
 
@@ -205,7 +211,12 @@ public class EditProfileFragment extends Fragment {
         String password = mPassword.getText().toString();
         String email = mEmail.getText().toString();
         String phone_number = mPhoneNumber.getText().toString();
+        BitmapDrawable drawable = (BitmapDrawable) mProfilePhoto.getDrawable();
+        Bitmap avatar_bm = drawable.getBitmap();
+        String avatarBase64 = ImageEncoderDecoder.encodeBitmapToBase64(avatar_bm);
+
         sharedPref.setString("fullname",fullname);
+        sharedPref.setString("avatar",avatarBase64);
         sharedPref.setString("password",password);
         sharedPref.setString("email",email);
         sharedPref.setString("phone_number",phone_number);
