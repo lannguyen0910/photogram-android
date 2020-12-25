@@ -5,35 +5,116 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_3_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/EndlessScrollListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/GridSearchImageAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/SearchUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/model/VolleySingleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/search/ImageActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-anydpi/ic_image_error.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_image_error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_image_error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_loading.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_image_error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_image_error.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_image.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/grid_image_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/full_image_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/search_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/dimen.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/fileprovider.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/searchable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/debug.keystore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ittianyu_BottomNavigationViewEx_2_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ittianyu_BottomNavigationViewEx_2_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_editprofile_toolbar_snippet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_editprofile_toolbar_snippet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/search/SearchActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/search/SearchActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/fade_in.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/fade_in.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/anim/fade_out.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/anim/fade_out.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/image_search_item.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_gallerytoolbar_snippet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_gallerytoolbar_snippet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_profile_snippet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_top_profile_snippet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/top_search_menu.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/djangorest/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../djangorest/rest/views_.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/views_.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_2_API_24]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Galaxy_Nexus_API_23]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PhotoGallery" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
+        <option value="valueResourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -41,7 +122,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1luMsesuRVWSYbB37u8y8YWlqEx" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -49,12 +132,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_SELECTED" value="SquareImageView" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
     <property name="multi-representation-previewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_selected" value="Custom views" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="gradle.compiler" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Github\Mobile-Final\Photogram\app\src\main\res\drawable-mdpi" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GITHUB\18TN Projects\Mobile Dev\Final\Mobile-Final\Photogram\app\libs" />
     </key>
@@ -139,6 +226,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="444" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1608854460812">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="444" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1608854460812" />
+    <state x="314" y="308" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1608852513990">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="314" y="308" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.768@0.0.1366.768" timestamp="1608852513990" />
+    <state x="413" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608852800348">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="413" y="131" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1608852800348" />
     <state x="351" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1608806271415">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -147,37 +246,44 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="215" y="298" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496330952" />
-    <state x="215" y="298" key="AndroidCreateResourceFileDialog" timestamp="1608496344143">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="153" y="212" key="AndroidCreateResourceFileDialog" timestamp="1608863000794">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="153" y="212" key="AndroidCreateResourceFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1608863000794" />
     <state x="215" y="298" key="AndroidCreateResourceFileDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496344143" />
-    <state x="740" y="294" key="FileChooserDialogImpl" timestamp="1608555045858">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="526" y="209" key="FileChooserDialogImpl" timestamp="1608852179380">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="526" y="209" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1608852179380" />
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
-    <state width="1022" height="190" key="GridCell.Tab.0.bottom" timestamp="1608810728234">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1322" height="201" key="GridCell.Tab.0.bottom" timestamp="1608863010764">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1608863010764" />
     <state width="1876" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226913" />
-    <state width="1022" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
-    <state width="1022" height="190" key="GridCell.Tab.0.center" timestamp="1608810728234">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="913" height="442" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
+    <state width="1322" height="201" key="GridCell.Tab.0.center" timestamp="1608863010763">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1608863010763" />
     <state width="1876" height="295" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226912" />
-    <state width="1022" height="190" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
-    <state width="1022" height="190" key="GridCell.Tab.0.left" timestamp="1608810728234">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="913" height="442" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
+    <state width="1322" height="201" key="GridCell.Tab.0.left" timestamp="1608863010762">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1608863010762" />
     <state width="1876" height="295" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226912" />
-    <state width="1022" height="190" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
-    <state width="1022" height="190" key="GridCell.Tab.0.right" timestamp="1608810728234">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="913" height="442" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
+    <state width="1322" height="201" key="GridCell.Tab.0.right" timestamp="1608863010763">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1608863010763" />
     <state width="1876" height="295" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608472226913" />
-    <state width="1022" height="190" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608810728234" />
-    <state x="81" y="184" key="SettingsEditor" timestamp="1608718632613">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="913" height="442" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608777004385" />
+    <state x="58" y="58" key="SettingsEditor" timestamp="1608856300480">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="58" y="58" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1608856300480" />
     <state x="81" y="184" key="SettingsEditor/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608718632613" />
     <state x="289" y="254" key="run.anything.popup" timestamp="1608776214720">
       <screen x="0" y="0" width="1920" height="1080" />
