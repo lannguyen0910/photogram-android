@@ -21,19 +21,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoGallery">
+
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".love.LoveActivity"></activity>
-        <activity android:name=".profile.ProfileActivity"></activity>
-        <activity android:name=".profile.AccountSettingActivity"></activity>
-        <activity android:name=".search.SearchActivity"></activity>
-        <activity android:name=".camera.CameraActivity"></activity>
-        <activity android:name=".home.MainActivity"></activity>
-        <activity android:name=".login.SignUpActivity"></activity>
+
+        <activity android:name=".search.SearchActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop">
+
+            <!-- For search widget -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <activity android:name=".love.LoveActivity"/>
+        <activity android:name=".profile.ProfileActivity"/>
+        <activity android:name=".profile.AccountSettingActivity"/>
+        <activity android:name=".camera.CameraActivity"/>
+        <activity android:name=".home.MainActivity"/>
+        <activity android:name=".login.SignUpActivity"/>
+        <activity android:name=".camera.NextActivity"/>
+        <activity android:name=".search.ImageActivity"
+            android:theme="@style/AppTheme"/>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.KLK.photogallery.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+
+        </provider>
 
     </application>
 
