@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ImageActivity extends AppCompatActivity {
+    // For debugging
+    private static final String TAG = "ImageActivity";
 
     ShareActionProvider myShareActionProvider;
     Intent shareIntent;
@@ -50,12 +53,14 @@ public class ImageActivity extends AppCompatActivity {
                 .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        Log.d(TAG, "Glide onException!");
                         progressBar.setVisibility(View.INVISIBLE);
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        Log.d(TAG, "Glide onResourceReady!");
                         progressBar.setVisibility(View.INVISIBLE);
                         prepareShareIntent(((GlideBitmapDrawable) resource).getBitmap());
                         attachShareIntentAction();
@@ -69,6 +74,7 @@ public class ImageActivity extends AppCompatActivity {
         fullImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "Glide onClick an image!");
                 if (SearchUtils.checkImageResource(ImageActivity.this, (ImageView) view, R.drawable.ic_image_error)) {
                     Toast.makeText(ImageActivity.this, getResources().getString(R.string.error_loading), Toast.LENGTH_SHORT).show();
                 } else if (SearchUtils.checkImageResource(ImageActivity.this, (ImageView) view, R.drawable.ic_loading)) {
@@ -89,7 +95,6 @@ public class ImageActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
 
         // toggle menu item
@@ -97,17 +102,19 @@ public class ImageActivity extends AppCompatActivity {
             case R.id.menu_zoom:
                 if (item.getTitle() == getResources().getString(R.string.menu_zoom)) {
                     fullImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                    Toast.makeText(this,"Stretched image to screen", Toast.LENGTH_SHORT);
                     item.setTitle(getResources().getString(R.string.menu_original_size));
                 } else {
                     fullImageView.setScaleType(ImageView.ScaleType.CENTER);
+                    Toast.makeText(this,"Original image", Toast.LENGTH_SHORT);
                     item.setTitle(getResources().getString(R.string.menu_zoom));
                 }
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
-        }
 
+        }
 
     }
 
@@ -117,7 +124,6 @@ public class ImageActivity extends AppCompatActivity {
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
         shareIntent.setType("image/*");
-
     }
 
     public void attachShareIntentAction() {
@@ -127,16 +133,20 @@ public class ImageActivity extends AppCompatActivity {
 
     public Uri getBitmapFromDrawable(Bitmap bmp) {
         Uri bmpUri = null;
+
         try {
             File file = new File(getCacheDir(), "images" + System.currentTimeMillis() + ".png");
             FileOutputStream out = new FileOutputStream(file);
             bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.close();
             bmpUri = FileProvider.getUriForFile(ImageActivity.this, "com.KLK.photogallery.fileprovider", file);
+
         } catch (IOException e) {
             e.printStackTrace();
+
         }
         return bmpUri;
+
     }
 }
 

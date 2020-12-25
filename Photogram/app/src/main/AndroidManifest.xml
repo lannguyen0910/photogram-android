@@ -53,24 +53,19 @@
         <activity android:name=".camera.NextActivity"/>
         <activity android:name=".search.ImageActivity"
             android:theme="@style/AppTheme"/>
+
         <provider
-
             android:name="androidx.core.content.FileProvider"
-
             android:authorities="com.KLK.photogallery.fileprovider"
-
             android:exported="false"
-
             android:grantUriPermissions="true">
 
             <meta-data
-
-
                 android:name="android.support.FILE_PROVIDER_PATHS"
-
                 android:resource="@xml/fileprovider" />
 
         </provider>
+
     </application>
 
 </manifest>

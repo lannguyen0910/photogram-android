@@ -29,7 +29,6 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
         this.currentPage = startPage;
     }
 
-
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         // If the total item count is zero and the previous isn't, assume the

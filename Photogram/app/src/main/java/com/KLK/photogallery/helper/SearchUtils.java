@@ -19,8 +19,7 @@ public final class SearchUtils {
 
     private static final String BASEURL = "https://www.googleapis.com/customsearch/v1";
 
-    private SearchUtils() {
-    }
+    private SearchUtils() { }
 
     //make URL from base url and userText
     public static Uri.Builder getUri(String query) {
@@ -30,6 +29,10 @@ public final class SearchUtils {
         uriBuilder.appendQueryParameter("cx", "005308678709096321560:t8ixbcpz85m");
         uriBuilder.appendQueryParameter("safe", "high");
         uriBuilder.appendQueryParameter("searchType", "image");
+
+        /** https://developers.google.com/custom-search/v1/overview
+         * Change the key when this is no longer use, guide is above!!!
+         **/
         uriBuilder.appendQueryParameter("key", "AIzaSyBcIybgdPhTacLa72-7bP7ZLe1JEBnitIo"); // <--YOUR-API-KEY
 
         return uriBuilder;
@@ -37,7 +40,6 @@ public final class SearchUtils {
 
     // Extract json from string response
     public static List<String> extractImages(String sampleJsonResponse) {
-
         List<String> imageUrlList = new ArrayList<>();
 
         try {
@@ -47,7 +49,6 @@ public final class SearchUtils {
             JSONArray itemsArray = baseJsonResponse.getJSONArray("items");
 
             for (int i = 0; i < itemsArray.length(); i++) {
-
                 JSONObject itemsArrayJSONObject = itemsArray.getJSONObject(i);
 
                 /**
@@ -94,6 +95,5 @@ public final class SearchUtils {
 
         return result;
     }
-
 
 }
