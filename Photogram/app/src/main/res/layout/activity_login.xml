@@ -27,7 +27,7 @@
             android:text="PHOTOGRAM"
             android:textAlignment="center"
             android:textColor="@color/colorAccent"
-            android:textSize="40sp"
+            android:textSize="42sp"
             android:textStyle="bold"
             android:layout_marginBottom="40dp"/>
 

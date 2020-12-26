@@ -3,6 +3,7 @@ package com.KLK.photogallery.splash_screen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,8 +17,12 @@ import com.KLK.photogallery.R;
 import com.KLK.photogallery.login.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
+    //For debugging
+    private static final String TAG = "SplashScreenActivity";
 
-    private static final int SPLASHSCREEN = 5000;
+    //time setting
+    private static final int SPLASHSCREEN = 5400;
+
     //Variables
     Animation topAnim, botAnim;
     ImageView image;
@@ -39,14 +44,22 @@ public class SplashScreenActivity extends AppCompatActivity {
         logo.setAnimation(botAnim);
         slogan.setAnimation(botAnim);
 
+
+        image.animate().translationY(-1600).setDuration(2000).setStartDelay(4000);
+        logo.animate().translationY(1400).setDuration(2000).setStartDelay(4000);
+        slogan.animate().translationY(1400).setDuration(2000).setStartDelay(4000);
+
+        // Handle delay process for splash screen
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.d(TAG, "run!");
                 Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
+                finish();   // remove from activity list so users can't return to splash screen activity anymore
             }
         }, SPLASHSCREEN);
 
     }
+
 }

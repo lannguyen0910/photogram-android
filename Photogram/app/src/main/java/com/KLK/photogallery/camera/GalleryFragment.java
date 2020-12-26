@@ -62,7 +62,6 @@ public class GalleryFragment extends Fragment {
     private ProgressDialog myProgressDialog = null;
     private Cursor cc = null;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

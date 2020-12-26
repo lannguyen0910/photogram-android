@@ -58,6 +58,7 @@ public class EditProfileFragment extends Fragment {
 
     private SharedPref sharedPref;
     ServerRequest server;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,7 +83,6 @@ public class EditProfileFragment extends Fragment {
         setDefaultInfo();
 
 
-
         // navigate back to ProfileActivity
         ImageView backArrow = (ImageView)view.findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +93,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+
         mChangeProfilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +101,7 @@ public class EditProfileFragment extends Fragment {
             }
         });
 
+        
         checkMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

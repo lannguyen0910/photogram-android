@@ -37,41 +37,50 @@ public class BottomNavigationViewUtils {
                 switch(item.getItemId()){
                     case R.id.ic_home:  // Activity 0
                         Intent intent1 = new Intent(context, MainActivity.class);
+                        // prevent create new instance of the home activity every time press the home button more than once
                         intent1.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         context.startActivity(intent1);
                         callingActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
 
                     case R.id.ic_search:    // Activity 1
                         Intent intent2 = new Intent(context, SearchActivity.class);
+                        // prevent create new instance of the search activity every time press the search button more than once
                         intent2.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         context.startActivity(intent2);
                         callingActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
 
                     case R.id.ic_camera:    // Activity 2
                         Intent intent3 = new Intent(context, CameraActivity.class);
+                        // prevent create new instance of the camera activity every time press the camera button more than once
                         intent3.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         context.startActivity(intent3);
                         callingActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
 
                     case R.id.ic_heart:     // Activity 3
                         Intent intent4 = new Intent(context, LoveActivity.class);
+                        // prevent create new instance of the love activity every time press the love button more than once
                         intent4.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         context.startActivity(intent4);
                         callingActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
 
                     case R.id.ic_profile:   // Activity 4
                         Intent intent5 = new Intent(context, ProfileActivity.class);
+                        // prevent create new instance of the profile activity every time press the profile button more than once
                         intent5.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
                         context.startActivity(intent5);
                         callingActivity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                         break;
 
                 }
-
                 return false;
             }
         });

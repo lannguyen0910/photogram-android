@@ -38,7 +38,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        Log.d(TAG, "Start onCreate()!");
+        Log.d(TAG, "Start onCreate!");
 
 //        configBottomNavigationView();
 

@@ -210,11 +210,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void updateUIPostExecute(List<String> response, int addFlag) {
 
-
         if (addFlag == 0) {
             imageGridAdapter.clear();
             imageList.clear();
         }
+
         imageList.addAll(response);
         imageGridAdapter.notifyDataSetChanged();
 
