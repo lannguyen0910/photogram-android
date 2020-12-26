@@ -89,28 +89,17 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen!");
-
-                if(isRootTask()) {
+                if (mSelectedImage != null){
                     Intent intent = new Intent(getActivity(), NextActivity.class);
                     intent.putExtra(getString(R.string.selected_image), mSelectedImage);
                     startActivity(intent);
                 }
-
             }
         });
 
         fetchImagefromLocal();
 
         return view;
-    }
-
-    private boolean isRootTask(){
-        if(((CameraActivity)getActivity()).getTask() == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
     }
 
     @Override

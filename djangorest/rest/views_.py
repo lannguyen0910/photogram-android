@@ -18,6 +18,7 @@ STORAGE_PATH = 'rest/files/'
 IMG_DIR = 'images'
 DEFAULT_DIR = 'default'
 USER_DEFAULT_AVATAR = 'avatar.jpg'
+TEMPORARY_DIR = 'temp'
 
 class MyMobileView():
     def __init__(self):
@@ -153,12 +154,6 @@ class MyMobileView():
                 f.write(imgdata)
                 self.current_pic_id += 1
                 print(f"Image is saved at {filepath}")
-
-            # Test style transfering
-            # new_filename = f'{self.current_pic_id}.jpg'
-            # new_filepath = os.path.join(user_imgdir, new_filename)
-            # self.current_pic_id+=1
-            # getStyleTransfer(filepath, 'rest/editors/style_transfer/examples/style/in00.png', new_filepath)
         except Exception as e:
             print(e)
 
@@ -197,6 +192,49 @@ class MyMobileView():
         name = os.path.basename(image_name)
         name,_ = name.split('.')
         return name
+    
+    @csrf_exempt
+    def uploadStyleTransferImage(self, request):
+        response_data = {}
+        response_data['response'] = 0
+        response_data['message'] = "Failed to upload"
+        if self.checkIsLoggedIn():
+            if request.method == 'POST':
+                self.styleTransferImage(request)
+                response_data['response'] = 1
+                response_data['message'] = "Transfer success"
+            else:
+                response_data['response'] = 0
+                response_data['message'] = "Method not supported"
+        else:
+            response_data['response'] = 0
+            response_data['message'] = "Not logged in"
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+    def styleTransferImage(self, request):
+        try:
+            img_string = request.POST['image']
+            imgdata = base64.b64decode(img_string)
+            filename = f'{self.current_user_id}_{self.current_pic_id}.jpg'
+            user_imgdir = self.getCurrentUserImageDir()
+            filepath = os.path.join(STORAGE_PATH, TEMPORARY_DIR, filename)
+            new_filename = f'{self.current_pic_id}.jpg'
+            new_filepath = os.path.join(user_imgdir, new_filename)
+
+            while os.path.isfile(new_filepath):
+                self.setCurrentImageID()
+                new_filename = f'{self.current_pic_id}.jpg'
+                new_filepath = os.path.join(user_imgdir, new_filename)
+
+            with open(filepath, 'wb') as f:
+                f.write(imgdata)
+                print(f"Temp image is saved at {filepath}")
+                self.current_pic_id+=1
+            getStyleTransfer(filepath, 'rest/editors/style_transfer/examples/style/in00.png', new_filepath)
+        except Exception as e:
+            print(e)
+
+        
 
     @csrf_exempt
     def sendAllImagesToUser(self, request):
@@ -218,13 +256,19 @@ class MyMobileView():
     @csrf_exempt
     def uploadImage(self, request):
         response_data = {}
+        response_data['response'] = 0
+        response_data['message'] = "Failed to upload"
         if self.checkIsLoggedIn():
             if request.method == 'POST':
                 self.handleUploadFile(request)
+                response_data['response'] = 1
+                response_data['message'] = "Upload success"
             else:
-                response_data['error'] = 'method not supported'
+                response_data['response'] = 0
+                response_data['message'] = "Method not supported"
         else:
-            response_data['error'] = 'Not logged in'
+            response_data['response'] = 0
+            response_data['message'] = "Not logged in"
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
     @csrf_exempt

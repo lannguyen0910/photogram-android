@@ -7,16 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ceryle_RadioRealButton_v2_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ceryle_RadioRealButton_v2_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ittianyu_BottomNavigationViewEx_2_0_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ittianyu_BottomNavigationViewEx_2_0_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_picasso_picasso_2_71828_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ServerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ServerRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/EditProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/profile/ProfileFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_view_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_view_post.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/CameraActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/CameraActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/GalleryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/GalleryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_center_next_camera.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_center_next_camera.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../djangorest/rest/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../djangorest/djangorest/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/djangorest/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/rest/views_.py" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/views_.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -156,26 +161,26 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
-    <state width="1046" height="146" key="GridCell.Tab.0.bottom" timestamp="1608867797973">
+    <state width="1046" height="342" key="GridCell.Tab.0.bottom" timestamp="1608913698676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1031" height="440" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
-    <state width="1046" height="146" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608867797973" />
-    <state width="1046" height="146" key="GridCell.Tab.0.center" timestamp="1608867797973">
+    <state width="1046" height="342" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
+    <state width="1046" height="342" key="GridCell.Tab.0.center" timestamp="1608913698676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1031" height="440" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
-    <state width="1046" height="146" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608867797973" />
-    <state width="1046" height="146" key="GridCell.Tab.0.left" timestamp="1608867797973">
+    <state width="1046" height="342" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
+    <state width="1046" height="342" key="GridCell.Tab.0.left" timestamp="1608913698676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1031" height="440" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
-    <state width="1046" height="146" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608867797973" />
-    <state width="1046" height="146" key="GridCell.Tab.0.right" timestamp="1608867797973">
+    <state width="1046" height="342" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
+    <state width="1046" height="342" key="GridCell.Tab.0.right" timestamp="1608913698676">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1031" height="440" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
-    <state width="1046" height="146" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608867797973" />
+    <state width="1046" height="342" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
     <state x="81" y="184" key="SettingsEditor" timestamp="1608718632613">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

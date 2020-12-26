@@ -42,4 +42,5 @@ urlpatterns = [
     url('gallery/', mobile_view.sendAllImagesToUser, name='gallery'),
     url('delete/', mobile_view.deleteImage, name='delete'),
     url('update/', mobile_view.updateProfile, name='update'),
+    url('style/', mobile_view.uploadStyleTransferImage, name='style'),
 ]
