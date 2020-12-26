@@ -57,6 +57,9 @@
     <!-- shared ref for user info -->
     <string name="preference_file_key">USER_INFO</string>
 
+    <!-- splash screen string -->
+    <string name="splash_screen_description">Stylish Your Photo</string>
+
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPassword Dialog</string>
 </resources>

@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoGallery">
 
-        <activity android:name=".login.LoginActivity">
+        <activity android:name=".splash_screen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -44,6 +44,7 @@
                 android:resource="@xml/searchable" />
         </activity>
 
+        <activity android:name=".login.LoginActivity"/>
         <activity android:name=".love.LoveActivity"/>
         <activity android:name=".profile.ProfileActivity"/>
         <activity android:name=".profile.AccountSettingActivity"/>
@@ -65,6 +66,9 @@
                 android:resource="@xml/fileprovider" />
 
         </provider>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 
