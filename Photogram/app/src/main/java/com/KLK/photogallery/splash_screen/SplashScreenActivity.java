@@ -21,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private static final String TAG = "SplashScreenActivity";
 
     //time setting
-    private static final int SPLASHSCREEN = 5400;
+    private static final int SPLASHSCREEN = 6000;
 
     //Variables
     Animation topAnim, botAnim;
