@@ -1,5 +1,6 @@
 package com.KLK.photogallery.camera;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -41,6 +42,7 @@ public class NextActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next);
 
+        Activity activity = this;
         groupButtons = (RadioRealButtonGroup)findViewById(R.id.groupButtons);
         button1 = (RadioRealButton)findViewById(R.id.button1);
         button2 = (RadioRealButton)findViewById(R.id.button2);
@@ -81,7 +83,9 @@ public class NextActivity extends AppCompatActivity {
             public void onClick(View view) {
                 BitmapDrawable imgDrawable = (BitmapDrawable) imageNext.getDrawable();
                 Bitmap imgBitmap = imgDrawable.getBitmap();
-                String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(imgBitmap);
+                int maxImageSize = Integer.parseInt(getResources().getString(R.string.image_size));
+                Bitmap scaleImgBitmap = Bitmap.createScaledBitmap(imgBitmap, maxImageSize, maxImageSize, false);
+                String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(scaleImgBitmap);
                 switch (buttonID){
                     case 0:
                         Log.d(TAG, "Click on DEFAULT button");
@@ -94,6 +98,8 @@ public class NextActivity extends AppCompatActivity {
                     case 2:
                         break;
                 }
+
+                activity.finish();
             }
         });
     }

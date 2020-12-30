@@ -44,6 +44,8 @@ class MyMobileView():
         storage  = sorted(os.listdir(user_imgdir))
         for path in storage:
             img_id,  ext = path.split('.')
+            if img_id == 'avatar':
+                continue
             if result_id == int(img_id):
                 result_id += 1
         return result_id
@@ -200,6 +202,7 @@ class MyMobileView():
         response_data['message'] = "Failed to upload"
         if self.checkIsLoggedIn():
             if request.method == 'POST':
+                print("yes1")
                 self.styleTransferImage(request)
                 response_data['response'] = 1
                 response_data['message'] = "Transfer success"
@@ -215,8 +218,10 @@ class MyMobileView():
         try:
             img_string = request.POST['image']
             imgdata = base64.b64decode(img_string)
+            print("yes2")
             filename = f'{self.current_user_id}_{self.current_pic_id}.jpg'
             user_imgdir = self.getCurrentUserImageDir()
+            print("yes3")
             filepath = os.path.join(STORAGE_PATH, TEMPORARY_DIR, filename)
             new_filename = f'{self.current_pic_id}.jpg'
             new_filepath = os.path.join(user_imgdir, new_filename)
@@ -225,12 +230,12 @@ class MyMobileView():
                 self.setCurrentImageID()
                 new_filename = f'{self.current_pic_id}.jpg'
                 new_filepath = os.path.join(user_imgdir, new_filename)
-
+            print("yes4")
             with open(filepath, 'wb') as f:
                 f.write(imgdata)
                 print(f"Temp image is saved at {filepath}")
                 self.current_pic_id+=1
-            getStyleTransfer(filepath, 'rest/editors/style_transfer/examples/style/in00.png', new_filepath)
+            getStyleTransfer(filepath, 'rest/editors/style_transfer/examples/style/in14.png', new_filepath)
         except Exception as e:
             print(e)
 
