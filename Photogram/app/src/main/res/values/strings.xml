@@ -29,6 +29,8 @@
     <string name="no_images">Search for images to display</string>
     <string name="search_hint">Search Images</string>
 
+    <string name="image_size">512</string>
+
     <!-- Menu names -->
     <string name="menu_zoom">Stretch image to screen</string>
     <string name="menu_original_size">Original size</string>
@@ -62,4 +64,19 @@
 
     <!-- dialog names -->
     <string name="confirm_password_dialog">ConfirmPassword Dialog</string>
+
+    <!-- style names and descriptions-->
+    <string name="style_1_title">House View</string>
+    <string name="style_1_desc">A beautiful view at night of an expensive house</string>
+    <string name="style_2_title">Desert Morning</string>
+    <string name="style_2_desc">A beautiful sunrise view in a epic desert</string>
+    <string name="style_3_title">Wine Glass</string>
+    <string name="style_3_desc">A beautiful picture with a glass of wine and epic light effect </string>
+    <string name="style_4_title">Church Hallway</string>
+    <string name="style_4_desc">A beautiful architecture of a church brings solemn atmosphere</string>
+    <string name="style_5_title">Farmer and Nature</string>
+    <string name="style_5_desc">A beautiful farmer\'s house inside</string>
+    <string name="style_6_title">England Theater</string>
+    <string name="style_6_desc">A beautiful view at night in England</string>
+
 </resources>

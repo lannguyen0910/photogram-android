@@ -53,6 +53,7 @@ public class ViewPostFragment extends Fragment {
 
     private ServerRequest server;
     private SharedPref sharedPref;
+
     public ViewPostFragment(){
         super();
         setArguments(new Bundle());
@@ -115,6 +116,7 @@ public class ViewPostFragment extends Fragment {
         });
 
         setUsername();
+
         try{
             Log.e(TAG, "onCreteView: set grid image ");
             mPhoto = getPhotoFromBundle();

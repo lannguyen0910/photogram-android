@@ -5,8 +5,34 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="" />
+    <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/StyleActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/SlideViewPagerAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/arrow_back.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/arrow_next.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/button_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/selected.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/style_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/unselected.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_style_slide.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_style_slide_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/ViewPostFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +49,7 @@
       <list>
         <option value="resourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -30,12 +57,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1luMsesuRVWSYbB37u8y8YWlqEx" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android-custom-viewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_SELECTED" value="SquareImageView" />
@@ -127,6 +157,9 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="351" y="290" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1608806271415">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -136,33 +169,38 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="215" y="298" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496330952" />
-    <state x="215" y="298" key="AndroidCreateResourceFileDialog" timestamp="1608496344143">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="215" y="298" key="AndroidCreateResourceFileDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496344143" />
-    <state x="526" y="209" key="FileChooserDialogImpl" timestamp="1608957643799">
+    <state x="153" y="212" key="AndroidCreateResourceFileDialog" timestamp="1609501527881">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="526" y="209" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1608957643799" />
-    <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
-    <state width="1046" height="342" key="GridCell.Tab.0.bottom" timestamp="1608913698676">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="153" y="212" key="AndroidCreateResourceFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1609501527881" />
+    <state x="215" y="298" key="AndroidCreateResourceFileDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496344143" />
+    <state x="526" y="209" key="FileChooserDialogImpl" timestamp="1609416672660">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state x="526" y="209" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1609416672660" />
+    <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
+    <state width="1322" height="201" key="GridCell.Tab.0.bottom" timestamp="1609505274154">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1609505274154" />
     <state width="1031" height="440" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1046" height="342" key="GridCell.Tab.0.center" timestamp="1608913698676">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1322" height="201" key="GridCell.Tab.0.center" timestamp="1609505274154">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1609505274154" />
     <state width="1031" height="440" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1046" height="342" key="GridCell.Tab.0.left" timestamp="1608913698676">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1322" height="201" key="GridCell.Tab.0.left" timestamp="1609505274154">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1609505274154" />
     <state width="1031" height="440" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1046" height="342" key="GridCell.Tab.0.right" timestamp="1608913698676">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1322" height="201" key="GridCell.Tab.0.right" timestamp="1609505274154">
+      <screen x="0" y="0" width="1366" height="768" />
     </state>
+    <state width="1322" height="201" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1609505274154" />
     <state width="1031" height="440" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
     <state x="81" y="184" key="SettingsEditor" timestamp="1608718632613">
