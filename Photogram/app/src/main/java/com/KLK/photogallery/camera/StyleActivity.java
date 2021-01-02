@@ -10,7 +10,7 @@ import android.os.Bundle;
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.SlideViewPagerAdapter;
 
-/** User can change a style they want **/
+/** User can choose a style they want **/
 public class StyleActivity extends AppCompatActivity {
     public static ViewPager viewPager;
     SlideViewPagerAdapter adapter;

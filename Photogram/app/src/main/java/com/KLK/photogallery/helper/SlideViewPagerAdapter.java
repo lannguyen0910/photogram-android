@@ -106,11 +106,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 ind5.setImageResource(R.drawable.unselected);
                 ind6.setImageResource(R.drawable.unselected);
 
-
                 title.setText(R.string.style_2_title);
                 desc.setText(R.string.style_2_desc);
                 back.setVisibility(View.VISIBLE);
                 next.setVisibility(View.VISIBLE);
+
                 break;
 
             case 2:
@@ -122,11 +122,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 ind5.setImageResource(R.drawable.unselected);
                 ind6.setImageResource(R.drawable.unselected);
 
-
                 title.setText(R.string.style_3_title);
                 desc.setText(R.string.style_3_desc);
                 back.setVisibility(View.VISIBLE);
-                next.setVisibility(View.GONE);
+                next.setVisibility(View.VISIBLE);
+
                 break;
 
             case 3:
@@ -138,11 +138,11 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 ind5.setImageResource(R.drawable.unselected);
                 ind6.setImageResource(R.drawable.unselected);
 
-
                 title.setText(R.string.style_4_title);
                 desc.setText(R.string.style_4_desc);
                 back.setVisibility(View.VISIBLE);
-                next.setVisibility(View.GONE);
+                next.setVisibility(View.VISIBLE);
+
                 break;
 
             case 4:
@@ -157,7 +157,8 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 title.setText(R.string.style_5_title);
                 desc.setText(R.string.style_5_desc);
                 back.setVisibility(View.VISIBLE);
-                next.setVisibility(View.GONE);
+                next.setVisibility(View.VISIBLE);
+
                 break;
 
             case 5:
@@ -173,6 +174,7 @@ public class SlideViewPagerAdapter extends PagerAdapter {
                 desc.setText(R.string.style_6_desc);
                 back.setVisibility(View.VISIBLE);
                 next.setVisibility(View.GONE);
+
                 break;
 
         }
