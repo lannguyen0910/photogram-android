@@ -14,5 +14,7 @@
     <color name="colorPrimaryDark">#0000FF</color>
     <color name="colorLightBlack">#121111</color>
     <color name="heavyGrey">#676060</color>
-
+    <color name="colorDark">#222A35</color>
+    <color name="black_shade">#333333</color>
+    <color name="colorPrimary2">#222A35</color>
 </resources>
