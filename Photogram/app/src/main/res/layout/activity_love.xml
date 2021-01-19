@@ -13,11 +13,15 @@
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_below="@id/relLayout1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relLayout1"
+        android:id="@+id/relLayout2">
+
+        <include layout="@layout/layout_grid_imageview"/>
+
+    </RelativeLayout>
 
     <include layout="@layout/layout_bottom_navigation_view"/>
 

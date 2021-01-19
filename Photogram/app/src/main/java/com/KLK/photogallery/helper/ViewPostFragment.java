@@ -78,6 +78,8 @@ public class ViewPostFragment extends Fragment {
         sharedPref = new SharedPref(getActivity().getApplicationContext());
         server = new ServerRequest((ProfileActivity)getActivity());
 
+
+
         mBackArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +87,34 @@ public class ViewPostFragment extends Fragment {
                 //((ProfileActivity) getActivity()).initProfileFragment();
                 Fragment viewPostFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.profile_container);
                 ((ProfileActivity) getActivity()).destroyViewPostFragment(viewPostFragment);
+            }
+        });
+
+        mHeartWhite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: delete image!");
+                String curImageID = getCurrentImageID();
+                favImageByID(curImageID, 0);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {setFavorite();}
+                }, 1500);
+            }
+        });
+
+        mHeartRed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: delete image!");
+                String curImageID = getCurrentImageID();
+                favImageByID(curImageID, 0);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {setUnfavorite();}
+                }, 1500);
             }
         });
 
@@ -97,7 +127,7 @@ public class ViewPostFragment extends Fragment {
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
-                    public void run() { 
+                    public void run() {
                         if (verifyDelete()) {mBackArrow.performClick(); }}
                 }, 1500);
 
@@ -134,11 +164,46 @@ public class ViewPostFragment extends Fragment {
             Log.e(TAG, "onCreteView: NullPointerException (the received bundle is null)! ");
         }
 
+        String curImageID = getCurrentImageID();
+        favImageByID(curImageID, 1);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (verifyFavorite()) {
+                    setFavorite();
+                } else {
+                    setUnfavorite();}
+            }
+        }, 1500);
+
         configBottomNavigationView();
         return view;
     }
 
+    private void setFavorite(){
+        mHeartWhite.setVisibility(View.INVISIBLE);
+        mHeartRed.setVisibility(View.VISIBLE);
+    }
+
+    private void setUnfavorite(){
+        mHeartWhite.setVisibility(View.VISIBLE);
+        mHeartRed.setVisibility(View.INVISIBLE);
+    }
+
     private boolean verifyDelete(){
+        int response = server.getResponse();
+        String message = server.getMessage();
+        Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT);
+        if (response == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private boolean verifyFavorite(){
         int response = server.getResponse();
         String message = server.getMessage();
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT);
@@ -205,6 +270,25 @@ public class ViewPostFragment extends Fragment {
             public void run() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("image", imageID);
+                server.sendRequestToServer(url, params); }});
+        try {
+            thread.start();
+            thread.join();
+            Log.e(TAG,"Thread joined");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void favImageByID(String imageID, int mode){
+        Log.e(TAG, "favImageByID" + String.valueOf(mode));
+        String url = getResources().getString(R.string.fav_url);
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("image", imageID);
+                params.put("mode", String.valueOf(mode));
                 server.sendRequestToServer(url, params); }});
         try {
             thread.start();

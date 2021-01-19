@@ -20,6 +20,7 @@ STORAGE_PATH = 'rest/files'
 IMG_DIR = 'images'
 DEFAULT_DIR = 'default'
 USER_DEFAULT_AVATAR = 'avatar.jpg'
+USER_DEFAULT_FAV = 'fav.txt'
 TEMPORARY_DIR = 'temp'
 
 
@@ -67,6 +68,9 @@ class MyMobileView():
 
     def getCurrentUserImageDir(self):
         return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR)
+
+    def getCurrentUserDir(self):
+        return os.path.join(STORAGE_PATH, str(self.current_user_id))
 
     def getAvailableImageID(self):
         result_id = 0
@@ -387,4 +391,94 @@ class MyMobileView():
             response_data['message'] = 'Log out success'
         return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+    def setFavorite(self, image_id):
+        usr_dir = self.getCurrentUserDir()
+        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
+        fileread = open(usr_fav_txt, "r+")
+        lines = fileread.readlines()
+        fileread.close()
 
+        flag = 0
+        for idx, line in enumerate(lines):
+            if str(line) == image_id:
+                del lines[idx]
+                flag = 1
+                break
+
+        fileappend = open(usr_fav_txt, "w")
+        for line in lines:
+            fileappend.write(line)
+            fileappend.write('\n')
+
+        if not flag:
+            fileappend.write(str(image_id))
+
+        fileappend.close()
+        return flag
+
+    def getImgFavoriteStatus(self, image_id):
+        usr_dir = self.getCurrentUserDir()
+        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
+        fileread = open(usr_fav_txt, "r+")
+        lines = fileread.readlines()
+        fileread.close()
+
+        flag = 0
+        for idx, line in enumerate(lines):
+            if str(line) == image_id:
+                flag = 1
+                break
+
+        return flag
+
+    @csrf_exempt
+    def handleFavoriteStatus(self, request):
+        response_data = {}
+        response_data['response'] = 0
+        response_data['message'] = 'Set/Get Favorite failed'
+        if request.method == 'POST':
+            img_id = request.POST['image']
+            mode = request.POST["mode"]
+            if mode == "0":
+                flag = self.setFavorite(img_id)
+                response_data['response'] = 1
+            else:
+                flag = self.getImgFavoriteStatus(img_id)
+                response_data['response'] = flag   # 1 is found, 0 is not found  
+            response_data['message'] = 'Set/Get Favorite successfully' if flag else 'Set/Get Unfavorite successfully'
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+            
+
+    
+    def getAllFavoriteImgs(self):
+        usr_dir = self.getCurrentUserDir()
+        usr_img_dir = self.getAllImagesByUserID()
+        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
+
+        with open(usr_fav_txt, 'r') as f:
+            data = f.read()
+            for row in data.splitlines():
+                path = os.path.join(usr_img_dir, row+'.jpg')
+                print(path)
+                img_string = self.convertImagetoString(path)
+                img_name = self.getImageIDByName(path)
+                response_data['images'].append(img_string)
+                response_data['image_names'].append(img_name)
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+    @csrf_exempt
+    def sendAllFavoriteImagesToUser(self, request):
+        response_data = {}
+        response_data['images'] = []
+        response_data['image_names'] = []
+        response_data['message'] = "Sent images"
+        response_data['response'] = 1
+        if request.method == 'POST':
+            user_image_paths = self.getAllFavoriteImgs()
+            print(user_image_paths)
+            for path in user_image_paths['images']:
+                img_string = self.convertImagetoString(path)
+                img_name = self.getImageIDByName(path)
+                response_data['images'].append(img_string)
+                response_data['image_names'].append(img_name)
+        return HttpResponse(json.dumps(response_data), content_type="application/json")

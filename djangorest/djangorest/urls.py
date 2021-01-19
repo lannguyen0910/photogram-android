@@ -43,4 +43,6 @@ urlpatterns = [
     url('delete/', mobile_view.deleteImage, name='delete'),
     url('update/', mobile_view.updateProfile, name='update'),
     url('style/', mobile_view.uploadStyleTransferImage, name='style'),
+    url('fav_status/', mobile_view.handleFavoriteStatus, name='fav_status'),
+    url('fav/', mobile_view.sendAllFavoriteImagesToUser, name='fav'),
 ]
