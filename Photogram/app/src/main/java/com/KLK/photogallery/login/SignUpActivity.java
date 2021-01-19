@@ -91,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
                         loadingPleaseWait.setVisibility(View.GONE);
                         mProgressBar.setVisibility(View.GONE);
                     }
-                }, 1500);
+                }, 3000);
             }
         });
         /**

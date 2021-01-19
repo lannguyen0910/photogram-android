@@ -1,20 +1,23 @@
 import pickle
+import io
 import os.path
+import shutil
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from googleapiclient.http import MediaFileUpload
+from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/drive']
 DEFAULT_TOKEN_PICKLE_NAME = './rest/gdrive/token.pickle'
-DEFAULT_CREDENTIAL_FILE = './rest/gdrive/credentials.json'
-DEFAULT_ROOT_FOLDER_ID = '147JudIeJfZiGpzfS0UDT-Z3ySRyVUxZT'
-DEFAULT_ROOT_FOLDER_NAME = 'storage'
+DEFAULT_CREDENTIAL_FILE =  './rest/gdrive/credentials.json'
+DEFAULT_ROOT_FOLDER_ID = '1nFozcz0cfqqLM7mHvaxE-auGwiFqDpkQ'
+DEFAULT_ROOT_FOLDER_NAME = 'rest/files'
 
 class GoogleDriveUploader():
     def __init__(self):
         self.folder_name_to_id = {}
+        self.folder_name_to_id[DEFAULT_ROOT_FOLDER_NAME] = DEFAULT_ROOT_FOLDER_ID
         self.creds = None
         if os.path.exists(DEFAULT_TOKEN_PICKLE_NAME):
             with open(DEFAULT_TOKEN_PICKLE_NAME, 'rb') as token:
@@ -80,9 +83,9 @@ class GoogleDriveUploader():
 
     def getFileIDInsideParentFolder(self, folder_name, filename):
         folderid = self.getFolderIDByName(folder_name)
-        query = f"mimeType='image/jpeg' and \
-                '{folderid}' in parents and \
-                trashed = false"
+    
+        query = f"mimeType!='application/vnd.google-apps.folder' and \
+                '{folderid}' in parents"
         page_token = None
         while True:
             response = self.service.files().list(q=query,
@@ -90,6 +93,7 @@ class GoogleDriveUploader():
                                                 fields='nextPageToken, files(id, name)',
                                                 pageToken=page_token).execute()
             for files in response.get('files', []):
+                
                 if files.get('name') == filename:
                     return files.get('id')
                 
@@ -101,7 +105,7 @@ class GoogleDriveUploader():
 
     def uploadFileToDrive(self, photo_path, dest_path):
         dest_folder_id = self.getFolderIDByName(dest_path)
-        file_metadata = {'name': photo_path, "parents": [dest_folder_id]}
+        file_metadata = {'name': os.path.basename(photo_path), "parents": [dest_folder_id]}
         media = MediaFileUpload(photo_path, mimetype='image/jpeg')
         files = self.service.files().create(body=file_metadata,
                                             media_body=media,
@@ -114,6 +118,70 @@ class GoogleDriveUploader():
         files = self.service.files().delete(fileId=fileid).execute()
         print(f"Delete {filename}")
 
+    def copyFile(self, ori_path, new_path):
+        parentname, filename = os.path.split(ori_path)
+        parentid = self.getFolderIDByName(new_path)
+        fileid = self.getFileIDInsideParentFolder(parentname, filename)
+        newfile = {'name': filename, 'parents' : [parentid]}
+        files = self.service.files().copy(fileId=fileid, body=newfile).execute()
+
+    def downloadAllFolders(self, parent_folder):
+        if not os.path.exists(parent_folder):
+            os.makedirs(parent_folder)
+        folderid = self.getFolderIDByName(parent_folder)
+        query = f"mimeType='application/vnd.google-apps.folder' and \
+                '{folderid}' in parents and \
+                trashed = false"
+        page_token = None
+        while True:
+            response = self.service.files().list(q=query,
+                                                spaces='drive',
+                                                fields='nextPageToken, files(id, name)',
+                                                pageToken=page_token).execute()
+            for files in response.get('files', []):
+                folder_name = '/'.join([parent_folder, files.get('name')])
+                self.downloadAllFolders(folder_name)
+                self.downloadAllFilesFromFolder(folder_name, folder_name)
+            page_token = response.get('nextPageToken', None)
+            if page_token is None:
+                break
+
+    def downloadAllFilesFromFolder(self, folder_path, folder_out):
+        folderid = self.getFolderIDByName(folder_path)
+        query = f"mimeType!='application/vnd.google-apps.folder' and \
+                '{folderid}' in parents and \
+                trashed = false"
+        page_token = None
+        while True:
+            response = self.service.files().list(q=query,
+                                                spaces='drive',
+                                                fields='nextPageToken, files(id, name)',
+                                                pageToken=page_token).execute()
+            for files in response.get('files', []):
+                fileout = os.path.join(folder_out, files.get('name'))
+                print(f"Downloading to {fileout}", end='. ')
+                self.downloadSingleFileByID(files.get('id'), fileout)
+            page_token = response.get('nextPageToken', None)
+            if page_token is None:
+                break
+    
+    def downloadSingleFileByID(self, fileid, fileout):
+        request = self.service.files().get_media(fileId=fileid)
+        fh = io.BytesIO()
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while done is False:
+            status, done = downloader.next_chunk()
+            print("Download %d%%." % int(status.progress() * 100))
+        fh.seek(0)
+        with open(fileout, 'wb') as f: 
+            shutil.copyfileobj(fh, f)
+
 if __name__ == '__main__':
+    DEFAULT_TOKEN_PICKLE_NAME = 'token.pickle'
+    DEFAULT_CREDENTIAL_FILE =  'credentials.json'
     gdrive_uploader = GoogleDriveUploader()
-    gdrive_uploader.deleteFileFromDrive('storage/2/images/0.jpg')
+
+    # gdrive_uploader.copyFile('rest/files/default/0.jpg', 'rest/files/18/avatar')
+    # gdrive_uploader.downloadAllFolders('rest/files')
+    gdrive_uploader.deleteFileFromDrive('rest/files/18/images/2.jpg')

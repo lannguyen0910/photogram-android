@@ -13,21 +13,49 @@ from shutil import copyfile
 
 from .forms import logInForm, signUpForm
 from .editor import *
-from .gdrive import GoogleDriveUploader
+from .gdrive import *
+from google_drive_downloader import GoogleDriveDownloader as gdd
 
-STORAGE_PATH = 'rest/files/'
+STORAGE_PATH = 'rest/files'
 IMG_DIR = 'images'
 DEFAULT_DIR = 'default'
 USER_DEFAULT_AVATAR = 'avatar.jpg'
 TEMPORARY_DIR = 'temp'
-gdrive_uploader = GoogleDriveUploader()
+
 
 class MyMobileView():
     def __init__(self):
         self.username = None
         self.current_user_id = -1
         self.current_pic_id = 0
+        self.gdrive_uploader = GoogleDriveUploader()
+        self.initServer()
+
+    # Google Drive interfere:
+
+    def initServer(self):
+        if not os.path.exists(STORAGE_PATH):
+            self.gdrive_uploader.downloadAllFolders(STORAGE_PATH)
+
+    def initUserData(self):
+        self.gdrive_uploader.createFolder(DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id))
+        usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
+        self.gdrive_uploader.createFolder(usr_dir, 'images')
+        default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
+        self.gdrive_uploader.copyFile(default_avatar, self.getCurrentUserImageDir())
         
+    def loadUserData(self):
+        usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
+        if not os.path.exists(usr_dir):
+            self.downloadUserDataFromDrive(usr_dir)
+
+    def downloadUserDataFromDrive(self, folder_name):
+        print('Start downloading user data')
+        self.gdrive_uploader.downloadAllFolders(folder_name)
+        print('User data downloaded')
+
+    # Server interfere:
+
     def checkIsLoggedIn(self):
         return self.current_user_id > 0
          
@@ -87,6 +115,7 @@ class MyMobileView():
                 os.remove(img_path)
                 print(f"Remove image {img_path}")
                 flag = 1
+                self.gdrive_uploader.deleteFileFromDrive(img_path)
             return flag
         except Exception as e:
             print(e)
@@ -98,6 +127,7 @@ class MyMobileView():
         image = self.convertStringToImage(image_string)
         with open(user_imgdir, "wb") as f:
             f.write(image)
+            self.gdrive_uploader.uploadFileToDrive(user_imgdir, os.path.dirname(user_imgdir))
 
     @csrf_exempt
     def updateProfile(self, request):
@@ -158,6 +188,8 @@ class MyMobileView():
                 f.write(imgdata)
                 self.current_pic_id += 1
                 print(f"Image is saved at {filepath}")
+
+            self.gdrive_uploader.uploadFileToDrive(filepath, user_imgdir)
         except Exception as e:
             print(e)
 
@@ -289,6 +321,7 @@ class MyMobileView():
                     user = user_form.login(request)
                     if user is not None:
                         self.setCurrentUserID(request)
+                        self.loadUserData()
                         response_data['user_info'] = self.getUserInfoResponse()
                         response_data['response'] = 1
                         response_data['message'] = "Log in successfully"
@@ -327,6 +360,7 @@ class MyMobileView():
                     print(f'{user}_{self.current_user_id} has signed up')
                     response_data['response'] = 1
                     response_data['message'] = "Sign up successfully"
+                    self.initUserData()
                 else:
                     response_data['response'] = 0
                     response_data['message'] = "Wrong format"
