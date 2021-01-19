@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         Log.d(TAG, "onCreate: Start!");
 
-        mContext=this;
+        mContext = this;
         mUsername = (EditText) findViewById(R.id.reg_username);
         mPassword = (EditText) findViewById(R.id.reg_password);
         btnRegister = (Button) findViewById(R.id.btn_register);

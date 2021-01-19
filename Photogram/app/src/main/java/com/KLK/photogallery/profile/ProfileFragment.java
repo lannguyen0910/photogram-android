@@ -116,8 +116,6 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
-
     /** -----------------------------------------------------------------------------------
      * Interface of ProfileFragment and ProfileActivity
      * Each time it is called, it will take the parameter in the function and pass it on where to implement this interface.

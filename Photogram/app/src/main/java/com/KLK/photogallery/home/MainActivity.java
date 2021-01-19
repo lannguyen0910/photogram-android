@@ -5,15 +5,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.KLK.photogallery.R;
 import com.KLK.photogallery.helper.BottomNavigationViewUtils;
-import com.KLK.photogallery.helper.SectionsPagerAdapter;
 import com.KLK.photogallery.helper.UniversalImageLoader;
+import com.KLK.photogallery.home.messenger.MessengerMainActivity;
+import com.KLK.photogallery.home.messenger.TabsControllerAdapter;
+import com.KLK.photogallery.profile.AccountSettingActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,8 +27,12 @@ public class MainActivity extends AppCompatActivity {
     // For debugging
     private static final String TAG = "MainActivity";
     private static final int ACTIVITY_NUM = 0;
+    private ImageView sendMessage;
     private Context context = MainActivity.this;
+    private ViewPager viewPager;
+    private  ViewPagerAdapter adapter;
 
+    // Source: Google Image
     private String[] imageUrls = new String[]{
             "https://i.pinimg.com/originals/ff/f6/fa/fff6fa7b1d480f2a298630cb789a4fe1.jpg",
             "https://previews.123rf.com/images/nguyenthanhtrong/nguyenthanhtrong2001/nguyenthanhtrong200100067/141533444-happy-new-year-2021-with-firework-background-firework-display-colorful-for-holidays-.jpg",
@@ -43,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "Start onCreate()!");
 
-        ViewPager viewPager = findViewById(R.id.viewpager_container);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, imageUrls);
+        sendMessage = findViewById(R.id.send_message);
+        viewPager = findViewById(R.id.viewpager_container);
+
+        adapter = new ViewPagerAdapter(this, imageUrls);
         viewPager.setAdapter(adapter);
 
         initToolbar();
@@ -85,12 +96,18 @@ public class MainActivity extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
+
     private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Homepage");
-        getSupportActionBar().getThemedContext();
-        toolbar.setTitleTextColor(0xFFFFFFFF);
+        sendMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: navigating to " + context.getString(R.string.messenger_activity));
+
+                Intent intent = new Intent(context, MessengerMainActivity.class);
+                intent.putExtra(getString(R.string.calling_activity), getString(R.string.home_activity));
+                startActivity(intent);
+            }
+        });
     }
 
 }
