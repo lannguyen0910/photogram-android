@@ -34,16 +34,21 @@ public class MessengerMainActivity extends AppCompatActivity {
         sharedPref = new SharedPref(getApplicationContext());
         mProfilePhoto = findViewById(R.id.profile_image);
         mUsername = findViewById(R.id.username);
-
         viewPager = findViewById(R.id.view_pager);
+        tabLayout = findViewById(R.id.tab_layout);
+
+        setUpViewPager();
+
+        setProfileImage();
+
+        setUserInfo();
+    }
+
+    private void setUpViewPager() {
         tabsControllerAdapter = new TabsControllerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabsControllerAdapter);
 
-        tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
-
-        setProfileImage();
-        setUserInfo();
     }
 
     private void setProfileImage(){

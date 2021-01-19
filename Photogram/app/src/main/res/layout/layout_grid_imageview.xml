@@ -6,13 +6,8 @@
     <com.KLK.photogallery.helper.SquareImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:id="@+id/gridImageView"/>
 
-    <ProgressBar
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerInParent="true"
-        android:id="@+id/gridImageProgressbar"/>
 
 </RelativeLayout>
