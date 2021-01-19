@@ -70,7 +70,6 @@ public class NextActivity extends AppCompatActivity {
             public void onClickedButton(RadioRealButton button, int position) {
                 buttonID = position;
 
-
                 Intent intent = new Intent(NextActivity.this, StyleActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);

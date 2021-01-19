@@ -44,7 +44,8 @@ class MyMobileView():
         self.gdrive_uploader.createFolder(usr_dir, 'images')
         default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
         self.gdrive_uploader.copyFile(default_avatar, self.getCurrentUserImageDir())
-        
+        open(os.path.join(self.getCurrentUserDir,USER_DEFAULT_FAV), 'a').close()
+
     def loadUserData(self):
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
         if not os.path.exists(usr_dir):
@@ -452,19 +453,16 @@ class MyMobileView():
     
     def getAllFavoriteImgs(self):
         usr_dir = self.getCurrentUserDir()
-        usr_img_dir = self.getAllImagesByUserID()
+        usr_img_dir = self.getCurrentUserImageDir()
         usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
-
+        user_image_paths = []
         with open(usr_fav_txt, 'r') as f:
             data = f.read()
             for row in data.splitlines():
                 path = os.path.join(usr_img_dir, row+'.jpg')
-                print(path)
-                img_string = self.convertImagetoString(path)
-                img_name = self.getImageIDByName(path)
-                response_data['images'].append(img_string)
-                response_data['image_names'].append(img_name)
-        return HttpResponse(json.dumps(response_data), content_type="application/json")
+                user_image_paths.append(path)
+        return {'images': user_image_paths}
+        
 
     @csrf_exempt
     def sendAllFavoriteImagesToUser(self, request):
