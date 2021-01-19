@@ -175,7 +175,7 @@ public class ViewPostFragment extends Fragment {
                 } else {
                     setUnfavorite();}
             }
-        }, 1500);
+        }, 2000);
 
         configBottomNavigationView();
         return view;
@@ -206,6 +206,7 @@ public class ViewPostFragment extends Fragment {
     private boolean verifyFavorite(){
         int response = server.getResponse();
         String message = server.getMessage();
+
         Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT);
         if (response == 1) {
             return true;
@@ -282,7 +283,7 @@ public class ViewPostFragment extends Fragment {
 
     private void favImageByID(String imageID, int mode){
         Log.e(TAG, "favImageByID" + String.valueOf(mode));
-        String url = getResources().getString(R.string.fav_url);
+        String url = getResources().getString(R.string.fav_status_url);
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {

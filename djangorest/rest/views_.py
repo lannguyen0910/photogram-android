@@ -395,7 +395,7 @@ class MyMobileView():
         usr_dir = self.getCurrentUserDir()
         usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
         fileread = open(usr_fav_txt, "r+")
-        lines = fileread.readlines()
+        lines = fileread.read().splitlines()
         fileread.close()
 
         flag = 0
@@ -420,9 +420,9 @@ class MyMobileView():
         usr_dir = self.getCurrentUserDir()
         usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
         fileread = open(usr_fav_txt, "r+")
-        lines = fileread.readlines()
+        lines = fileread.read().splitlines()
         fileread.close()
-
+        
         flag = 0
         for idx, line in enumerate(lines):
             if str(line) == image_id:

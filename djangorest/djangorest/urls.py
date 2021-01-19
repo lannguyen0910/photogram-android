@@ -31,10 +31,6 @@ mobile_view = MyMobileView()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    # url('upload/', views.upload_image, name='upload'),
-    # url('login/', views.logInUser, name='login'),
-    # url('signup/', views.signUpUser, name='signup'),
-    # url('logout/', views.logOutUser, name='logout'),
     url('upload/', mobile_view.uploadImage, name='upload'),
     url('login/', mobile_view.logInUser, name='login'),
     url('signup/', mobile_view.signUpUser, name='signup'),
@@ -43,6 +39,6 @@ urlpatterns = [
     url('delete/', mobile_view.deleteImage, name='delete'),
     url('update/', mobile_view.updateProfile, name='update'),
     url('style/', mobile_view.uploadStyleTransferImage, name='style'),
-    url('fav_status/', mobile_view.handleFavoriteStatus, name='fav_status'),
     url('fav/', mobile_view.sendAllFavoriteImagesToUser, name='fav'),
+    url('fav_status/', mobile_view.handleFavoriteStatus, name='fav_status'),
 ]
