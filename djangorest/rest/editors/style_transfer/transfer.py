@@ -139,23 +139,20 @@ class StyleTransfer():
         if self.config.transfer_at_skip:
             transfer_at.add('skip')
 
-        fname = os.path.basename(self.output_path)
+
         _content = self.content_path
         _style = self.style_path
         _content_segment =  None
         _style_segment =  None
-        _output = self.output_path
 
         content = open_image(_content, self.config.image_size).to(device)
         style = open_image(_style, self.config.image_size).to(device)
         content_segment = load_segment(_content_segment, self.config.image_size)
         style_segment = load_segment(_style_segment, self.config.image_size)     
-        _, ext = os.path.splitext(fname)
 
-        postfix = '_'.join(sorted(list(transfer_at)))
-        fname_output = _output.replace(ext, '_{}_{}.{}'.format(self.config.option_unpool, postfix, ext))
-        print('------ transfer:', _output)
+        
+        print('------ transfer:', self.output_path)
         wct2 = WCT2(transfer_at=transfer_at, option_unpool=self.config.option_unpool, device=device, verbose=self.config.verbose)
         with torch.no_grad():
             img = wct2.transfer(content, style, content_segment, style_segment, alpha=self.config.alpha)
-        save_image(img.clamp_(0, 1), fname_output, padding=0)
+        save_image(img.clamp_(0, 1), self.output_path, padding=0)

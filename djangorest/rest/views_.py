@@ -13,12 +13,14 @@ from shutil import copyfile
 
 from .forms import logInForm, signUpForm
 from .editor import *
+from .gdrive import GoogleDriveUploader
 
 STORAGE_PATH = 'rest/files/'
 IMG_DIR = 'images'
 DEFAULT_DIR = 'default'
 USER_DEFAULT_AVATAR = 'avatar.jpg'
 TEMPORARY_DIR = 'temp'
+gdrive_uploader = GoogleDriveUploader()
 
 class MyMobileView():
     def __init__(self):
@@ -218,10 +220,8 @@ class MyMobileView():
         try:
             img_string = request.POST['image']
             imgdata = base64.b64decode(img_string)
-            print("yes2")
             filename = f'{self.current_user_id}_{self.current_pic_id}.jpg'
             user_imgdir = self.getCurrentUserImageDir()
-            print("yes3")
             filepath = os.path.join(STORAGE_PATH, TEMPORARY_DIR, filename)
             new_filename = f'{self.current_pic_id}.jpg'
             new_filepath = os.path.join(user_imgdir, new_filename)
@@ -230,7 +230,6 @@ class MyMobileView():
                 self.setCurrentImageID()
                 new_filename = f'{self.current_pic_id}.jpg'
                 new_filepath = os.path.join(user_imgdir, new_filename)
-            print("yes4")
             with open(filepath, 'wb') as f:
                 f.write(imgdata)
                 print(f"Temp image is saved at {filepath}")

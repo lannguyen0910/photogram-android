@@ -17,7 +17,5 @@
 /djangorest/db.sqlite3
 djangorest/db.sqlite3
 djangorest/db.sqlite3
-*.pyc
-*.pyc
-*.pyc
-*.pyc
+*.pycs
+Photogram/.idea/workspace.xml
