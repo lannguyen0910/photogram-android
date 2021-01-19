@@ -67,7 +67,7 @@ class MyMobileView():
         self.current_pic_id = self.getAvailableImageID()
 
     def getCurrentUserImageDir(self):
-        return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR)
+        return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR).replace('\\\\', '/')
 
     def getCurrentUserDir(self):
         return os.path.join(STORAGE_PATH, str(self.current_user_id))
@@ -475,7 +475,6 @@ class MyMobileView():
         response_data['response'] = 1
         if request.method == 'POST':
             user_image_paths = self.getAllFavoriteImgs()
-            print(user_image_paths)
             for path in user_image_paths['images']:
                 img_string = self.convertImagetoString(path)
                 img_name = self.getImageIDByName(path)

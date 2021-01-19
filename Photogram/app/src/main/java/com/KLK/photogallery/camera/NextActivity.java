@@ -71,9 +71,9 @@ public class NextActivity extends AppCompatActivity {
                 buttonID = position;
 
 
-//                Intent intent = new Intent(NextActivity.this, StyleActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                startActivity(intent);
+                Intent intent = new Intent(NextActivity.this, StyleActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }});
 
         groupButtons.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
