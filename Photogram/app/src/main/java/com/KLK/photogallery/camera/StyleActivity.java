@@ -24,16 +24,16 @@ public class StyleActivity extends AppCompatActivity {
         adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
 
-        if (isOpenAlready())
-        {
-            Intent intent = new Intent(StyleActivity.this, NextActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        } else {
-            SharedPreferences.Editor editor = getSharedPreferences("slide", MODE_PRIVATE).edit();
-            editor.putBoolean("slide",true);
-            editor.commit();
-        }
+//        if (isOpenAlready())
+//        {
+//            Intent intent = new Intent(StyleActivity.this, NextActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//            startActivity(intent);
+//        } else {
+//            SharedPreferences.Editor editor = getSharedPreferences("slide", MODE_PRIVATE).edit();
+//            editor.putBoolean("slide",true);
+//            editor.commit();
+//        }
 
     }
 

@@ -33,7 +33,7 @@ public class NextActivity extends AppCompatActivity {
     RadioRealButton button1, button2, button3;
     RadioRealButtonGroup groupButtons;
     ImageView imageNext, savedChanged;
-    private final String mAppend = "file:/";
+    private final String mAppend = "file://";
     private int buttonID = 0;
     ServerRequest server;
 
@@ -70,9 +70,6 @@ public class NextActivity extends AppCompatActivity {
             public void onClickedButton(RadioRealButton button, int position) {
                 buttonID = position;
 
-                Intent intent = new Intent(NextActivity.this, StyleActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
             }
         });
 
@@ -85,19 +82,23 @@ public class NextActivity extends AppCompatActivity {
         savedChanged.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BitmapDrawable imgDrawable = (BitmapDrawable) imageNext.getDrawable();
-                Bitmap imgBitmap = imgDrawable.getBitmap();
-                int maxImageSize = Integer.parseInt(getResources().getString(R.string.image_size));
-                Bitmap scaleImgBitmap = Bitmap.createScaledBitmap(imgBitmap, maxImageSize, maxImageSize, false);
-                String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(scaleImgBitmap);
                 switch (buttonID){
                     case 0:
+                        BitmapDrawable imgDrawable = (BitmapDrawable) imageNext.getDrawable();
+                        Bitmap imgBitmap = imgDrawable.getBitmap();
+                        int maxImageSize = Integer.parseInt(getResources().getString(R.string.image_size));
+                        Bitmap scaleImgBitmap = Bitmap.createScaledBitmap(imgBitmap, maxImageSize, maxImageSize, false);
+                        String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(scaleImgBitmap);
                         Log.d(TAG, "Click on DEFAULT button");
                         sendDefaultImageRequest(imageBase64);
                         break;
                     case 1:
                         Log.d(TAG, "Click on STYLE button");
-                        sendStyleImageRequest(imageBase64);
+
+                        Intent intent = new Intent(NextActivity.this, StyleActivity.class);
+                        startActivity(intent);
+
+//                        sendStyleImageRequest(imageBase64);
                         break;
                     case 2:
                         break;

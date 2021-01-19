@@ -10,19 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd1e1cd4-01ad-4225-ad22-53971298dc99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_otto_1_3_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__gun0912_ted_tedpermission_1_0_2_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/love/FileUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/love/GalleryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/home/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/home/messenger/MessengerMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/home/messenger/MessengerMainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/love/LoveActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/love/LoveActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_love.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_love.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_grid_imageview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_grid_imageview.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/NextActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/StyleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/camera/StyleActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/GridImageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/KLK/photogallery/helper/GridImageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_style_slide_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/layout_style_slide_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../djangorest/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../djangorest/rest/gdrive/token.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/../djangorest/rest/gdrive/token.pickle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +56,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android-custom-viewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_SELECTED" value="SquareImageView" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../recyclerview-image-gallery" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Mobile-Dev" />
     <property name="multi-representation-previewD:/GITHUB/18TN Projects/Mobile Dev/Final/Mobile-Final/Photogram/app/src/main/java/com/KLK/photogallery/helper/SquareImageView.java_selected" value="Custom views" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -174,33 +169,33 @@
     </state>
     <state x="391" y="210" width="840" height="447" key="AndroidCreateResourceFileDialog/0.0.1366.768@0.0.1366.768" timestamp="1610798343990" />
     <state x="215" y="298" key="AndroidCreateResourceFileDialog/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608496344143" />
-    <state x="526" y="209" key="FileChooserDialogImpl" timestamp="1611077121603">
+    <state x="526" y="209" key="FileChooserDialogImpl" timestamp="1611081511770">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state x="526" y="209" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1611077121603" />
+    <state x="526" y="209" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1611081511770" />
     <state x="740" y="294" key="FileChooserDialogImpl/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608555045858" />
-    <state width="1322" height="216" key="GridCell.Tab.0.bottom" timestamp="1611078949691">
+    <state width="1322" height="247" key="GridCell.Tab.0.bottom" timestamp="1611082340709">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="216" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1611078949691" />
+    <state width="1322" height="247" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1611082340709" />
     <state width="1031" height="440" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.bottom/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1322" height="216" key="GridCell.Tab.0.center" timestamp="1611078949691">
+    <state width="1322" height="247" key="GridCell.Tab.0.center" timestamp="1611082340708">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="216" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1611078949691" />
+    <state width="1322" height="247" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1611082340708" />
     <state width="1031" height="440" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.center/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1322" height="216" key="GridCell.Tab.0.left" timestamp="1611078949689">
+    <state width="1322" height="247" key="GridCell.Tab.0.left" timestamp="1611082340708">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="216" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1611078949689" />
+    <state width="1322" height="247" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1611082340708" />
     <state width="1031" height="440" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.left/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
-    <state width="1322" height="216" key="GridCell.Tab.0.right" timestamp="1611078949691">
+    <state width="1322" height="247" key="GridCell.Tab.0.right" timestamp="1611082340709">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1322" height="216" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1611078949691" />
+    <state width="1322" height="247" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1611082340709" />
     <state width="1031" height="440" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@-1080.-426.1080.1920" timestamp="1608866343066" />
     <state width="1046" height="342" key="GridCell.Tab.0.right/0.0.1920.1080/-1080.-426.1080.1920@0.0.1920.1080" timestamp="1608913698676" />
     <state x="58" y="58" key="SettingsEditor" timestamp="1611028815091">
