@@ -1,5 +1,6 @@
 package com.KLK.photogallery.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,10 +19,12 @@ import com.KLK.photogallery.camera.StyleActivity;
 
 
 public class SlideViewPagerAdapter extends PagerAdapter {
+    Activity activity;
     Context ctx;
 
-    public SlideViewPagerAdapter(Context ctx) {
-        this.ctx = ctx;
+    public SlideViewPagerAdapter(Activity activity) {
+        this.activity = activity;
+        this.ctx = activity;
     }
 
     @Override
@@ -59,9 +62,10 @@ public class SlideViewPagerAdapter extends PagerAdapter {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(ctx, NextActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
-                ctx.startActivity(intent);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("chosenStyleID",String.valueOf(position));
+                activity.setResult(Activity.RESULT_OK,returnIntent);
+                activity.finish();
             }
 
         });

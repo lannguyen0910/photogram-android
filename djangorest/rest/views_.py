@@ -43,9 +43,10 @@ class MyMobileView():
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
         self.gdrive_uploader.createFolder(usr_dir, 'images')
         default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
+        default_fav = os.path.join(STORAGE_PATH, DEFAULT_DIR ,USER_DEFAULT_FAV)
         self.gdrive_uploader.copyFile(default_avatar, self.getCurrentUserImageDir())
-        with open(os.path.join(self.getCurrentUserDir(),USER_DEFAULT_FAV), 'w+') as f:
-            pass
+        self.gdrive_uploader.copyFile(default_fav, self.getCurrentUserDir())
+       
 
     def loadUserData(self):
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
@@ -88,6 +89,9 @@ class MyMobileView():
 
     def getUserAvatar(self):
         return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR, USER_DEFAULT_AVATAR)
+
+    def getUserFav(self):
+        return os.path.join(STORAGE_PATH, str(self.current_user_id), USER_DEFAULT_FAV)
 
     def getUserInfoResponse(self):
         info_dict = {}
@@ -223,12 +227,18 @@ class MyMobileView():
 
     def setupNewUser(self):
         new_user_imgdir = os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR)
+        new_user_dir = os.path.join(STORAGE_PATH, str(self.current_user_id))
+
         if not os.path.exists(new_user_imgdir):
             os.makedirs(new_user_imgdir)
 
         default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
         copy_avatar = os.path.join(new_user_imgdir, USER_DEFAULT_AVATAR)
         copyfile(default_avatar, copy_avatar)
+
+        default_fav = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_FAV)
+        copy_fav = os.path.join(new_user_dir, USER_DEFAULT_FAV)
+        copyfile(default_fav, copy_fav)
 
     def getImageIDByName(self, image_name):
         name = os.path.basename(image_name)
@@ -257,6 +267,7 @@ class MyMobileView():
     def styleTransferImage(self, request):
         try:
             img_string = request.POST['image']
+            style_id = request.POST['chosenStyleID']
             imgdata = base64.b64decode(img_string)
             filename = f'{self.current_user_id}_{self.current_pic_id}.jpg'
             user_imgdir = self.getCurrentUserImageDir()
@@ -272,7 +283,9 @@ class MyMobileView():
                 f.write(imgdata)
                 print(f"Temp image is saved at {filepath}")
                 self.current_pic_id+=1
-            getStyleTransfer(filepath, 'rest/editors/style_transfer/examples/style/in14.png', new_filepath)
+            
+            style_path = os.path.join(DEFAULT_STYLE_DIR, str(style_id)+'.png')
+            getStyleTransfer(filepath, style_path, new_filepath)
         except Exception as e:
             print(e)
 

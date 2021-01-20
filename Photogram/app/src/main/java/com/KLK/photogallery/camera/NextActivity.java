@@ -29,6 +29,7 @@ import co.ceryle.radiorealbutton.RadioRealButtonGroup;
 
 public class NextActivity extends AppCompatActivity {
     // For debugging
+    private static final int STYLE_IMAGE_REQUEST = 123;
     private static final String TAG = "NextActivity";
     RadioRealButton button1, button2, button3;
     RadioRealButtonGroup groupButtons;
@@ -36,7 +37,7 @@ public class NextActivity extends AppCompatActivity {
     private final String mAppend = "file://";
     private int buttonID = 0;
     ServerRequest server;
-
+    String chosenStyleID = "0";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +72,7 @@ public class NextActivity extends AppCompatActivity {
                 buttonID = position;
 
                 Intent intent = new Intent(NextActivity.this, StyleActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                startActivityForResult(intent, STYLE_IMAGE_REQUEST);
             }});
 
         groupButtons.setOnPositionChangedListener(new RadioRealButtonGroup.OnPositionChangedListener() {
@@ -84,23 +84,21 @@ public class NextActivity extends AppCompatActivity {
         savedChanged.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                BitmapDrawable imgDrawable = (BitmapDrawable) imageNext.getDrawable();
+                Bitmap imgBitmap = imgDrawable.getBitmap();
+                int maxImageSize = Integer.parseInt(getResources().getString(R.string.image_size));
+                Bitmap scaleImgBitmap = Bitmap.createScaledBitmap(imgBitmap, maxImageSize, maxImageSize, false);
+                String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(scaleImgBitmap);
+
                 switch (buttonID){
                     case 0:
-                        BitmapDrawable imgDrawable = (BitmapDrawable) imageNext.getDrawable();
-                        Bitmap imgBitmap = imgDrawable.getBitmap();
-                        int maxImageSize = Integer.parseInt(getResources().getString(R.string.image_size));
-                        Bitmap scaleImgBitmap = Bitmap.createScaledBitmap(imgBitmap, maxImageSize, maxImageSize, false);
-                        String imageBase64 = ImageEncoderDecoder.encodeBitmapToBase64(scaleImgBitmap);
                         Log.d(TAG, "Click on DEFAULT button");
                         sendDefaultImageRequest(imageBase64);
                         break;
                     case 1:
                         Log.d(TAG, "Click on STYLE button");
 
-                        Intent intent = new Intent(NextActivity.this, StyleActivity.class);
-                        startActivity(intent);
-
-//                        sendStyleImageRequest(imageBase64);
+                        sendStyleImageRequest(imageBase64, chosenStyleID);
                         break;
                     case 2:
                         break;
@@ -111,10 +109,11 @@ public class NextActivity extends AppCompatActivity {
         });
     }
 
-    private void sendStyleImageRequest(String imageBase64){
+    private void sendStyleImageRequest(String imageBase64, String id){
         String url = getResources().getString(R.string.style_url);
         Map<String, String> params = new HashMap<String, String>();
         params.put("image", imageBase64);
+        params.put("chosenStyleID", id);
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -140,4 +139,19 @@ public class NextActivity extends AppCompatActivity {
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.displayImage(append + imgURL, image);
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == STYLE_IMAGE_REQUEST) {
+            if(resultCode == Activity.RESULT_OK) {
+                chosenStyleID = data.getStringExtra("chosenStyleID");
+            }
+        }
+    }//onActivityResult
+
 }
+
+
