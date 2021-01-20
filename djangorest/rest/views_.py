@@ -44,7 +44,8 @@ class MyMobileView():
         self.gdrive_uploader.createFolder(usr_dir, 'images')
         default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
         self.gdrive_uploader.copyFile(default_avatar, self.getCurrentUserImageDir())
-        open(os.path.join(self.getCurrentUserDir,USER_DEFAULT_FAV), 'a').close()
+        with open(os.path.join(self.getCurrentUserDir(),USER_DEFAULT_FAV), 'w+') as f:
+            pass
 
     def loadUserData(self):
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
