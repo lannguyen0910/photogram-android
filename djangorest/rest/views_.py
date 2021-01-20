@@ -454,7 +454,7 @@ class MyMobileView():
     def getAllFavoriteImgs(self):
         usr_dir = self.getCurrentUserDir()
         usr_img_dir = self.getCurrentUserImageDir()
-        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV)
+        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV).replace('\\\\', '/')
         user_image_paths = []
         with open(usr_fav_txt, 'r') as f:
             data = f.read()
