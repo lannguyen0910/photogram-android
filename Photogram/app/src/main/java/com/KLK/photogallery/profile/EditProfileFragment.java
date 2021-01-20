@@ -1,5 +1,6 @@
 package com.KLK.photogallery.profile;
 
+import android.app.Activity;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -229,7 +230,7 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CHANGE_AVATAR){
+        if (requestCode == REQUEST_CHANGE_AVATAR && resultCode== Activity.RESULT_OK){
             Uri selectedImage = data.getData();
 
 
