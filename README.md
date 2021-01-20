@@ -9,7 +9,7 @@
 - pip install Django
 - pip install djangorestframework
 - pip install markdown
-- pip install pdjango-filter
+- pip install django-filter
 
 
 ## Find current local IP address
