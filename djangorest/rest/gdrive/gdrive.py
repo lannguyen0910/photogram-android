@@ -79,6 +79,7 @@ class GoogleDriveUploader():
         print(f"Folder created. Path: {new_folder_name} \t\tID: {new_folder_id}")
     
     def getFolderIDByName(self, folder_name):
+        folder_name = folder_name.replace('\\\\', '/')
         return self.folder_name_to_id[folder_name]
 
     def getFileIDInsideParentFolder(self, folder_name, filename):
