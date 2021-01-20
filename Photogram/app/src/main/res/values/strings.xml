@@ -1,0 +1,92 @@
+<resources>
+
+    <string name="app_name">Photogram</string>
+
+    <!-- fragment names -->
+    <string name="edit_profile_fragment">Edit Profile</string>
+    <string name="sign_out_fragment">Sign Out</string>
+    <string name="profile_fragment">Profile</string>
+    <string name="view_post_fragment">View Post</string>
+
+    <!-- string-->
+    <string name="string_open_camera">Open Camera</string>
+    <string name="string_next">Next</string>
+    <string name="gallery">GALLERY</string>
+    <string name="photo">PHOTO</string>
+    <string name="error">Error</string>
+
+    <!-- activity names-->
+    <string name="profile_activity">Profile Activity</string>
+    <string name="messenger_activity">Messenger Activity</string>
+    <string name="home_activity">Home Activity</string>
+
+
+    <!-- intent extras -->
+    <string name="calling_activity">calling_activity</string>
+    <string name="selected_image">selected_image</string>
+
+    <!-- search activity -->
+    <string name="activity_number">activity_number</string>
+    <string name="action_search_images">Search images</string>
+    <string name="search_options">Search Options</string>
+    <string name="no_images">Search for images to display</string>
+    <string name="search_hint">Search Images</string>
+
+    <string name="image_size">512</string>
+
+    <!-- Menu names -->
+    <string name="menu_zoom">Stretch image to screen</string>
+    <string name="menu_original_size">Original size</string>
+    <string name="share">Share image</string>
+
+    <!-- Toast strings -->
+    <string name="image_loading">Image is loading</string>
+    <string name="error_loading">Error loading image</string>
+
+    <!-- Error names for Volley -->
+    <string name="connection_error">Please check your connection!</string>
+    <string name="server_error">The server could not be found, try again after some time!</string>
+    <string name="parse_error">Parsing error, try again after some time!</string>
+    <string name="timeout_error">Connection TimeOut, please check your internet connection!</string>
+
+    <!-- intent extras -->
+
+    <string name="gallery_url">http://192.168.1.16:8000/gallery/</string>
+    <string name="login_url">http://192.168.1.16:8000/login/</string>
+    <string name="upload_url">http://192.168.1.16:8000/upload/</string>
+    <string name="logout_url">http://192.168.1.16:8000/logout/</string>
+    <string name="signup_url">http://192.168.1.16:8000/signup/</string>
+    <string name="delete_url">http://192.168.1.16:8000/delete/</string>
+    <string name="update_url">http://192.168.1.16:8000/update/</string>
+    <string name="style_url">http://192.168.1.16:8000/style/</string>
+    <string name="fav_status_url">http://192.168.1.16:8000/fav_status/</string>
+    <string name="fav_url">http://192.168.1.16:8000/fav/</string>
+
+
+    <!-- shared ref for user info -->
+    <string name="preference_file_key">USER_INFO</string>
+
+    <!-- splash screen string -->
+    <string name="splash_screen_description">Stylish Your Photo</string>
+
+    <!-- dialog names -->
+    <string name="confirm_password_dialog">ConfirmPassword Dialog</string>
+
+    <!-- style names and descriptions-->
+    <string name="style_1_title">House View</string>
+    <string name="style_1_desc">A beautiful view at night of an expensive house</string>
+    <string name="style_2_title">Desert Morning</string>
+    <string name="style_2_desc">A beautiful sunrise view in a epic desert</string>
+    <string name="style_3_title">Wine Glass</string>
+    <string name="style_3_desc">A beautiful picture with a glass of wine and epic light effect </string>
+    <string name="style_4_title">Church Hallway</string>
+    <string name="style_4_desc">A beautiful architecture of a church brings solemn atmosphere</string>
+    <string name="style_5_title">Farmer and Nature</string>
+    <string name="style_5_desc">A beautiful farmer\'s house inside a immense rice field</string>
+    <string name="style_6_title">England Theater</string>
+    <string name="style_6_desc">A beautiful view at night in England</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
