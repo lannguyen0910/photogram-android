@@ -73,7 +73,7 @@ public class LoveActivity extends AppCompatActivity {
         final ArrayList<String> imgBaseNameStrings = server.getImageNameStrings();
 
         final ArrayList<Post> posts = new ArrayList<>();
-        for (int i =0;i<imgBase64Strings.size();i++) {
+        for (int i = 0; i < imgBase64Strings.size(); i++) {
             Post post = new Post(imgBase64Strings.get(i),imgBaseNameStrings.get(i), true,true);
             posts.add(post);
         }

@@ -188,25 +188,6 @@ public class EditProfileFragment extends Fragment {
         startActivityForResult(intent, REQUEST_CHANGE_AVATAR);
     }
 
-    /** --------------------------------------------------------------------------------
-     * Retrieves the data contained in the widgets and submits it to the database
-     * Make sure the username chosen is unique before submitting:
-     * Step 1: If (make change to Email or Password or both):
-     *              // Pop up a dialog, confirm the password or email (Use below script)
-     *             ConfirmPasswordDialog dialog = new ConfirmPasswordDialog();
-     *             dialog.show(getFragmentManager(), getString(R.string.confirm_password_dialog));
-     *             dialog.setTargetFragment(EditProfileFragment.this, 1);
-     *
-     * Step 2: Check email or password that was already used (database)
-     *
-     * Step 3: Change the email or password
-     *
-     * Step 4: change the rest of the settings that do not require uniqueness (phone, avatar, full name?,...)
-     *
-     * !!!!! Remember to display the result of EditProfile and ProfileActivity after SignUp or Edit !!!!!
-
-
-     **/
 
     private void saveProfileSettings() {
         String fullname = mFullName.getText().toString();
