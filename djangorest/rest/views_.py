@@ -43,8 +43,8 @@ class MyMobileView():
         self.gdrive_uploader.createFolder(DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id))
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
         self.gdrive_uploader.createFolder(usr_dir, 'images')
-        default_avatar = os.path.join(STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR)
-        default_fav = os.path.join(STORAGE_PATH, DEFAULT_DIR ,USER_DEFAULT_FAV)
+        default_avatar = '/'.join([STORAGE_PATH, DEFAULT_DIR, USER_DEFAULT_AVATAR])
+        default_fav = '/'.join([STORAGE_PATH, DEFAULT_DIR ,USER_DEFAULT_FAV])
         self.gdrive_uploader.copyFile(default_avatar, self.getCurrentUserImageDir())
         self.gdrive_uploader.copyFile(default_fav, self.getCurrentUserDir())
        
@@ -70,10 +70,10 @@ class MyMobileView():
         self.current_pic_id = self.getAvailableImageID()
 
     def getCurrentUserImageDir(self):
-        return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR).replace('\\\\', '/')
+        return '/'.join([STORAGE_PATH, str(self.current_user_id), IMG_DIR]).replace('\\\\', '/')
 
     def getCurrentUserDir(self):
-        return os.path.join(STORAGE_PATH, str(self.current_user_id))
+        return '/'.join([STORAGE_PATH, str(self.current_user_id)])
 
     def getCurrentDefaultStyleDir(self):
         return DEFAULT_STYLE_DIR
@@ -91,10 +91,10 @@ class MyMobileView():
         return result_id
 
     def getUserAvatar(self):
-        return os.path.join(STORAGE_PATH, str(self.current_user_id), IMG_DIR, USER_DEFAULT_AVATAR)
+        return '/'.join([STORAGE_PATH, str(self.current_user_id), IMG_DIR, USER_DEFAULT_AVATAR])
 
     def getUserFav(self):
-        return os.path.join(STORAGE_PATH, str(self.current_user_id), USER_DEFAULT_FAV)
+        return '/'.join([STORAGE_PATH, str(self.current_user_id), USER_DEFAULT_FAV])
 
     def getUserInfoResponse(self):
         info_dict = {}
@@ -468,35 +468,6 @@ class MyMobileView():
 
     
     def getAllFavoriteImgs(self):
-        usr_dir = self.getCurrentUserDir()
-        usr_img_dir = self.getCurrentUserImageDir()
-        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV).replace('\\\\', '/')
-        user_image_paths = []
-        with open(usr_fav_txt, 'r') as f:
-            data = f.read()
-            for row in data.splitlines():
-                path = os.path.join(usr_img_dir, row+'.jpg')
-                user_image_paths.append(path)
-        return {'images': user_image_paths}
-        
-
-    @csrf_exempt
-    def sendAllFavoriteImagesToUser(self, request):
-        response_data = {}
-        response_data['images'] = []
-        response_data['image_names'] = []
-        response_data['message'] = "Sent images"
-        response_data['response'] = 1
-        if request.method == 'POST':
-            user_image_paths = self.getAllFavoriteImgs()
-            for path in user_image_paths['images']:
-                img_string = self.convertImagetoString(path)
-                img_name = self.getImageIDByName(path)
-                response_data['images'].append(img_string)
-                response_data['image_names'].append(img_name)
-        return HttpResponse(json.dumps(response_data), content_type="application/json")
-
-    def getAllStyleImgs(self):
         usr_dir = self.getCurrentUserDir()
         usr_img_dir = self.getCurrentUserImageDir()
         usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV).replace('\\\\', '/')

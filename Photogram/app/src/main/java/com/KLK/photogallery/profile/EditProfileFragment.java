@@ -164,8 +164,8 @@ public class EditProfileFragment extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
         params.put("username", username);
         params.put("name", fullname);
-        params.put("password1", password);
-        params.put("password2", password);
+//        params.put("password1", password);
+//        params.put("password2", password);
         params.put("email", email);
         params.put("phone_number", phone_number);
         params.put("avatar", avatarBase64);

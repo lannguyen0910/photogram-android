@@ -25,12 +25,14 @@ public class ServerRequest {
     Activity activity;
     int response;
     String message;
+    SharedPref sharedPref;
     private ArrayList<String> images_from_server = null;
     private ArrayList<String> image_names_from_server = null;
-
+    private String avatar = null;
     JSONObject user_info = null;
     public ServerRequest(Activity activity){
         this.activity = activity;
+        sharedPref = new SharedPref(activity.getApplicationContext());
         if (activity == null){
             Log.e(TAG, "activity is null");
         }
@@ -61,6 +63,10 @@ public class ServerRequest {
                             if (obj.has("image_names")) {
                                 JSONArray images = obj.getJSONArray("image_names");
                                 getImageGridName(images);
+                            }
+                            if (obj.has("avatar")) {
+                                JSONObject image = obj.getJSONObject("avatar");
+                                setAvatar(image);
                             }
 
                             if (obj.has("user_info")){
@@ -101,6 +107,10 @@ public class ServerRequest {
         return this.user_info;
     }
 
+    public void setAvatar(JSONObject image) throws JSONException {
+        avatar = image.getString("avatar");
+        sharedPref.setString("avatar", avatar);
+    }
 
     public void getImageGrid(JSONArray images) throws JSONException {
         images_from_server = new ArrayList<>();
@@ -134,7 +144,7 @@ public class ServerRequest {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(activity, response,Toast.LENGTH_SHORT). show();
+//                Toast.makeText(activity, response,Toast.LENGTH_SHORT). show();
             }
         });
     }
