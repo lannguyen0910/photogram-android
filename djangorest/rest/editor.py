@@ -1,6 +1,6 @@
 from .editors import StyleTransfer, Config
 
-DEFAULT_STYLE_DIR = 'rest/editors/style_transfer/examples/style'
+DEFAULT_STYLE_DIR = 'rest/files/style'
 
 def getStyleTransfer(content_path, style_path, output_path):
     config = Config('rest/editors/configs/transfer.yaml')

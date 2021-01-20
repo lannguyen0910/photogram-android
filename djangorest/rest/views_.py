@@ -14,7 +14,6 @@ from shutil import copyfile
 from .forms import logInForm, signUpForm
 from .editor import *
 from .gdrive import *
-from google_drive_downloader import GoogleDriveDownloader as gdd
 
 STORAGE_PATH = 'rest/files'
 IMG_DIR = 'images'
@@ -37,6 +36,8 @@ class MyMobileView():
     def initServer(self):
         if not os.path.exists(STORAGE_PATH):
             self.gdrive_uploader.downloadAllFolders(STORAGE_PATH)
+        if not os.path.exists(DEFAULT_STYLE_DIR):
+            self.gdrive_uploader.downloadAllFolders(DEFAULT_STYLE_DIR)
 
     def initUserData(self):
         self.gdrive_uploader.createFolder(DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id))
@@ -50,8 +51,7 @@ class MyMobileView():
 
     def loadUserData(self):
         usr_dir = '/'.join([DEFAULT_ROOT_FOLDER_NAME, str(self.current_user_id)])
-        if not os.path.exists(usr_dir):
-            self.downloadUserDataFromDrive(usr_dir)
+        self.downloadUserDataFromDrive(usr_dir)
 
     def downloadUserDataFromDrive(self, folder_name):
         print('Start downloading user data')
@@ -74,6 +74,9 @@ class MyMobileView():
 
     def getCurrentUserDir(self):
         return os.path.join(STORAGE_PATH, str(self.current_user_id))
+
+    def getCurrentDefaultStyleDir(self):
+        return DEFAULT_STYLE_DIR
 
     def getAvailableImageID(self):
         result_id = 0
@@ -466,6 +469,35 @@ class MyMobileView():
 
     
     def getAllFavoriteImgs(self):
+        usr_dir = self.getCurrentUserDir()
+        usr_img_dir = self.getCurrentUserImageDir()
+        usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV).replace('\\\\', '/')
+        user_image_paths = []
+        with open(usr_fav_txt, 'r') as f:
+            data = f.read()
+            for row in data.splitlines():
+                path = os.path.join(usr_img_dir, row+'.jpg')
+                user_image_paths.append(path)
+        return {'images': user_image_paths}
+        
+
+    @csrf_exempt
+    def sendAllFavoriteImagesToUser(self, request):
+        response_data = {}
+        response_data['images'] = []
+        response_data['image_names'] = []
+        response_data['message'] = "Sent images"
+        response_data['response'] = 1
+        if request.method == 'POST':
+            user_image_paths = self.getAllFavoriteImgs()
+            for path in user_image_paths['images']:
+                img_string = self.convertImagetoString(path)
+                img_name = self.getImageIDByName(path)
+                response_data['images'].append(img_string)
+                response_data['image_names'].append(img_name)
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+    def getAllStyleImgs(self):
         usr_dir = self.getCurrentUserDir()
         usr_img_dir = self.getCurrentUserImageDir()
         usr_fav_txt = os.path.join(usr_dir, USER_DEFAULT_FAV).replace('\\\\', '/')
