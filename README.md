@@ -1,11 +1,16 @@
 # Mobile-Final
 
 ## Requirements:
-- Django
-- djangorestframework
-- markdown
-- pdjango-filter
-- Pytorch
+- Pytorch 1.6
+- Python
+
+## Install these first:
+- pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+- pip install Django
+- pip install djangorestframework
+- pip install markdown
+- pip install pdjango-filter
+
 
 ## Find current local IP address
 - Use ```ipconfig``` to find local IP address (ex: 192.168.1.2)
