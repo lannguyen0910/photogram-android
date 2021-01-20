@@ -139,6 +139,7 @@ public class ViewPostFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     downloadImageToLocal();
+                    Toast.makeText(getActivity(), "Downloaded!", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -215,7 +216,6 @@ public class ViewPostFragment extends Fragment {
             return false;
         }
     }
-
 
     private void setUsername(){
         Log.d(TAG, "setUserName: set user name!");

@@ -53,7 +53,6 @@ public class CameraActivity extends AppCompatActivity {
      * return the current tab number
      * 0 = GalleryFragment
      * 1 = PhotoFragment
-     * @return
      */
     public int getCurrentTabNumber(){
         return viewPager.getCurrentItem();
@@ -78,10 +77,6 @@ public class CameraActivity extends AppCompatActivity {
 
     }
 
-//    public int getTask(){
-//        Log.d(TAG, "getTask: TASK: " + getIntent().getFlags());
-//        return getIntent().getFlags();
-//    }
 
     /**
      * verifiy all the permissions passed to the array
@@ -131,7 +126,6 @@ public class CameraActivity extends AppCompatActivity {
             return true;
         }
     }
-
 
 //    private void configBottomNavigationView(){
 //        Log.d(TAG, "Config Bottom Navigation View!");

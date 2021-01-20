@@ -121,7 +121,7 @@ public class SearchActivity extends AppCompatActivity {
         menuItem.setChecked(true);
     }
 
-    // This method probably sends out a network request and appends new data items to your adapter.
+    // This method probably sends out a network request and appends new data items to adapter.
     public void loadNextDataFromApi(int offset) {
         Uri.Builder uriBuilder = SearchUtils.getUri(getSearchString());
         uriBuilder.appendQueryParameter("start", "" + offset);
@@ -168,9 +168,7 @@ public class SearchActivity extends AppCompatActivity {
     //Volley request for json string
     public void volleyRequest(String volleySearchString, final int addFlag) {
 
-        /*
-         * @params {Request type, url to be searched, responseHandler, errorHandler}
-         */
+        /** @params {Request type, url to be searched, responseHandler, errorHandler} **/
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, volleySearchString,
                 new Response.Listener<String>() {

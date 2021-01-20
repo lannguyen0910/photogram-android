@@ -31,7 +31,7 @@ public final class SearchUtils {
         uriBuilder.appendQueryParameter("searchType", "image");
 
         /** https://developers.google.com/custom-search/v1/overview
-         * Change the key when this is no longer use, guide is above!!!
+         * Change the key when this is no longer use, guide is above
          **/
         uriBuilder.appendQueryParameter("key", "AIzaSyBcIybgdPhTacLa72-7bP7ZLe1JEBnitIo"); // <--YOUR-API-KEY
 
