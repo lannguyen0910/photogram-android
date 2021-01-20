@@ -8,12 +8,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.KLK.photogallery.R;
+import com.KLK.photogallery.helper.ServerRequest;
 import com.KLK.photogallery.helper.SlideViewPagerAdapter;
 
 /** User can choose a style they want **/
 public class StyleActivity extends AppCompatActivity {
     public static ViewPager viewPager;
     SlideViewPagerAdapter adapter;
+    ServerRequest server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,10 @@ public class StyleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_style_slide);
 
         viewPager = findViewById(R.id.viewpager);
+
+        server = new ServerRequest(this);
+
+
         adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
 

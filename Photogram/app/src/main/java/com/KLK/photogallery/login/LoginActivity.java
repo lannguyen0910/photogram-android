@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         mPleaseWait.setVisibility(View.GONE);
                         mProgressBar.setVisibility(View.GONE);
                     }
-                }, 1500);
+                }, 3000);
 
             }
         });
