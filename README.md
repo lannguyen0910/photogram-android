@@ -28,5 +28,8 @@
 - Run ```python manage.py migrate```
 - Run ```python manage.py runserver 192.168.1.2:8000```
 
+## APK
+- Link: [apk](https://github.com/HCMUS-KLK/photogram-android/blob/master/app/build/outputs/apk/debug/app-debug.apk)
+
 ## Demo 
 - Link [demo](https://drive.google.com/drive/folders/1rtfwPurpjEWd0V3xj30-M-zLaztHjUrF?usp=sharing)
